@@ -1,0 +1,613 @@
+---
+import '../styles.css';
+
+const experience = [
+  { year: '24', name: '[TODO Project 06]', tags: '[TODO role, stack]', id: 'project-6' },
+  { year: '23', name: '[TODO Project 05]', tags: '[TODO role, stack]', id: 'project-5' },
+  { year: '22—23', name: '[TODO Project 04]', tags: '[TODO role, stack]', id: 'project-4' },
+  { year: '20—22', name: '[TODO Project 03]', tags: '[TODO role, stack]', id: 'project-3' },
+  { year: '20—21', name: '[TODO Project 02]', tags: '[TODO role, stack]', id: 'project-2' },
+  { year: '19', name: '[TODO Project 01]', tags: '[TODO role, stack]', id: 'project-1' },
+];
+
+const work = [
+  {
+    id: 'project-5',
+    year: '23',
+    title: '[TODO Project 05] — [TODO one-line outcome]',
+    what: '[TODO: what you did, platform, role.]',
+    impact: '[TODO: real impact or omit. Do not invent metrics.]',
+  },
+  {
+    id: 'project-4',
+    year: '22—23',
+    title: '[TODO Project 04] — [TODO one-line outcome]',
+    what: '[TODO: what you did, platform, role.]',
+    impact: '[TODO: real impact or omit. Do not invent metrics.]',
+  },
+  {
+    id: 'project-3',
+    year: '20—22',
+    title: '[TODO Project 03] — [TODO one-line outcome]',
+    what: '[TODO: what you did, platform, role.]',
+    impact: '[TODO: real impact or omit. Do not invent metrics.]',
+  },
+  {
+    id: 'project-2',
+    year: '20—21',
+    title: '[TODO Project 02] — [TODO one-line outcome]',
+    what: '[TODO: what you did, platform, role.]',
+    impact: '[TODO: real impact or omit. Do not invent metrics.]',
+  },
+  {
+    id: 'project-1',
+    year: '19',
+    title: '[TODO Project 01] — [TODO one-line outcome]',
+    what: '[TODO: what you did, platform, role.]',
+    impact: '[TODO: real impact or omit. Do not invent metrics.]',
+  },
+];
+
+const playground = [
+  {
+    title: '[TODO Experiment A] — [TODO tech]',
+    desc: '[TODO: one-line description of a prototype, demo, or visual study.]',
+  },
+  {
+    title: '[TODO Experiment B] — [TODO tech]',
+    desc: '[TODO: one-line description of a prototype, demo, or visual study.]',
+  },
+];
+
+const discs = [
+  { src: '/red_disk.png', width: 129, height: 130, label: 'Play si preguntas por mi', pathId: 'circlePathRed', motto: 'You Are Going To Figure It Out. You Always Do •', trackId: '7z3rdMzhY122waIpkSsE7P', song: 'si preguntas por mi' },
+  { src: '/green_disk.png', width: 129, height: 129, label: "Play Desenfocao'", pathId: 'circlePathGreen', motto: "Never Give Up On What You Can't Stop Thinking Of •", trackId: '2CEf2gU5ZJamLXa3NrgAvA', song: "Desenfocao'" },
+  { src: '/white_disk.png', width: 129, height: 129, label: 'Play DIME QUIÉN????', pathId: 'circlePathWhite', motto: 'Keep Improving Yourself, Stop Trying To Prove It •', trackId: '1ImWmtI7DM2uFPNJHHbD8g', song: 'DIME QUIÉN????' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="preconnect" href="https://open.spotify.com" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='black' stroke='%23333'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23333'/%3E%3Ccircle cx='16' cy='16' r='3' fill='black' stroke='%23666'/%3E%3C/svg%3E" />
+    <title>Pedro Librado Uribe Reyes — Designer, Developer &amp; Prototyper</title>
+    <meta
+      name="description"
+      content="[TODO: one-line portfolio description. Replace with your own title, location, and focus.]"
+    />
+  </head>
+  <body class="bg-ink text-fg">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black"
+    >
+      Skip to content
+    </a>
+
+    <!-- Mobile mini nav -->
+    <nav aria-label="Sections" class="sticky top-0 z-40 flex items-center justify-between border-b border-line bg-ink/95 px-4 py-2 backdrop-blur md:hidden">
+      <span class="text-micro text-fg">Pedro Librado Uribe Reyes</span>
+      <div class="flex gap-4 text-micro">
+        <a class="text-muted hover:text-fg" href="#about">About</a>
+        <a class="text-muted hover:text-fg" href="#work">Work</a>
+        <a class="text-muted hover:text-fg" href="#playground">Playground</a>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-12 md:px-6">
+      <div class="relative self-start md:col-span-4" id="contact-wrap">
+        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
+        <button
+          id="contact-toggle"
+          class="mt-1 flex items-center gap-2 text-micro text-dim hover:text-fg"
+          aria-expanded="false"
+          aria-controls="contact-panel"
+        >
+          <span>libradouribe25@gmail.com</span>
+          <span aria-hidden="true" class="contact-icon inline-block text-base leading-none">+</span>
+        </button>
+        <div id="contact-panel" class="absolute left-0 top-full z-40 hidden min-w-[10rem] flex-col gap-1 pt-2 text-micro" hidden>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO Instagram link">Instagram</a>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO Email link">Email</a>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO social link">Twitter / X</a>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO resume link">Resume</a>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO LinkedIn link">LinkedIn</a>
+          <a class="drop-link text-muted hover:text-fg" href="#" aria-label="TODO Calendly link">Calendly</a>
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="text-micro text-fg">[TODO Title — e.g. Designer, Developer &amp; Prototyper]</p>
+        <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
+      </div>
+
+      <div class="md:col-span-5">
+        <h2 class="sr-only">Experience index</h2>
+        <dl class="space-y-1 text-micro">
+          {experience.map((item) => (
+            <div class="tabular grid grid-cols-[2.75rem_1fr] gap-x-3 break-words md:grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1fr)]">
+              <dt class="sr-only">{item.name} year</dt>
+              <dd class="text-dim">{item.year}</dd>
+              <dd>
+                <button
+                  class="open-modal text-left text-fg hover:underline"
+                  data-modal={item.id}
+                >
+                  {item.name} <span aria-hidden="true">▸</span>
+                </button>
+              </dd>
+              <dd class="col-start-2 text-dim md:col-start-3">{item.tags}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 text-micro">
+          <span class="text-dim">Skills</span>
+          <span class="text-muted">[TODO Unity, C#, AI, Blender, JavaScript, Python, AR, VR, Design Systems]</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vinyl hero -->
+    <section aria-label="Intro" class="relative flex min-h-[38vh] flex-wrap items-center justify-center gap-10 px-4 py-10 md:min-h-[46vh] md:gap-14 md:px-6">
+      {discs.map((disc) => (
+        <button
+          type="button"
+          class="disc-btn relative h-52 w-52 md:h-64 md:w-64"
+          data-track={disc.trackId}
+          data-title={disc.song}
+          aria-pressed="false"
+          aria-label={disc.label}
+        >
+          <svg viewBox="0 0 200 200" class="vinyl-ring-text absolute inset-0 h-full w-full" aria-hidden="true">
+            <defs>
+              <path id={disc.pathId} d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
+            </defs>
+            <text class="fill-dim" style="font-size: 10.5px; letter-spacing: 2.5px; font-family: 'Monocraft', monospace;">
+              <textPath href={`#${disc.pathId}`}>{disc.motto}</textPath>
+            </text>
+          </svg>
+          <div class="absolute left-1/2 top-1/2 w-3/5 -translate-x-1/2 -translate-y-1/2">
+            <img
+              src={disc.src}
+              width={disc.width}
+              height={disc.height}
+              alt=""
+              aria-hidden="true"
+              loading="eager"
+              class="vinyl-spin h-auto w-full"
+              style="image-rendering: pixelated;"
+            />
+          </div>
+        </button>
+      ))}
+      <p class="sr-only">[TODO: replace circular tagline with your own line.]</p>
+    </section>
+
+    <!-- Main 3 columns -->
+    <main id="main" class="grid grid-cols-1 gap-10 px-4 pb-10 md:grid-cols-3 md:gap-6 md:px-6">
+      <!-- About -->
+      <div class="col-stack" data-col="about">
+      <section id="about" aria-labelledby="about-heading" class="about-sec scroll-mt-16 min-w-0">
+        <h2 id="about-heading" class="mb-3 text-micro font-normal text-dim">About</h2>
+
+        <div class="about-blur">
+        <div class="about-photo relative border border-line bg-paper">
+          <div class="flex aspect-[4/5] items-center justify-center bg-gradient-to-b from-[#1a1d24] to-[#0b0c10] p-6 text-center" role="img" aria-label="TODO portrait placeholder">
+            <p class="text-micro text-muted">[TODO portrait photo]<br /><span class="text-dim">4:5, replace with your own image</span></p>
+          </div>
+          <div id="about-slides" class="absolute inset-x-0 bottom-0 p-3" aria-live="polite">
+            <span id="about-caption" class="about-caption text-micro text-dim">01 / 03 — [TODO caption]</span>
+          </div>
+          <button
+            id="about-next"
+            class="about-next-btn absolute inset-0 h-full w-full cursor-pointer"
+            type="button"
+            aria-label="Next photo"
+          >
+            <span aria-hidden="true" class="about-next-float">Next &gt;</span>
+          </button>
+        </div>
+
+        <div class="mt-8 space-y-5 text-micro">
+          <p><strong class="font-bold text-fg">Background</strong> <span class="text-dim">—</span> <span class="text-muted">[TODO: 2–3 sentences about where you grew up and what shaped how you work. Do not copy anyone else's biography.]</span></p>
+          <p><strong class="font-bold text-fg">Focus</strong> <span class="text-dim">—</span> <span class="text-muted">[TODO: what technologies or problems you focus on, and what kind of prototypes or work you do.]</span></p>
+          <p><strong class="font-bold text-fg">Concerns</strong> <span class="text-dim">—</span> <span class="text-muted">[TODO: honest note on trade-offs or concerns in your field, if you want one.]</span></p>
+          <p><strong class="font-bold text-fg">Approach</strong> <span class="text-dim">—</span> <span class="text-muted">[TODO: how you like to collaborate and what keeps you creative.]</span></p>
+        </div>
+
+        <div class="mt-8 border-t border-line pt-4 text-micro">
+          <h3 class="mb-2 text-dim">Elsewhere [TODO]</h3>
+          <ul class="space-y-1 text-muted">
+            <li>23 — [TODO teaching / community role]</li>
+            <li>21 — [TODO volunteer / talk]</li>
+            <li>20 — [TODO award or omit — do not invent]</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+      </div>
+
+      <!-- Work -->
+      <div class="col-stack" data-col="work">
+      <section id="work" aria-labelledby="work-heading" class="scroll-mt-16 min-w-0">
+        <h2 id="work-heading" class="mb-3 text-micro font-normal text-dim">Work</h2>
+        <div class="space-y-8">
+          {work.map((item, i) => (
+            <article class="work-card group" aria-labelledby={`${item.id}-title`}>
+              <button
+                class="open-modal block w-full text-left"
+                data-modal={item.id}
+                aria-haspopup="dialog"
+              >
+                <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#111318] p-6 text-center">
+                  <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
+                </div>
+                <p class="mt-2 text-micro text-muted">
+                  <span id={`${item.id}-title`} class="work-title text-fg">{item.title}</span>
+                  <span class="float-right text-dim">{item.year}</span>
+                </p>
+              </button>
+              <p class="mt-1 hidden text-micro text-dim md:block">{item.what}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      </div>
+
+      <!-- Playground -->
+      <div class="col-stack" data-col="playground">
+      <section id="playground" aria-labelledby="playground-heading" class="scroll-mt-16 min-w-0">
+        <h2 id="playground-heading" class="mb-3 text-micro font-normal text-dim">Playground</h2>
+        <div class="space-y-8">
+          {playground.map((item, i) => (
+            <article class="work-card">
+              <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#0e0f13] p-6 text-center" role="img" aria-label={`TODO playground image ${i + 1}`}>
+                <span class="text-micro text-muted">[TODO playground visual]<br /><span class="text-dim">Unity / AR / AI study</span></span>
+              </div>
+              <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
+              <p class="mt-1 text-micro text-dim">{item.desc}</p>
+            </article>
+          ))}
+          <div class="border border-dashed border-line p-4 text-micro text-dim">
+            [TODO: add 2–4 real experiments. No invented stats, testimonials, or client names.]
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <!-- Modals -->
+    {work.map((item) => (
+      <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="w-[min(44rem,92vw)] border border-line bg-ink p-0 text-fg">
+        <div class="flex items-center justify-between border-b border-line px-4 py-2">
+          <p id={`${item.id}-modal-title`} class="text-micro">{item.title} — {item.year}</p>
+          <button class="close-modal rounded-full border border-line px-3 py-1 text-micro text-muted hover:text-fg" data-close={item.id} type="button">Close</button>
+        </div>
+        <div class="space-y-3 px-4 py-4 text-micro">
+          <div class="flex aspect-video items-center justify-center bg-[#111318] text-muted">[TODO case-study hero image]</div>
+          <p><span class="text-dim">What: </span><span class="text-muted">{item.what}</span></p>
+          <p><span class="text-dim">Impact: </span><span class="text-muted">{item.impact}</span></p>
+          <p class="text-dim">[TODO: deliverables, team, timeline, links. Omit anything you cannot verify.]</p>
+        </div>
+      </dialog>
+    ))}
+
+    <!-- Jukebox: hidden licensed Spotify player + Minecraft now-playing pill -->
+    <div id="jukebox-player" aria-hidden="true"></div>
+    <div id="jukebox-pill" class="mc-pill" hidden>
+      <span aria-hidden="true">♪</span>
+      <span id="jukebox-title" role="status"></span>
+      <button id="jukebox-stop" type="button" class="mc-stop" aria-label="Stop music">✕</button>
+    </div>
+
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script>
+      const toggle = document.getElementById('contact-toggle');
+      const panel = document.getElementById('contact-panel');
+      const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function setContactOpen(open) {
+        toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (!panel) return;
+        if (open) {
+          panel.removeAttribute('hidden');
+          panel.classList.remove('hidden');
+          panel.classList.add('flex');
+          // Let the browser paint first so the dropdown transition triggers.
+          requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('open')));
+        } else {
+          panel.classList.remove('open');
+          window.setTimeout(() => {
+            if (!isContactOpen()) {
+              panel.setAttribute('hidden', '');
+              panel.classList.add('hidden');
+              panel.classList.remove('flex');
+            }
+          }, REDUCED_MOTION ? 0 : 200);
+        }
+      }
+      function isContactOpen() {
+        return toggle?.getAttribute('aria-expanded') === 'true';
+      }
+      toggle?.addEventListener('click', () => {
+        setContactOpen(!isContactOpen());
+      });
+      // Hover opens only over the email button. The stay-open zone is exactly the
+      // button (full email text + cross width) plus the panel — nothing else.
+      // Click still works for touch/keyboard.
+      const canHover = () => window.matchMedia('(hover: hover)').matches;
+      let contactCloseTimer = null;
+      function cancelContactClose() {
+        if (contactCloseTimer) {
+          window.clearTimeout(contactCloseTimer);
+          contactCloseTimer = null;
+        }
+      }
+      function scheduleContactClose() {
+        cancelContactClose();
+        contactCloseTimer = window.setTimeout(() => {
+          setContactOpen(false);
+          contactCloseTimer = null;
+        }, 250);
+      }
+      toggle?.addEventListener('mouseenter', () => {
+        if (!canHover()) return;
+        cancelContactClose();
+        setContactOpen(true);
+      });
+      toggle?.addEventListener('mouseleave', () => {
+        if (canHover()) scheduleContactClose();
+      });
+      panel?.addEventListener('mouseenter', () => {
+        if (!canHover()) return;
+        cancelContactClose();
+      });
+      panel?.addEventListener('mouseleave', () => {
+        if (canHover()) scheduleContactClose();
+      });
+
+      const captions = [
+        '01 / 03 — [TODO caption: e.g. studio, desk, prototype]',
+        '02 / 03 — [TODO caption: e.g. talk, workshop, demo]',
+        '03 / 03 — [TODO caption: e.g. portrait, process, sketch]',
+      ];
+      // Delegated so buttons inside infinitely-cloned columns keep working.
+      document.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return;
+        const nextBtn = e.target.closest('.about-next-btn');
+        if (nextBtn) {
+          const wrap = nextBtn.closest('div');
+          const cap = wrap?.querySelector('.about-caption');
+          const i = (parseInt(nextBtn.dataset.i || '0', 10) + 1) % captions.length;
+          nextBtn.dataset.i = String(i);
+          if (cap) cap.textContent = captions[i];
+          return;
+        }
+        const opener = e.target.closest('.open-modal');
+        if (opener) {
+          const id = opener.getAttribute('data-modal');
+          const dlg = document.getElementById(`modal-${id}`);
+          if (dlg instanceof HTMLDialogElement) {
+            dlg.dataset.openedBy = e.detail > 0 ? 'mouse' : 'keyboard';
+            dlg.showModal();
+          }
+        }
+      });
+      document.querySelectorAll('.close-modal').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-close');
+          const dlg = document.getElementById(`modal-${id}`);
+          if (dlg instanceof HTMLDialogElement) dlg.close();
+        });
+      });
+      document.querySelectorAll('dialog').forEach((dlg) => {
+        dlg.addEventListener('click', (e) => {
+          if (e.target === dlg && dlg instanceof HTMLDialogElement) dlg.close();
+        });
+        dlg.addEventListener('close', () => {
+          // Browsers restore focus to the opener when a dialog closes (e.g. via
+          // Escape), leaving a sticky ring for mouse users. Release it only when
+          // the dialog was opened with the mouse; keyboard focus is preserved.
+          if (dlg.dataset.openedBy === 'mouse' && document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+          }
+          delete dlg.dataset.openedBy;
+        });
+      });
+
+      // No sticky focus rings anywhere for mouse users (real clicks have
+      // detail > 0; keyboard clicks have detail === 0 and keep their ring).
+      document.addEventListener('click', (e) => {
+        const btn = e.target instanceof Element ? e.target.closest('button') : null;
+        if (btn && e.detail > 0) btn.blur();
+      });
+
+      // Jukebox: one background track at a time via the official Spotify IFrame API.
+      const discBtns = Array.from(document.querySelectorAll('.disc-btn'));
+      const pill = document.getElementById('jukebox-pill');
+      const pillTitle = document.getElementById('jukebox-title');
+      const playerHost = document.getElementById('jukebox-player');
+      let spotifyController = null;
+      let spotifyReady = false;
+      let pendingTrack = null;
+      let currentTrackId = null;
+
+      function showPill(title) {
+        if (pillTitle) pillTitle.textContent = `♪ ${title}`;
+        pill?.removeAttribute('hidden');
+      }
+      function showPillFallback(id, title) {
+        if (!pillTitle) return;
+        pillTitle.textContent = '';
+        const link = document.createElement('a');
+        link.href = `https://open.spotify.com/track/${id}`;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = `♪ ${title} — open in Spotify`;
+        link.className = 'text-fg underline';
+        pillTitle.appendChild(link);
+        pill?.removeAttribute('hidden');
+      }
+      function hidePill() {
+        pill?.setAttribute('hidden', '');
+      }
+      function markPressed(id) {
+        discBtns.forEach((b) => {
+          b.setAttribute('aria-pressed', b.getAttribute('data-track') === id ? 'true' : 'false');
+        });
+      }
+      function playTrack(id, title) {
+        currentTrackId = id;
+        markPressed(id);
+        if (spotifyReady && spotifyController) {
+          spotifyController.loadUri(`spotify:track:${id}`);
+          spotifyController.play();
+          showPill(title);
+        } else {
+          pendingTrack = { id, title };
+          showPill(`${title} — loading…`);
+          window.setTimeout(() => {
+            if (pendingTrack && !spotifyReady) {
+              showPillFallback(pendingTrack.id, pendingTrack.title);
+              pendingTrack = null;
+            }
+          }, 8000);
+        }
+      }
+      function stopPlayback() {
+        try {
+          if (spotifyController) spotifyController.pause();
+        } catch {
+          /* player unavailable — just hide UI */
+        }
+        currentTrackId = null;
+        pendingTrack = null;
+        markPressed('');
+        hidePill();
+      }
+
+      window.onSpotifyIframeApiReady = (IFrameAPI) => {
+        const mount = document.createElement('div');
+        playerHost?.appendChild(mount);
+        IFrameAPI.createController(
+          mount,
+          { width: '2', height: '2', uri: 'spotify:track:7z3rdMzhY122waIpkSsE7P' },
+          (controller) => {
+            spotifyController = controller;
+            spotifyReady = true;
+            window.__jukeboxApiReady = true;
+            if (pendingTrack) {
+              controller.loadUri(`spotify:track:${pendingTrack.id}`);
+              controller.play();
+              showPill(pendingTrack.title);
+              pendingTrack = null;
+            }
+          }
+        );
+      };
+
+      discBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-track') || '';
+          const title = btn.getAttribute('data-title') || 'Unknown track';
+          if (currentTrackId === id) stopPlayback();
+          else playTrack(id, title);
+        });
+      });
+      document.getElementById('jukebox-stop')?.addEventListener('click', stopPlayback);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && currentTrackId && !document.querySelector('dialog[open]')) {
+          stopPlayback();
+        }
+      });
+
+      // About photo: Next pill follows the cursor (delegated, clone-safe).
+      // Scroll re-anchors it since the photo moves under a still cursor.
+      let hoverPhoto = null;
+      let lastCursor = null;
+      function placePill(zone) {
+        if (!lastCursor) return;
+        const r = zone.getBoundingClientRect();
+        zone.style.setProperty('--mx', `${lastCursor.x - r.left}px`);
+        zone.style.setProperty('--my', `${lastCursor.y - r.top}px`);
+      }
+      document.addEventListener('pointermove', (e) => {
+        if (!(e.target instanceof Element)) return;
+        lastCursor = { x: e.clientX, y: e.clientY };
+        const zone = e.target.closest('.about-photo');
+        if (zone) {
+          placePill(zone);
+          if (hoverPhoto !== zone) {
+            if (hoverPhoto instanceof HTMLElement) hoverPhoto.classList.remove('is-hover');
+            zone.classList.add('is-hover');
+            hoverPhoto = zone;
+          }
+        } else if (hoverPhoto instanceof HTMLElement) {
+          hoverPhoto.classList.remove('is-hover');
+          hoverPhoto = null;
+        }
+      });
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (hoverPhoto instanceof HTMLElement) placePill(hoverPhoto);
+        },
+        { passive: true, capture: true }
+      );
+
+      // Infinite columns. Cloned ids are stripped (modals live once, outside the
+      // clones) and all buttons work through the delegated listeners above.
+      // Desktop: each column repeats on its own so no empty side gaps remain.
+      // Mobile (single column): whole sets repeat to preserve About→Work→Playground order.
+      function stripIds(root) {
+        root.querySelectorAll('[id]').forEach((el) => {
+          el.removeAttribute('id');
+        });
+      }
+      if ('IntersectionObserver' in window) {
+        if (window.matchMedia('(min-width: 768px)').matches) {
+          document.querySelectorAll('.col-stack').forEach((col) => {
+            const template = col.querySelector('section');
+            if (!template) return;
+            const sentinel = document.createElement('div');
+            sentinel.setAttribute('aria-hidden', 'true');
+            col.appendChild(sentinel);
+            new IntersectionObserver(
+              (entries, observer) => {
+                if (!entries[0].isIntersecting) return;
+                const clone = template.cloneNode(true);
+                clone.removeAttribute('id');
+                stripIds(clone);
+                sentinel.before(clone);
+              },
+              { rootMargin: '900px 0px' }
+            ).observe(sentinel);
+          });
+        } else {
+          const columnsMain = document.getElementById('main');
+          if (columnsMain) {
+            const sentinel = document.createElement('div');
+            sentinel.id = 'infinite-sentinel';
+            sentinel.setAttribute('aria-hidden', 'true');
+            columnsMain.after(sentinel);
+            const infiniteObserver = new IntersectionObserver(
+              (entries) => {
+                if (!entries[0].isIntersecting) return;
+                const clone = columnsMain.cloneNode(true);
+                clone.removeAttribute('id');
+                stripIds(clone);
+                sentinel.before(clone);
+              },
+              { rootMargin: '900px 0px' }
+            );
+            infiniteObserver.observe(sentinel);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
