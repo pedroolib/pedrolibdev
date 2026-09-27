@@ -22,17 +22,151 @@
 
 :root {
   color-scheme: dark;
+  --bg-tile: url("/netherite_block.png");
+  --overlay: rgba(0, 0, 0, 0.7);
+  --thumb-tile: url("/iron_block.png");
+  --fg: #e8e8e8;
+  --muted: #a1a1a1;
+  --dim: #6b6b6b;
+  --paper: #0a0a0a;
+  --ink: #000000;
+  --line: #222222;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-tile: url("/iron_block.png");
+  --overlay: rgba(255, 255, 255, 0.5);
+  --thumb-tile: url("/netherite_block.png");
+  --fg: #191919;
+  --muted: #4c4c4c;
+  --dim: #5f5f5f;
+  --paper: #d8d5cd;
+  --ink: #eceae3;
+  --line: #a09a8d;
+}
+
+/* Light theme: same utilities, inverted tones */
+[data-theme="light"] .text-fg {
+  color: var(--fg);
+}
+
+[data-theme="light"] .text-muted {
+  color: var(--muted);
+}
+
+[data-theme="light"] .text-dim {
+  color: var(--dim);
+}
+
+[data-theme="light"] .bg-ink {
+  background-color: var(--ink);
+}
+
+[data-theme="light"] .bg-paper {
+  background-color: var(--paper);
+}
+
+[data-theme="light"] .border-line {
+  border-color: var(--line);
+}
+
+[data-theme="light"] .fill-dim {
+  fill: var(--dim);
+}
+
+[data-theme="light"] :focus-visible {
+  outline-color: #000;
+}
+
+[data-theme="light"] .work-card .work-title {
+  color: var(--dim);
+}
+
+[data-theme="light"] .work-card:hover .work-title,
+[data-theme="light"] .work-card:focus-within .work-title,
+[data-theme="light"] .work-card:hover .text-dim,
+[data-theme="light"] .work-card:focus-within .text-dim,
+[data-theme="light"] .work-card:hover .text-muted,
+[data-theme="light"] .work-card:focus-within .text-muted {
+  color: var(--fg);
+}
+
+.site-nav {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="light"] .site-nav {
+  background: rgba(236, 234, 227, 0.95);
+}
+
+/* Theme lamp (redstone lamp): off in dark mode, glowing on in light mode */
+.lamp-btn {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: #2b2b2b;
+  border: 2px solid #000;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.22),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.lamp-btn:hover {
+  filter: brightness(1.25);
+}
+
+.lamp-btn .lamp {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.lamp-btn .lamp-on {
+  display: none;
+  filter: drop-shadow(0 0 5px rgba(255, 180, 60, 0.95));
+}
+
+[data-theme="light"] .lamp-btn .lamp-on {
+  display: block;
+}
+
+[data-theme="light"] .lamp-btn .lamp-off {
+  display: none;
 }
 
 html {
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #b8b8b8 #0a0a0a;
+  /* NOTE: no `scrollbar-width` here on purpose — in Chromium it switches to
+     native thin rendering and IGNORES the ::-webkit-scrollbar rules below.
+     Firefox simply falls back to its default scrollbar. */
 }
 
-/* Minecraft iron-block scrollbar (Chromium/Safari/Edge; Firefox gets thin flat colors) */
+/* Scrollbar HIDDEN for now (page still scrolls normally).
+   To restore the iron-block scrollbar: delete the two rules below and
+   uncomment the block after them. */
+html {
+  scrollbar-width: none;
+}
+
 ::-webkit-scrollbar {
-  width: 14px;
+  display: none;
+}
+
+/* Minecraft iron-block scrollbar — DISABLED for now (see above to restore).
+   (Chromium/Safari/Edge; Firefox gets its default. NOTE: do NOT combine
+   `scrollbar-width` on html with these rules — in Chromium it switches to
+   native thin rendering and IGNORES them.)
+::-webkit-scrollbar {
+  width: 20px;
 }
 
 ::-webkit-scrollbar-track {
@@ -40,9 +174,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-image: url("/iron_block.png");
+  background-color: #8a8a8a;
+  background-image: var(--thumb-tile);
   background-repeat: repeat;
-  background-size: 20px 20px;
+  background-size: 16px 16px;
   image-rendering: pixelated;
   border: 2px solid #000;
 }
@@ -50,12 +185,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   filter: brightness(1.2);
 }
+*/
 
 body {
   @apply text-fg antialiased;
   font-family: "Monocraft", ui-monospace, SFMono-Regular, Menlo, monospace;
   background-color: #000;
-  background-image: url("/netherite_block.png");
+  background-image: var(--bg-tile);
   background-repeat: repeat;
   background-size: 64px 64px;
   image-rendering: pixelated;
@@ -69,7 +205,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay);
   pointer-events: none;
   z-index: 0;
 }

@@ -74,6 +74,14 @@ const discs = [
     <meta name="theme-color" content="#000000" />
     <link rel="preconnect" href="https://open.spotify.com" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='black' stroke='%23333'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23333'/%3E%3Ccircle cx='16' cy='16' r='3' fill='black' stroke='%23666'/%3E%3C/svg%3E" />
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem('pedrolibdev-theme') === 'light' ? 'light' : 'dark';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
     <title>Pedro Librado Uribe Reyes — Designer, Developer &amp; Prototyper</title>
     <meta
       name="description"
@@ -89,7 +97,7 @@ const discs = [
     </a>
 
     <!-- Mobile mini nav -->
-    <nav aria-label="Sections" class="sticky top-0 z-40 flex items-center justify-between border-b border-line bg-ink/95 px-4 py-2 backdrop-blur md:hidden">
+    <nav aria-label="Sections" class="site-nav sticky top-0 z-40 flex items-center justify-between border-b border-line px-4 py-2 backdrop-blur md:hidden">
       <span class="text-micro text-fg">Pedro Librado Uribe Reyes</span>
       <div class="flex gap-4 text-micro">
         <a class="text-muted hover:text-fg" href="#about">About</a>
@@ -296,6 +304,35 @@ const discs = [
         </div>
       </dialog>
     ))}
+
+    <!-- Theme lamp: redstone lamp, off in dark mode, glowing on in light mode -->
+    <button
+      id="theme-toggle"
+      type="button"
+      class="lamp-btn"
+      aria-pressed="false"
+      aria-label="Switch to light mode"
+      title="Toggle light / dark mode"
+    >
+      <img
+        class="lamp lamp-off"
+        src="/redstone_lamp_off.png"
+        width="174"
+        height="152"
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+      />
+      <img
+        class="lamp lamp-on"
+        src="/redstone_lamp_on.png"
+        width="152"
+        height="152"
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+      />
+    </button>
 
     <!-- Jukebox: hidden licensed Spotify player + Minecraft now-playing pill -->
     <div id="jukebox-player" aria-hidden="true"></div>
@@ -524,6 +561,24 @@ const discs = [
           stopPlayback();
         }
       });
+
+      // Theme lamp: dark by default, light swaps netherite <-> iron blocks.
+      const themeBtn = document.getElementById('theme-toggle');
+      function setTheme(mode) {
+        const light = mode === 'light';
+        document.documentElement.dataset.theme = light ? 'light' : 'dark';
+        try {
+          localStorage.setItem('pedrolibdev-theme', light ? 'light' : 'dark');
+        } catch {
+          /* private mode — theme just won't persist */
+        }
+        themeBtn?.setAttribute('aria-pressed', String(light));
+        themeBtn?.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+      }
+      themeBtn?.addEventListener('click', () => {
+        setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light');
+      });
+      setTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 
       // About photo: Next pill follows the cursor (delegated, clone-safe).
       // Scroll re-anchors it since the photo moves under a still cursor.
