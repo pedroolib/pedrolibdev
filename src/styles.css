@@ -36,11 +36,11 @@
 [data-theme="light"] {
   color-scheme: light;
   --bg-tile: url("/iron_block.png");
-  --overlay: rgba(255, 255, 255, 0.5);
+  --overlay: rgba(255, 255, 255, 0.62);
   --thumb-tile: url("/netherite_block.png");
-  --fg: #191919;
-  --muted: #4c4c4c;
-  --dim: #5f5f5f;
+  --fg: #0e0e0e;
+  --muted: #2b2b2b;
+  --dim: #3a3a3a;
   --paper: #d8d5cd;
   --ink: #eceae3;
   --line: #a09a8d;
@@ -247,7 +247,7 @@ button {
   }
 }
 
-.work-card img,
+.work-card img:not(.slide-img),
 .work-thumb {
   filter: blur(2px) brightness(0.7);
   transition: filter 200ms ease;
@@ -258,15 +258,36 @@ button {
   filter: blur(0px) brightness(1);
 }
 
-/* About column: dimmed until hover, no blur on the letters */
-.about-sec .about-blur {
+/* About photo cards: each dims on its own; letters stay sharp */
+.about-photo {
   filter: brightness(0.7);
   transition: filter 200ms ease;
 }
 
-.about-sec:hover .about-blur,
-.about-sec:focus-within .about-blur {
+.about-photo:hover,
+.about-photo:focus-within {
   filter: brightness(1);
+}
+
+/* About text block dims until hovered, like the cards */
+.about-texts {
+  filter: brightness(0.7);
+  transition: filter 200ms ease;
+}
+
+.about-texts:hover,
+.about-texts:focus-within {
+  filter: brightness(1);
+}
+
+/* Card 1 and its texts light up together as one group */
+.about-group:hover .about-photo,
+.about-group:hover .about-texts {
+  filter: brightness(1);
+}
+
+.about-group:hover .about-photo .about-photo-img {
+  filter: blur(0px);
 }
 
 /* Work/Playground titles: darker until their card is hovered */
@@ -293,12 +314,50 @@ button {
   color: #e8e8e8;
 }
 
+/* About photos keep their blur until their own card is hovered */
+.about-photo .about-photo-img {
+  filter: blur(2px);
+  transition: filter 200ms ease;
+}
+
+.about-photo:hover .about-photo-img,
+.about-photo:focus-within .about-photo-img {
+  filter: blur(0px);
+}
+
+/* About photo slideshow */
+.slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-img[hidden] {
+  display: none;
+}
+
 /* Lift the hovered About section above neighboring columns so the
    cursor-following Next badge paints over the Work images */
 .about-sec:hover,
 .about-sec:focus-within {
   position: relative;
   z-index: 30;
+}
+
+/* Section titles light up together with any hovered/focused card inside */
+.col-stack h2 {
+  transition: color 200ms ease;
+}
+
+.about-sec:has(.about-photo:hover) h2,
+.projects-sec:has(.work-card:hover) h2,
+.playground-sec:has(.work-card:hover) h2,
+.about-sec:focus-within h2,
+.projects-sec:focus-within h2,
+.playground-sec:focus-within h2 {
+  color: var(--fg);
 }
 
 /* Infinite column stacks: sections pile up with uniform rhythm */
@@ -311,6 +370,50 @@ button {
 
 dialog {
   overscroll-behavior: contain;
+}
+
+/* Case-study panels: slide in from the right, back out on close */
+dialog[open] {
+  animation: dialog-in 250ms ease;
+}
+
+dialog[open]::backdrop {
+  animation: backdrop-in 250ms ease;
+}
+
+dialog.closing {
+  animation: dialog-out 250ms ease;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dialog-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 dialog::backdrop {
