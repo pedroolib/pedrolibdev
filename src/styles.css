@@ -249,80 +249,44 @@ button {
 
 .work-card img:not(.slide-img),
 .work-thumb {
-  filter: blur(2px) brightness(0.7);
+  filter: blur(var(--column-blur, 2px)) brightness(var(--column-brightness, 0.7));
   transition: filter 200ms ease;
 }
 
-.work-card:hover .work-thumb,
-.work-card:focus-within .work-thumb {
-  filter: blur(0px) brightness(1);
-}
-
-/* About photo cards: each dims on its own; letters stay sharp */
+/* Every visual in a column shares the same dim/active state. */
 .about-photo {
-  filter: brightness(0.7);
+  filter: brightness(var(--column-brightness, 0.7));
   transition: filter 200ms ease;
 }
 
-.about-photo:hover,
-.about-photo:focus-within {
-  filter: brightness(1);
-}
-
-/* About text block dims until hovered, like the cards */
 .about-texts {
-  filter: brightness(0.7);
+  filter: brightness(var(--column-brightness, 0.7));
   transition: filter 200ms ease;
 }
 
-.about-texts:hover,
-.about-texts:focus-within {
-  filter: brightness(1);
-}
-
-/* Card 1 and its texts light up together as one group */
-.about-group:hover .about-photo,
-.about-group:hover .about-texts {
-  filter: brightness(1);
-}
-
-.about-group:hover .about-photo .about-photo-img {
-  filter: blur(0px);
-}
-
-/* Work/Playground titles: darker until their card is hovered */
+/* Work/Playground titles stay subdued until their column is active. */
 .work-card .work-title {
   color: #6b6b6b;
   transition: color 200ms ease;
 }
 
-.work-card:hover .work-title,
-.work-card:focus-within .work-title {
-  color: #e8e8e8;
-}
-
-/* All card letters (TODO markers, years, descriptions) light up on hover */
+/* All card letters transition together with their column. */
 .work-card .text-dim,
 .work-card .text-muted {
   transition: color 200ms ease;
 }
 
-.work-card:hover .text-dim,
-.work-card:focus-within .text-dim,
-.work-card:hover .text-muted,
-.work-card:focus-within .text-muted {
-  color: #e8e8e8;
-}
-
-/* About photos keep their blur until their own card is hovered */
+/* About photos stay blurred until their column is active. */
 .about-photo .about-photo-img {
-  filter: blur(2px);
+  filter: blur(var(--column-blur, 2px));
   transition: filter 200ms ease;
 }
 
-.about-photo:hover .about-photo-img,
-.about-photo:focus-within .about-photo-img {
-  filter: blur(0px);
+/* Hovering or focusing one item brightens every visual in that column. */
+.col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover),
+.col-stack:focus-within {
+  --column-blur: 0px;
+  --column-brightness: 1;
 }
 
 /* About photo slideshow */
@@ -353,17 +317,19 @@ button {
   z-index: 30;
 }
 
-/* Section titles light up together with any hovered/focused card inside */
+/* Cards, images, labels, and section titles light up as one column. */
 .col-stack h2 {
   transition: color 200ms ease;
 }
 
-.about-sec:has(.about-photo:hover) h2,
-.projects-sec:has(.work-card:hover) h2,
-.playground-sec:has(.work-card:hover) h2,
-.about-sec:focus-within h2,
-.projects-sec:focus-within h2,
-.playground-sec:focus-within h2 {
+.col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover) .work-title,
+.col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover) .text-dim,
+.col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover) .text-muted,
+.col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover) h2,
+.col-stack:focus-within .work-title,
+.col-stack:focus-within .text-dim,
+.col-stack:focus-within .text-muted,
+.col-stack:focus-within h2 {
   color: var(--fg);
 }
 
@@ -373,6 +339,8 @@ button {
   flex-direction: column;
   gap: 2.5rem;
   min-width: 0;
+  --column-blur: 2px;
+  --column-brightness: 0.7;
 }
 
 dialog {
