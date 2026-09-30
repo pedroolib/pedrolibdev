@@ -21,30 +21,30 @@ const work = [
   },
   {
     id: 'project-2',
-    year: '24—Now',
-    title: 'Uribot — AI-powered customer automation for small businesses',
-    what: 'Designed and built a multi-tenant platform that uses AI to automate customer support, quotes, appointments, and conversations across messaging channels.',
-    impact: 'Built to solve real customer-service workflows for small businesses, with the platform currently being used in real business operations.',
-    stack: '[TODO: e.g. TypeScript, AI APIs, WhatsApp API]',
-    team: '[TODO: your role + collaborators]',
+    year: '25—Now',
+    title: 'Uribot — AI automation for small businesses',
+    what: 'A multi-tenant AI platform that turns customer chats across WhatsApp, Instagram, and Messenger into qualified leads, quotes, and appointments—with a human handoff when needed.',
+    impact: 'Grew from an automotive-workshop assistant into reusable SMB automation and has generated approximately US$1,500 to date.',
+    stack: 'Python, Flask, OpenAI, PostgreSQL, Redis, Chatwoot, MinIO, Docker, Coolify, Traefik',
+    team: 'Founder · Product & Software Engineering',
   },
   {
     id: 'project-3',
     year: '26',
-    title: 'SentinelBox — Edge AI for predictive HVAC maintenance',
-    what: 'Built a plug-and-play retrofit system that combines current, temperature, and vibration sensing with an on-device neural network running on ESP32.',
-    impact: 'Won 1st Place at the Carrier Keep It Cool Hackathon with a live demo detecting HVAC anomalies locally without relying on the cloud.',
-    stack: '[TODO: e.g. ESP32, TinyML, sensors]',
-    team: '[TODO: your role + collaborators]',
+    title: 'SentinelBox — Catching HVAC failures before they happen',
+    what: 'A team-built predictive-maintenance system that learns each HVAC unit’s normal behavior and spots early signs of trouble using edge AI.',
+    impact: 'Won 1st place at Carrier’s 2026 Keep It Cool Hackathon. In controlled prototype tests, SentinelBox reported a 6-second average detection time and 0% false alarms.',
+    stack: 'ESP32, C/C++, UART, MPU6500, INA219, MAX6675, embedded neural network, Next.js, SQLite',
+    team: 'A collaborative project by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.',
   },
   {
     id: 'project-4',
     year: '26',
-    title: 'MiNorte — AI-powered financial assistant for small businesses',
-    what: 'Built an AI financial platform that turns banking data into insights, financial analysis, invoicing, and automated collection workflows.',
-    impact: 'Developed for the Banorte Hackathon as an AI financial team designed around real small-business banking workflows.',
-    stack: '[TODO: e.g. Python, AI APIs, banking data]',
-    team: '[TODO: your role + collaborators]',
+    title: 'MiNorte — An AI financial team for small businesses',
+    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business banking and invoice data into grounded insights, generative dashboards, and useful next steps.',
+    impact: 'Responded to the challenge to build real-time AI-generated financial interfaces with MCP, using a deterministic engine so the AI explains verified numbers instead of inventing them.',
+    stack: 'Python, FastAPI, Next.js 14, TypeScript, Supabase/Postgres, OpenAI, MCP, Playwright',
+    team: 'A collaborative HackMTY 2026 project: I focused on product logic and backend systems, while teammates implemented the frontend and Playwright ticket-automation flow.',
   },
   {
     id: 'project-5',
@@ -70,10 +70,22 @@ const playground = [
   {
     title: 'Minecraft Fishing AI Bot — Python, AI, Computer Vision',
     desc: 'An automated fishing bot that solves captchas and responds to staff messages using AI.',
+    poster: '/playground/autofish/poster.jpg',
+    video: '/playground/autofish/autofisher.mp4',
+    videoW: 960,
+    videoH: 720,
+    videoAlt: 'Demo video: Minecraft fishing bot casting and reeling automatically',
+    repo: 'https://github.com/pedroolib/Minecraft-Fishing-AIBot',
   },
   {
     title: 'Smart Tractor — Embedded Systems, RTOS, Computer Vision',
     desc: 'An STM32-based tractor controlled with Logitech pedals, with a Grafana dashboard and vision-based operator drowsiness detection.',
+    poster: '/playground/smarttractor/poster.jpg',
+    video: '/playground/smarttractor/VideoTractor.mp4',
+    videoW: 640,
+    videoH: 480,
+    videoAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
+    repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
   },
   {
     title: 'John Deere Simulator — Unity, C#',
@@ -192,7 +204,7 @@ const discs = [
         </dl>
         <div class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 text-micro">
           <span class="text-dim">Skills</span>
-          <span class="text-muted">Python, C++, ROS 2, Embedded Systems, IoT, Edge AI, Computer Vision, DevOps, Docker, Linux, NVIDIA Jetson, STM32, Full-Stack Development</span>
+          <span class="text-muted">Python, C++, Java, ROS 2, Embedded Systems, IoT, Edge AI, Computer Vision, DevOps, Docker, Linux, NVIDIA Jetson, STM32, Full-Stack Development</span>
         </div>
       </div>
     </header>
@@ -350,9 +362,35 @@ const discs = [
                 data-modal={item.id}
                 aria-haspopup="dialog"
               >
-                <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#111318] p-6 text-center">
-                  <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
-                </div>
+                {item.id === 'project-3' ? (
+                  <img
+                    class="work-thumb aspect-video w-full border border-line object-cover"
+                    src="/projects/sentinelbox/team.webp"
+                    width="900"
+                    height="506"
+                    alt="SentinelBox team celebrating its first-place hackathon result"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : item.id === 'project-2' ? (
+                  <div class="work-thumb flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center">
+                    <span class="text-micro text-muted">[PHOTO SUGGESTION · CONVERSATION TO BOOKING]<br /><span class="text-dim">An anonymized customer chat, quote, and appointment flow</span></span>
+                  </div>
+                ) : item.id === 'project-4' ? (
+                  <img
+                    class="work-thumb aspect-[16/10] w-full border border-line object-cover"
+                    src="/projects/minorte/MiNorteLogo.png"
+                    width="1680"
+                    height="945"
+                    alt="MiNorte logo on a light background"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#111318] p-6 text-center">
+                    <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
+                  </div>
+                )}
                 <p class="mt-2 text-micro text-muted">
                   <span id={`${item.id}-title`} class="work-title text-fg">{item.title}</span>
                   <span class="float-right text-dim">{item.year}</span>
@@ -370,61 +408,81 @@ const discs = [
       <section id="playground" aria-labelledby="playground-heading" class="playground-sec scroll-mt-16 min-w-0">
         <h2 id="playground-heading" class="mb-3 text-[16px] font-normal text-dim">Playground</h2>
         <div class="space-y-8">
-          {playground.map((item) => (
-            <article class="work-card">
-              {item.video ? (
-                <div class="about-photo relative aspect-[4/3] w-full overflow-hidden border border-line">
-                  <div class="about-photo-img absolute inset-0">
-                    <video
-                      class="slide-img"
-                      src={item.video}
-                      poster={item.img}
-                      width={item.videoW}
-                      height={item.videoH}
-                      autoplay
-                      muted
-                      loop
-                      playsinline
-                      aria-label={item.videoAlt}
-                    ></video>
+          {playground.map((item) => {
+            const Card = item.repo ? 'a' : 'div';
+            const cardLink = item.repo
+              ? {
+                  href: item.repo,
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                  'aria-label': `${item.title} — opens repository on GitHub`,
+                }
+              : {};
+            return (
+              <article class="work-card">
+                <Card class="block" {...cardLink}>
+                  {item.video ? (
+                    <div class="about-photo relative aspect-[4/3] w-full overflow-hidden border border-line">
+                      <div class="about-photo-img absolute inset-0">
+                        <video
+                          class="slide-img"
+                          src={item.video}
+                          poster={item.poster || item.img}
+                          width={item.videoW}
+                          height={item.videoH}
+                          autoplay
+                          muted
+                          loop
+                          playsinline
+                          aria-label={item.videoAlt}
+                        ></video>
+                        {item.img && (
+                          <img
+                            class="slide-img"
+                            src={item.img}
+                            width={item.imgW}
+                            height={item.imgH}
+                            alt={item.imgAlt}
+                            loading="lazy"
+                            decoding="async"
+                            hidden
+                          />
+                        )}
+                      </div>
+                      {item.img && (
+                        <button
+                          class="about-next-btn absolute inset-0 h-full w-full cursor-pointer"
+                          type="button"
+                          aria-label="Next demo view"
+                        >
+                          <span aria-hidden="true" class="about-next-float">Next &gt;</span>
+                        </button>
+                      )}
+                      {item.repo && (
+                        <span aria-hidden="true" class="repo-float">↗ Repo</span>
+                      )}
+                    </div>
+                  ) : item.img ? (
                     <img
-                      class="slide-img"
+                      class="work-thumb aspect-[4/3] w-full border border-line object-cover"
                       src={item.img}
                       width={item.imgW}
                       height={item.imgH}
                       alt={item.imgAlt}
                       loading="lazy"
                       decoding="async"
-                      hidden
                     />
-                  </div>
-                  <button
-                    class="about-next-btn absolute inset-0 h-full w-full cursor-pointer"
-                    type="button"
-                    aria-label="Next demo view"
-                  >
-                    <span aria-hidden="true" class="about-next-float">Next &gt;</span>
-                  </button>
-                </div>
-              ) : item.img ? (
-                <img
-                  class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                  src={item.img}
-                  width={item.imgW}
-                  height={item.imgH}
-                  alt={item.imgAlt}
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#0e0f13] p-6 text-center" role="img" aria-label="TODO playground image placeholder">
-                  <span class="text-micro text-muted">[TODO playground visual]</span>
-                </div>
-              )}
-              <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
-              <p class="mt-1 text-micro text-dim">{item.desc}</p>
-            </article>
-          ))}
+                  ) : (
+                    <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#0e0f13] p-6 text-center" role="img" aria-label="TODO playground image placeholder">
+                      <span class="text-micro text-muted">[TODO playground visual]</span>
+                    </div>
+                  )}
+                  <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
+                  <p class="mt-1 text-micro text-dim">{item.desc}</p>
+                </Card>
+              </article>
+            );
+          })}
         </div>
       </section>
       </div>
@@ -438,47 +496,352 @@ const discs = [
           <button class="close-modal flex-none rounded-full border border-line px-3 py-1 text-micro text-muted hover:text-fg" data-close={item.id} type="button">Close</button>
         </div>
         <div class="min-h-0 flex-1 space-y-6 overflow-y-auto px-4 py-4 text-micro">
-          <div class="flex aspect-video items-center justify-center bg-[#111318] text-muted">[TODO case-study hero image]</div>
+          {item.id === 'project-2' ? (
+            <>
+              <section aria-labelledby="uribot-intro">
+                <p id="uribot-intro" class="mb-2 text-dim">From the first customer message to the next business action</p>
+                <p class="text-muted">Uribot is an AI automation platform for small businesses. It started with a real automotive workshop and grew into a multi-tenant system for answering customer questions, qualifying leads, preparing quotes, and booking appointments across messaging channels.</p>
+              </section>
 
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <p><span class="text-dim">What: </span><span class="text-muted">{item.what}</span></p>
-            <p><span class="text-dim">Impact: </span><span class="text-muted">{item.impact}</span></p>
-          </div>
+              <figure class="space-y-2">
+                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Image suggestion: anonymized customer chat flowing from service question to quote and appointment">
+                  [PHOTO SUGGESTION 01 · CUSTOMER CHAT → QUOTE → APPOINTMENT]
+                </div>
+                <figcaption class="text-dim">Use a redacted real conversation or clearly labeled demo showing Uribot identifying the vehicle, checking the service price, and offering an appointment. Remove personal customer details.</figcaption>
+              </figure>
 
-          <div>
-            <h3 class="mb-2 font-bold text-fg">My deliverables</h3>
-            <ol class="list-decimal space-y-1 pl-5 text-muted">
-              <li>[TODO deliverable 1 — e.g. what you designed or built first]</li>
-              <li>[TODO deliverable 2 — e.g. core system or flow]</li>
-              <li>[TODO deliverable 3 — e.g. iteration, testing, or handoff]</li>
-            </ol>
-            <p class="mt-3 text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
-          </div>
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">From conversation to action</h3>
+                <p class="text-muted">Uribot does more than draft replies. The AI identifies what the customer needs, then calls a business tool for information or an action. For an automotive shop, it can collect the vehicle and service details, use <code>cotizador_global()</code> to retrieve a quote, call <code>mas_info_servicio()</code> for follow-up questions, and use <code>agendar_cita()</code> to offer a booking. If a person should take over, <code>esperando_asesor()</code> routes the conversation to a human in Chatwoot.</p>
+                <p class="text-muted">The model manages intent and conversation; configured tools handle prices, schedules, and business rules so the assistant has a reliable source for its answers.</p>
+              </section>
 
-          <div>
-            <h3 class="mb-2 font-bold text-fg">Team</h3>
-            <p class="text-muted">{item.team}</p>
-          </div>
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">One platform, each business’s own rules</h3>
+                <p class="text-muted">Uribot keeps each tenant’s prompts, services, pricing, schedules, enabled tools, and conversations separate. The same platform can therefore support different customer workflows without spinning up a one-off bot and backend for every business.</p>
+              </section>
 
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div>
-              <h3 class="mb-2 font-bold text-fg">Key challenges</h3>
-              <ul class="list-disc space-y-1 pl-5 text-muted">
-                <li>[TODO: what problem were you solving?]</li>
-                <li>[TODO: what constraint shaped the work?]</li>
-                <li>[TODO: what was hard or unknown?]</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="mb-2 font-bold text-fg">Approach</h3>
-              <ul class="list-disc space-y-1 pl-5 text-muted">
-                <li>[TODO: how you tackled it]</li>
-                <li>[TODO: how you tested or iterated]</li>
-              </ul>
-            </div>
-          </div>
+              <figure class="space-y-2">
+                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Diagram suggestion: customer messaging channels connect through Chatwoot webhooks to Uribot, AI tools, PostgreSQL, and Redis">
+                  [DIAGRAM SUGGESTION 02 · CHANNELS → CHATWOOT → URIBOT → BUSINESS TOOLS]
+                  <br />
+                  WhatsApp / Instagram / Messenger → Chatwoot → Uribot engine → AI agent → quotes, appointments, business knowledge
+                  <br />
+                  PostgreSQL + Redis · tenant-specific prompts, tools, and rules
+                </div>
+                <figcaption class="text-dim">A system diagram should show the full path from customer channel to tool execution and human handoff—one platform, configured per tenant.</figcaption>
+              </figure>
 
-          <p class="pb-2 text-dim">[TODO: links, demo, repo, or video. Omit anything you cannot verify.]</p>
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Reliable conversations, not one-message-at-a-time replies</h3>
+                <p class="text-muted">Customers often send details across several short messages. Uribot uses Redis to batch message bursts by account and conversation, then responds with the combined context instead of reacting separately to every fragment. Conversations, messages, quotations, appointments, and tool activity are persisted so the business can follow what happened.</p>
+                <p class="text-muted">Chatwoot brings WhatsApp, Instagram, Messenger, and other channels into one inbox. When automation reaches its limit, the handoff keeps the conversation available to a human advisor instead of trapping the customer in a bot loop.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Measure the work the automation does</h3>
+                <p class="text-muted">A useful operations view should make the impact visible through real conversation, quote, appointment, and handoff activity. The dashboard visual below is a design prompt: use measured values from Uribot, or clearly mark any sample numbers as demo data.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Dashboard suggestion with verified automation, quote, appointment, and conversion metrics; use demo labels for sample data">
+                  [DASHBOARD SUGGESTION 03 · VERIFIED ACTIVITY, NO INVENTED METRICS]
+                  <br />
+                  Automated conversations · Quotes generated · Appointments booked · Conversion rate
+                  <br />
+                  Show real measured values, or label sample values “Demo data”
+                </div>
+                <figcaption class="text-dim">Track automation as business activity—not just messages sent.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Built for real businesses</h3>
+                <p class="text-muted">The first use case came from the repetitive questions and service quotations at an automotive workshop. I shaped Uribot beyond that single workflow into a configurable platform for SMBs. Other tenant examples—such as restaurants, clinics, retail, or real estate—should be presented as platform concepts unless they are already running on Uribot.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Diagram suggestion: one Uribot platform serving separate automotive, restaurant, clinic, retail, and real-estate tenants with their own tools">
+                  [DIAGRAM SUGGESTION 04 · ONE URIBOT, DIFFERENT SMB WORKFLOWS]
+                  <br />
+                  Automotive: quotes · appointments · service info
+                  <br />
+                  Restaurant: menu · reservations · orders · Clinic: services · appointments · FAQs
+                </div>
+                <figcaption class="text-dim">Show how each business gets its own tools and rules on shared platform infrastructure; label unshipped industries as examples.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My role</h3>
+                <p class="text-muted">As founder, I designed and built Uribot across product and software engineering: the multi-tenant architecture, conversation engine, AI tool system, channel integrations, data layer, and deployment infrastructure. I also shaped the product experience and the workflows that let automation hand off to a person when needed.</p>
+                <p class="text-muted">Uribot has generated approximately <strong class="font-bold text-fg">US$1,500</strong> to date.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Self-managed production infrastructure</h3>
+                <p class="text-muted">Uribot runs on a containerized stack managed with Coolify. Traefik routes traffic to the API and Chatwoot, while PostgreSQL stores business and conversation data, Redis handles message coordination, and MinIO provides object storage. Keeping the services together makes the platform’s deployments and operations manageable end to end.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+                <p class="text-dim">Role: <span class="text-muted">{item.team}</span></p>
+              </section>
+            </>
+          ) : item.id === 'project-3' ? (
+            <>
+              <section aria-labelledby="sentinel-intro">
+                <p id="sentinel-intro" class="mb-2 text-dim">Predictive maintenance, right at the edge</p>
+                <p class="text-muted">SentinelBox helps catch HVAC problems before they become breakdowns. The team built a retrofit prototype that learns each unit’s normal behavior from operating data, then flags unusual changes locally—without depending on the cloud.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-video w-full border border-line object-cover"
+                  src="/projects/sentinelbox/device-rooftop.webp"
+                  width="1440"
+                  height="810"
+                  alt="SentinelBox gateway mounted inside a rooftop HVAC unit, with the HVAC control board visible beside it"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">SentinelBox mounted in the HVAC unit concept</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">The problem</h3>
+                <p class="text-muted">Most maintenance starts after performance has already dropped. Fixed thresholds can also be a poor fit across units: what is normal for one fan may look like a fault on another. Early clues are present in operating signals, but they are rarely used to anticipate failure.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Start with a practical MVP</h3>
+                <p class="text-muted">I helped shape the MVP around three non-negotiables: build on signals available from the HVAC equipment, keep installation plug-and-play, and make the health decision without requiring internet access. The design pairs current and temperature readings with vibration sensing, adding a gateway that can process data on site.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/sentinelbox/electronics.webp"
+                  width="960"
+                  height="720"
+                  alt="SentinelBox electronics prototype on a workbench, with ESP32 boards, sensor wiring, and a test fan"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The prototype electronics under test, including the controller boards, sensor wiring, and fan.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">From sensor readings to an early warning</h3>
+                <p class="text-muted">The HVAC nodes send their readings to the ESP32 gateway over UART. The gateway adds vibration measurements, compares each unit against its own learned baseline, and runs a compact neural network on-device. It then sends readings to a local dashboard, where the team could inspect equipment health, trends, and likely causes. Keeping inference on the gateway means the system can make its decision without a cloud round trip.</p>
+                <p class="text-muted">Instead of assuming every fan behaves the same, SentinelBox learns a baseline for each unit. After roughly 90 seconds of learning, it can watch for meaningful deviations and surface a maintenance state.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <a href="/projects/sentinelbox/edge-pipeline.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size SentinelBox edge-computing pipeline diagram">
+                  <img
+                    class="h-auto w-full border border-line bg-[#111318]"
+                    src="/projects/sentinelbox/edge-pipeline.svg"
+                    width="2054"
+                    height="350"
+                    alt="Edge-computing pipeline: HVAC sensor readings and gateway vibration data feed a learned baseline and on-device neural network, which produces health alerts for the local dashboard"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <figcaption class="text-dim">SentinelBox processes the sensor data at the edge. Open the diagram for a full-size view.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">A building view for maintenance teams</h3>
+                <p class="text-muted">The local dashboard turns model output into a view of the building: staff can select a unit, see its current health, and inspect which sensor is driving a warning. I created the first draft of the 3D building view as part of the server and dashboard integration.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-video w-full border border-line object-cover"
+                  src="/projects/sentinelbox/dashboard.webp"
+                  width="1440"
+                  height="810"
+                  alt="SentinelBox dashboard showing the 3D building view, two monitored HVAC units, health scores, and a vibration warning"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The dashboard connects each unit’s location with its live health score and sensor-level explanation.</figcaption>
+              </figure>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-video w-full border border-line object-cover"
+                  src="/projects/sentinelbox/3d-twin.webp"
+                  width="1440"
+                  height="810"
+                  alt="3D digital twin showing a building with two rooftop HVAC units and their health states"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The 3D building twin makes it easy to see which rooftop units need attention.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My contributions</h3>
+                <p class="text-muted">I designed and built the electronics, and worked with a teammate on the UART communication that connected the HVAC nodes to the gateway. I also connected ESP32 readings to the server, created the first draft of the 3D building view, and contributed to developing the model. Across the project, I helped translate the MVP idea into a working system alongside the rest of the team.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-video w-full border border-line object-cover object-[center_58%]"
+                  src="/projects/sentinelbox/team.webp"
+                  width="900"
+                  height="506"
+                  alt="SentinelBox project team and mentors holding the first-place hackathon award"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The SentinelBox team celebrating the first-place result together.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Prototype results</h3>
+                <p class="text-muted">SentinelBox won 1st place at Carrier’s 2026 Keep It Cool Hackathon. In the project’s controlled prototype validation, the team reported a 6-second average detection time, a 90-second baseline-learning period, and a 0% false-alarm rate. These are prototype test results, not a claim of long-term field performance.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Built by a team</h3>
+                <p class="text-muted">SentinelBox was developed collaboratively by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+              </section>
+
+              <p class="border-t border-line pt-4 text-muted">
+                <a class="underline hover:text-fg" href="https://github.com/ayexxxd/SentinelBox" target="_blank" rel="noopener noreferrer">Explore the SentinelBox repository ↗</a>
+              </p>
+            </>
+          ) : item.id === 'project-4' ? (
+            <>
+              <section aria-labelledby="minorte-intro">
+                <p id="minorte-intro" class="mb-2 text-dim">A financial team inside your Banorte account</p>
+                <p class="text-muted">MiNorte helps small businesses understand their numbers and decide what to do next. It brings banking and invoice data together, calculates the financial facts deterministically, then uses AI to explain them in plain language and shape a useful interface around each insight.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[16/10] w-full border border-line object-cover"
+                  src="/projects/minorte/MiNorteLogo.png"
+                  width="1680"
+                  height="945"
+                  alt="MiNorte logo on a light background"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">MiNorte — a financial co-pilot for small businesses.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">The Banorte Challenge at HackMTY 2026</h3>
+                <p class="text-muted">The brief called for AI agents that generate interfaces in real time, an open use case in financial services, and required MCP. MiNorte brought those constraints together around a concrete small-business need: turning financial activity into understandable, evidence-backed guidance.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">The engine calculates. The AI explains.</h3>
+                <p class="text-muted">Financial answers are only useful when the numbers can be trusted. MiNorte’s deterministic engine handles calculations such as cash flow, profitability, tax estimates, reconciliation, and receivables. AI agents use MCP tools to retrieve that verified information, explain what it means, and help owners explore decisions—without making up financial figures.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <a href="/projects/minorte/arquitecturaMiNorte.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size MiNorte architecture diagram">
+                  <img
+                    class="h-auto w-full border border-line bg-[#111318]"
+                    src="/projects/minorte/architecture.webp"
+                    width="1440"
+                    height="771"
+                    alt="MiNorte architecture: FastAPI financial engine, AI agents and MCP tools connect through validated UI schemas to a Next.js workspace and Supabase Postgres"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <figcaption class="text-dim">The system separates deterministic financial calculations from agent reasoning and interface composition. Open the diagram for a full-size view.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Interfaces generated from real needs</h3>
+                <p class="text-muted">An Analyst finds and ranks insights with supporting evidence. A UI Designer turns those insights into cards from a validated component catalog, so the workspace can adapt its visual explanation while staying within a predictable interface system.</p>
+                <p class="text-muted">The weekly view brings together key financial indicators, recommended actions, and discoveries. In chat, owners can ask follow-up questions, compare scenarios such as a hire or loan, and inspect the evidence behind an answer.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[16/10] w-full border border-line object-cover"
+                  src="/projects/minorte/dashboard2.webp"
+                  width="1440"
+                  height="900"
+                  alt="MiNorte weekly financial workspace with prioritized actions, discoveries, and financial visualizations"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The weekly workspace turns analysis into a short list of actions and discoveries.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">From insight to action</h3>
+                <p class="text-muted">MiNorte connects analysis to everyday operations: it can surface overdue receivables and support collection follow-ups, while a receipt-to-invoice workflow helps move a purchase toward CFDI issuance. The Playwright browser flow pauses for human confirmation before irreversible steps.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My contributions, alongside the team</h3>
+                <p class="text-muted">I spent most of my time building the systems behind MiNorte—the financial logic, backend, MCP tools, and AI workflows that turn business data into useful insights and dashboard cards. I also helped shape the product and sketched the first interface. My teammates brought the frontend to life and built the Playwright ticket-automation flow, based on an idea I contributed. We built the project together.</p>
+                <p class="text-muted">MiNorte was a collaborative HackMTY project, with the team bringing the financial workflows, interface, AI, and browser automation together.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Built for the Banorte challenge</h3>
+                <p class="text-muted">MiNorte demonstrates one way to make real-time AI interfaces useful in financial services: let reliable systems own the math, give agents structured tools through MCP, and make the result legible and actionable for the person running the business.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+                <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
+              </section>
+
+              <p class="border-t border-line pt-4 text-muted">
+                <a class="underline hover:text-fg" href="https://github.com/pedroolib/MiNorte-by-Banorte" target="_blank" rel="noopener noreferrer">Explore the MiNorte repository ↗</a>
+              </p>
+            </>
+          ) : (
+            <>
+              <div class="flex aspect-video items-center justify-center bg-[#111318] text-muted">[TODO case-study hero image]</div>
+
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <p><span class="text-dim">What: </span><span class="text-muted">{item.what}</span></p>
+                <p><span class="text-dim">Impact: </span><span class="text-muted">{item.impact}</span></p>
+              </div>
+
+              <div>
+                <h3 class="mb-2 font-bold text-fg">My deliverables</h3>
+                <ol class="list-decimal space-y-1 pl-5 text-muted">
+                  <li>[TODO deliverable 1 — e.g. what you designed or built first]</li>
+                  <li>[TODO deliverable 2 — e.g. core system or flow]</li>
+                  <li>[TODO deliverable 3 — e.g. iteration, testing, or handoff]</li>
+                </ol>
+                <p class="mt-3 text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+              </div>
+
+              <div>
+                <h3 class="mb-2 font-bold text-fg">Team</h3>
+                <p class="text-muted">{item.team}</p>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <h3 class="mb-2 font-bold text-fg">Key challenges</h3>
+                  <ul class="list-disc space-y-1 pl-5 text-muted">
+                    <li>[TODO: what problem were you solving?]</li>
+                    <li>[TODO: what constraint shaped the work?]</li>
+                    <li>[TODO: what was hard or unknown?]</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="mb-2 font-bold text-fg">Approach</h3>
+                  <ul class="list-disc space-y-1 pl-5 text-muted">
+                    <li>[TODO: how you tackled it]</li>
+                    <li>[TODO: how you tested or iterated]</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p class="pb-2 text-dim">[TODO: links, demo, repo, or video. Omit anything you cannot verify.]</p>
+            </>
+          )}
         </div>
       </dialog>
     ))}
@@ -832,15 +1195,93 @@ const discs = [
 
       // Infinite columns. Cloned ids are stripped (modals live once, outside the
       // clones) and all buttons work through the delegated listeners above.
-      // Desktop: each column repeats on its own so no empty side gaps remain.
-      // Mobile (single column): whole sets repeat to preserve About→Projects→Playground order.
+      // Desktop: scroll-linked loop. Each column slides at a speed proportional to
+      // its own length and every column wraps at the same scroll point, so the
+      // repetition always stays in sync (more cards = faster, fewer = slower).
+      // Reduced-motion desktop / Mobile (single column): whole sets repeat to
+      // preserve About→Projects→Playground order.
       function stripIds(root) {
         root.querySelectorAll('[id]').forEach((el) => {
           el.removeAttribute('id');
         });
       }
       if ('IntersectionObserver' in window) {
-        if (window.matchMedia('(min-width: 768px)').matches) {
+        const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+        if (isDesktop && !REDUCED_MOTION) {
+          const columnsMain = document.getElementById('main');
+          const CLONE_MARGIN = 900;
+          const columns = [];
+          let mainTop = 0;
+          let maxPeriod = 1;
+          let frame = 0;
+
+          function cloneSection(col) {
+            const clone = col.template.cloneNode(true);
+            clone.removeAttribute('id');
+            stripIds(clone);
+            col.sentinel.before(clone);
+          }
+
+          function measure() {
+            mainTop = columnsMain.getBoundingClientRect().top + window.scrollY;
+            maxPeriod = 1;
+            columns.forEach((col) => {
+              const sections = col.el.querySelectorAll(':scope > section');
+              col.period =
+                sections.length > 1
+                  ? sections[1].offsetTop - sections[0].offsetTop
+                  : col.el.offsetHeight;
+              maxPeriod = Math.max(maxPeriod, col.period);
+              // Sentinel sits right after the last copy: layout bottom of content.
+              col.bottom = mainTop + col.sentinel.offsetTop;
+            });
+          }
+
+          function update() {
+            frame = 0;
+            const scrollY = window.scrollY;
+            const scrollRel = Math.max(0, scrollY - mainTop);
+            const viewport = window.innerHeight;
+            columns.forEach((col) => {
+              if (!col.period) return;
+              const t = ((scrollRel * col.period) / maxPeriod) % col.period;
+              col.el.style.transform = `translate3d(0, ${-t}px, 0)`;
+              while (col.bottom < scrollY + t + viewport + CLONE_MARGIN) {
+                cloneSection(col);
+                col.bottom += col.period;
+              }
+            });
+          }
+
+          function schedule() {
+            if (!frame) frame = window.requestAnimationFrame(update);
+          }
+
+          if (columnsMain) {
+            document.querySelectorAll('.col-stack').forEach((col) => {
+              const template = col.querySelector('section');
+              if (!template) return;
+              const sentinel = document.createElement('div');
+              sentinel.setAttribute('aria-hidden', 'true');
+              col.appendChild(sentinel);
+              const state = { el: col, template, sentinel, period: 0, bottom: 0 };
+              columns.push(state);
+              cloneSection(state);
+            });
+            measure();
+            update();
+            const remeasure = () => {
+              measure();
+              update();
+            };
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', remeasure);
+            window.addEventListener('load', remeasure);
+            // Monocraft swaps in after first paint and changes text heights.
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+          }
+        } else if (isDesktop) {
+          // Reduced motion: keep the plain per-column repeat, no parallax.
           document.querySelectorAll('.col-stack').forEach((col) => {
             const template = col.querySelector('section');
             if (!template) return;
@@ -848,7 +1289,7 @@ const discs = [
             sentinel.setAttribute('aria-hidden', 'true');
             col.appendChild(sentinel);
             new IntersectionObserver(
-              (entries, observer) => {
+              (entries) => {
                 if (!entries[0].isIntersecting) return;
                 const clone = template.cloneNode(true);
                 clone.removeAttribute('id');

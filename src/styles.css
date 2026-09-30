@@ -346,6 +346,13 @@ button {
   z-index: 30;
 }
 
+/* Scroll-linked columns are transformed (own stacking contexts), so the
+   lift has to happen on the column itself, not just the inner section. */
+.col-stack:has(.about-sec:hover),
+.col-stack:has(.about-sec:focus-within) {
+  z-index: 30;
+}
+
 /* Section titles light up together with any hovered/focused card inside */
 .col-stack h2 {
   transition: color 200ms ease;
@@ -370,6 +377,11 @@ button {
 
 dialog {
   overscroll-behavior: contain;
+}
+
+/* The `flex` utility would otherwise keep closed dialogs rendered in the page. */
+dialog:not([open]) {
+  display: none;
 }
 
 /* Case-study panels: slide in from the right, back out on close */
@@ -441,7 +453,8 @@ h2 {
   padding: 0;
 }
 
-.about-next-float {
+.about-next-float,
+.repo-float {
   position: absolute;
   left: var(--mx, 50%);
   top: var(--my, 50%);
@@ -459,7 +472,8 @@ h2 {
 }
 
 @media (hover: hover) {
-  .about-photo.is-hover .about-next-float {
+  .about-photo.is-hover .about-next-float,
+  .about-photo.is-hover .repo-float {
     opacity: 1;
   }
 }
