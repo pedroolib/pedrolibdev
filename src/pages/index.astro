@@ -38,15 +38,6 @@ const work = [
     team: 'A collaborative project by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.',
   },
   {
-    id: 'project-4',
-    year: '26',
-    title: 'MiNorte — An AI financial team for small businesses',
-    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business banking and invoice data into grounded insights, generative dashboards, and useful next steps.',
-    impact: 'Responded to the challenge to build real-time AI-generated financial interfaces with MCP, using a deterministic engine so the AI explains verified numbers instead of inventing them.',
-    stack: 'Python, FastAPI, Next.js 14, TypeScript, Supabase/Postgres, OpenAI, MCP, Playwright',
-    team: 'A collaborative HackMTY 2026 project: I focused on product logic and backend systems, while teammates implemented the frontend and Playwright ticket-automation flow.',
-  },
-  {
     id: 'project-5',
     year: '23',
     title: 'High-performance processor design for artificial intelligence — UCSD ENLACE',
@@ -57,12 +48,21 @@ const work = [
   },
   {
   id: 'project-6',
-  year: '22—24',
-  title: 'Innobotics FRC — Autonomous robotics and competition software',
-  what: 'Led the development of robot software, autonomous routines, and PID and feedforward control systems for FRC Team 6694.',
-    impact: 'Built competition-ready autonomous and control systems while serving as Software Lead and Team Captain.',
-    stack: '[TODO: e.g. WPILib, Java, PID control]',
-    team: '[TODO: your role + collaborators]',
+  year: '22—25',
+  title: 'Innobotics FRC 6694 — Competition robotics software and leadership',
+  what: 'Led robot software, autonomous routines, and PID and feedforward control for FRC Team 6694 across three seasons in Mexicali, Monterrey, and Hermosillo.',
+  impact: '3rd place plus Spirit Award at Hermosillo 2024. 5th place plus Imagery Award at Monterrey 2023. Built over long build-season hours with a fully student-run team.',
+  stack: 'Java, WPILib, PID + feedforward control, NetworkTables, Gradle',
+  team: 'FRC Team 6694 Innobotics · Software Lead & Captain · Feb 2022 – Jan 2025',
+  },
+  {
+    id: 'project-4',
+    year: '26',
+    title: 'MiNorte — An AI financial team for small businesses',
+    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business banking and invoice data into grounded insights, generative dashboards, and useful next steps.',
+    impact: 'Responded to the challenge to build real-time AI-generated financial interfaces with MCP, using a deterministic engine so the AI explains verified numbers instead of inventing them.',
+    stack: 'Python, FastAPI, Next.js 14, TypeScript, Supabase/Postgres, OpenAI, MCP, Playwright',
+    team: 'A collaborative HackMTY 2026 project: I focused on product logic and backend systems, while teammates implemented the frontend and Playwright ticket-automation flow.',
   },
 ];
 
@@ -397,6 +397,16 @@ const discs = [
                     width="1200"
                     height="900"
                     alt="Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : item.id === 'project-6' ? (
+                  <img
+                    class="work-thumb aspect-[72/101] w-full border border-line object-cover object-top"
+                    src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.05 AM (1).jpeg"
+                    width="1200"
+                    height="900"
+                    alt="FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker"
                     loading="lazy"
                     decoding="async"
                   />
@@ -906,6 +916,141 @@ const discs = [
 
               <p class="border-t border-line pt-4 text-muted">
                 <a class="underline hover:text-fg" href="https://github.com/pedroolib/ShapeDetectionAI#real-time-shape-classification-system" target="_blank" rel="noopener noreferrer">Explore the ShapeDetectionAI repository ↗</a>
+              </p>
+            </>
+          ) : item.id === 'project-6' ? (
+            <>
+              <section aria-labelledby="inno-intro">
+                <p id="inno-intro" class="mb-2 text-dim">FRC Team 6694 Innobotics. Mexicali, Monterrey and Hermosillo, 2022 to 2025</p>
+                <p class="text-muted">Three seasons of FIRST Robotics Competition as Software Lead and Captain. I owned the robot code, the subsystems, the autonomous routines, and the PID and feedforward tuning, and I helped lead a student-run team through build season, regionals and playoffs in Monterrey and Hermosillo.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.05 AM (1).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">6694 on the CRESCENDO field, lined up at the speaker. Everything we tuned for, packed into one two-minute match.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My path: wrenches first, code second</h3>
+                <p class="text-muted">I did not start in software. My first two seasons were in mechanics, cutting, drilling and assembling, learning every tool in the workshop, because I wanted to understand the whole robot before picking a specialty. That decision paid off. In my second year the team trusted me as captain, leading people through jobs I had done myself.</p>
+                <p class="text-muted">Then in my third year I moved to what I had always wanted: programming, as Software Lead. Knowing the machine from the inside changed how I wrote code. Every setpoint I tuned, I could picture the gearbox behind it and the pit crew who would have to fix it if I got it wrong.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">What I built</h3>
+                <p class="text-muted">The 2024 robot code is Java on WPILib, organized the way WPILib wants: subsystems for the drivetrain, intake, launcher, shooter, arm and both climbers, plus small command classes, all wired together in <code>RobotContainer</code>. My main job was making the mechanisms behave the same way every time, with PID plus feedforward tuning and NetworkTables telemetry so we could debug from the driver station.</p>
+                <p class="text-muted">My favorite detail is a small rule with a big effect. The robot will not shoot until the shooter wheels are truly up to speed. Pressing X runs a check on <code>atSetpoint()</code>. If the wheels are there, the feeder fires a note into them. If not, nothing happens. No hopeful shots and no jammed notes. Underneath, the shooter is a <code>PIDSubsystem</code> with a feedforward model, measured by an encoder with a set tolerance, and it streams <code>Shooter Rate</code> and <code>At Setpoint</code> to SmartDashboard. Those were the numbers we stared at between matches.</p>
+                <p class="text-muted">The rest of the machine plays from one Xbox controller. Right bumper spins the shooter up, left bumper stops it, B grabs a note, A spits one back out, and the D-pad walks the arm through tuned positions. The repo even keeps our homework: SysId characterization routines and DataLog configs, because we measured the real motors instead of guessing constants.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <video
+                  class="h-auto w-full border border-line"
+                  src="/projects/Innobotics/WhatsApp Video 2026-10-07 at 10.49.06 AM.mp4"
+                  controls
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  aria-label="Workshop test run: the 6694 robot driving and shooting notes at the practice speaker"
+                ></video>
+                <figcaption class="text-dim">Autonomous test run in the workshop. The robot drives itself to the practice speaker and shoots notes, with nobody touching the sticks.</figcaption>
+              </figure>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM.jpeg"
+                  width="1200"
+                  height="900"
+                  alt="Innobotics team celebrating on the field with the team flag while a teammate reviews code on a laptop"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Celebrating a win, flag up, laptop still open. Software never really stops between matches.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Operating under match pressure</h3>
+                <p class="text-muted">At the driver station there is no pause button. You read the telemetry, trust the autonomous routine you tested in the pit, and talk to your crew. I spent matches behind the glass with the team, calling plays and watching mechanisms we had tuned for weeks do their job in seconds.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="h-auto w-full border border-line"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (7).jpeg"
+                  width="900"
+                  height="1200"
+                  alt="Drive team member in a 6694 jersey at the alliance station glass with match telemetry on a laptop"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Behind the glass at the alliance station. Telemetry up on the laptop, eyes on the robot.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Results that stuck</h3>
+                <p class="text-muted">Hermosillo 2024 brought a 3rd place regional finish plus the Spirit Award. Monterrey 2023 brought a 5th place finish plus the Imagery Award. The Spirit Award means the most to me. It goes to the team with the heart, and we were loud, united and proud of the machine we built together.</p>
+                <p class="text-muted">None of it came fast. Build season is long nights in the shop doing work that takes hours and cannot be rushed, and those nights teach you dedication and patience whether you planned to learn them or not.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="h-auto w-full border border-line"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (6).jpeg"
+                  width="900"
+                  height="1200"
+                  alt="2024 Team Spirit Award plaque and trophy from Regional Hermosillo held in front of 6694 jerseys"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">2024 Team Spirit Award, Regional Hermosillo. Plaque and trophy.</figcaption>
+              </figure>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (2).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="Innobotics pit crew posing with the 6694 robot in the team pit"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Pit crew with the robot. This is where the long hours happened: workshop tools, wiring fixes and code deploys between matches.</figcaption>
+              </figure>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (4).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="Full Innobotics team holding a 6694 banner outside the Regional Hermosillo CRESCENDO venue"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The full team outside Regional Hermosillo. Three seasons across Mexicali, Monterrey and Hermosillo taught me workshop skills, patience through slow work, and how much a team can do when it pulls together.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My role</h3>
+                <p class="text-muted">As Software Lead and Captain I owned the robot code and the controls tuning, ran the software side of match preparation, and helped lead the team on and off the field. That meant everything from running workshop tools during build season to coordinating the drive crew at regionals.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+                <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
+              </section>
+
+              <p class="border-t border-line pt-4 text-muted">
+                <a class="underline hover:text-fg" href="https://github.com/atofo/RobotCode2024_6694" target="_blank" rel="noopener noreferrer">Explore the RobotCode2024_6694 repository ↗</a>
               </p>
             </>
           ) : (
