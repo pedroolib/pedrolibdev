@@ -2,11 +2,11 @@
 import '../styles.css';
 
 const experience = [
-  { year: '25-Now', name: 'Vanttec', tags: 'USV Perception Lead', id: 'project-5' },
-  { year: '25', name: 'Botbusters', tags: 'FTC Robotics Mentor', id: 'project-4' },
-  { year: '23', name: 'UC San Diego', tags: 'Research Assistant', id: 'project-3' },
-  { year: '22—24', name: 'Innobotics', tags: 'Software Lead & Captain', id: 'project-2' },
-  { year: '16-22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: 'project-1' }
+  { year: '25-Now', name: 'Vanttec', tags: 'USV Perception Lead', id: 'project-1' },
+  { year: '25', name: 'Botbusters', tags: 'FTC Robotics Mentor', id: null },
+  { year: '23', name: 'UC San Diego', tags: 'Research Assistant', id: 'project-5' },
+  { year: '22—24', name: 'Innobotics', tags: 'Software Lead & Captain', id: 'project-6' },
+  { year: '16-22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: null }
 ];
 
 const work = [
@@ -49,11 +49,11 @@ const work = [
   {
     id: 'project-5',
     year: '23',
-    title: 'ShapeDetectionAI — Real-time computer vision at UC San Diego',
-    what: 'Built a real-time shape recognition system using computer vision and an SVM optimized for efficient hardware implementation.',
-    impact: 'Achieved 98%+ classification accuracy while quantizing model weights for efficient hardware implementation.',
-    stack: '[TODO: e.g. Python, OpenCV, SVM]',
-    team: '[TODO: your role + collaborators]',
+    title: 'High-performance processor design for artificial intelligence — UCSD ENLACE',
+    what: 'A real-time geometric shape classifier built at UC San Diego that pairs a linear SVM with 4-bit quantized weights designed with hardware implementation in mind.',
+    impact: 'Held 98%+ accuracy after quantization, ran live from a webcam in Colab, and was presented at the ENLACE closing conference at UCSD and as an invited talk at the UCSD-ENLACE-México Symposium in Tijuana.',
+    stack: 'Python, OpenCV, scikit-learn, NumPy, Matplotlib, Google Colab, Xilinx ZYNQ',
+    team: 'UCSD ENLACE Summer Research 2023 · Vertically-integrated VLSI Information Processing Lab · Prof. Mingu Kang · Mentors Chang Eun Song, Zihan Xia, Ashkan Moradi · with Omar Dario Martinez Blackaller',
   },
   {
   id: 'project-6',
@@ -132,7 +132,7 @@ const discs = [
         document.documentElement.dataset.theme = 'dark';
       }
     </script>
-    <title>pedrolib's portfolio</title>
+    <title>PedroLib</title>
     <meta
       name="description"
       content="[TODO: one-line portfolio description. Replace with your own title, location, and focus.]"
@@ -191,12 +191,16 @@ const discs = [
               <dt class="sr-only">{item.name} year</dt>
               <dd class="text-dim">{item.year}</dd>
               <dd>
-                <button
-                  class="open-modal text-left text-fg hover:underline"
-                  data-modal={item.id}
-                >
-                  {item.name} <span aria-hidden="true">▸</span>
-                </button>
+                {item.id ? (
+                  <button
+                    class="open-modal text-left text-fg hover:underline"
+                    data-modal={item.id}
+                  >
+                    {item.name} <span aria-hidden="true">▸</span>
+                  </button>
+                ) : (
+                  <span class="text-left text-fg">{item.name}</span>
+                )}
               </dd>
               <dd class="col-start-2 text-dim md:col-start-3">{item.tags}</dd>
             </div>
@@ -339,7 +343,7 @@ const discs = [
           </button>
         </div>
 
-        <div class="mt-8 space-y-5 text-micro">
+        <div class="about-texts mt-8 space-y-5 text-micro">
           <h3 class="font-bold text-fg">About Me</h3>
           <p class="text-muted">When I'm not building something, I really enjoy being around people. Spending time with my friends and my girlfriend, going out, watching sports together, or just having a good conversation is a big part of who I am.</p>
           <p class="text-muted">Sports are also a huge part of my life. I'm a Barça, Kansas City Chiefs, and Dodgers fan, and I love playing flag football whenever I get the chance. I'm pretty competitive, so I definitely get more invested in games than I probably should.</p>
@@ -383,6 +387,16 @@ const discs = [
                     width="1680"
                     height="945"
                     alt="MiNorte logo on a light background"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : item.id === 'project-5' ? (
+                  <img
+                    class="work-thumb aspect-[4/3] w-full border border-line object-cover"
+                    src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (7).jpeg"
+                    width="1200"
+                    height="900"
+                    alt="Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering"
                     loading="lazy"
                     decoding="async"
                   />
@@ -795,6 +809,103 @@ const discs = [
 
               <p class="border-t border-line pt-4 text-muted">
                 <a class="underline hover:text-fg" href="https://github.com/pedroolib/MiNorte-by-Banorte" target="_blank" rel="noopener noreferrer">Explore the MiNorte repository ↗</a>
+              </p>
+            </>
+          ) : item.id === 'project-5' ? (
+            <>
+              <section aria-labelledby="shape-intro">
+                <p id="shape-intro" class="mb-2 text-dim">High-performance processor design for artificial intelligence — UCSD ENLACE, summer 2023</p>
+                <p class="text-muted">ShapeDetectionAI is a real-time shape classifier I built as a research intern at UC San Diego: a linear SVM that recognizes circles, squares, triangles, and stars from tiny 16×16 images, then runs live from a webcam. The twist is hardware thinking — the learned weights are quantized down to 4-bit integers so the same dot-product decision could map efficiently onto silicon.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-video w-full border border-line object-cover"
+                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (7).jpeg"
+                  width="1200"
+                  height="675"
+                  alt="Closing conference slide: High-performance processor design for artificial intelligence, presented at UC San Diego"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">The research setting</h3>
+                <p class="text-muted">June–August 2023, ENLACE Summer Research Program in the Vertically-integrated VLSI Information Processing Lab with Prof. Mingu Kang and mentors Chang Eun Song, Zihan Xia, and Ashkan Moradi, alongside Omar Dario Martinez Blackaller. The lab studies how machine-learning models can run on efficient custom hardware, so every software choice had a hardware cost in mind.</p>
+                <p class="text-muted">I joined a multicultural team of researchers and PhDs from different backgrounds, shared findings with the academic community, and stayed hands-on from data prep through live demo and final talk.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (1).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="Xilinx ZYNQ development board used during high-performance AI processor research"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The target mindset: Xilinx ZYNQ — every multiply-add in the classifier has a silicon cost.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">How the classifier works</h3>
+                <p class="text-muted">The notebook pipeline is deliberately small enough to reason about in hardware: load PNGs per shape class, resize to 16×16 with OpenCV, convert to grayscale, flatten to a 256-dimensional vector. Training uses a one-vs-all split — pick a <code>target_shape</code> (circle, square, triangle, or star), binarize labels to 1 / 0, and fit <code>SVC(kernel='linear')</code> from scikit-learn.</p>
+                <p class="text-muted">Inference is a single decision: <code>dot(w, pixels) + b &gt; 0</code>. For webcam frames the image is resized the same way, thresholded at 100 into a binary image, and passed through that same dot product — “this image is a square :)” or not.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Quantized for hardware, without losing accuracy</h3>
+                <p class="text-muted">Float weights are cheap in Colab and expensive on chip. I scaled the learned coefficients by 50, rounded to integers, then clipped to a 4-bit range of −8 to 7 — the range called out directly in the notebook. Re-running the 3,000-image test split with only integer <code>w_int</code> / <code>b_int</code> held 98%+ accuracy, showing the model survives aggressive quantization and stays a cheap integer dot product.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (3).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="Research team of four posing together in the UCSD lab"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The team — collaborating across cultures, sharing knowledge as we debugged models and hardware together.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Live from the webcam</h3>
+                <p class="text-muted">The Colab demo captures a photo through the browser with JavaScript, decodes it from base64 to <code>photo.jpg</code>, then runs the exact training-time preprocessing before the quantized decision. No server round trip for the math itself — capture, resize, binarize, dot product, answer.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Presented twice</h3>
+                <p class="text-muted">First at the ENLACE closing conference at UC San Diego, presenting our contributions and experience to the program. Then as an invited speaker at the UCSD-ENLACE-México Symposium at Instituto Tecnológico de Tijuana in September 2023, presenting the research topic to an audience of upper- and middle-higher-level students and teachers to promote science and technology.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="h-auto w-full border border-line"
+                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (4).jpeg"
+                  width="1200"
+                  height="900"
+                  alt="With Olivia Graeve, holding the UC San Diego ENLACE 2023 certificate of participation"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">With Olivia Graeve at the ENLACE closing ceremony — Certificate of Participation, “High-performance processor design for artificial intelligence”, 26 June – 11 August 2023, La Jolla, CA.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My role</h3>
+                <p class="text-muted">As researcher I built the SVM training and quantization flow in the notebook, ran the webcam classification loop, and contributed to the hardware-oriented analysis. Just as important was the teamwork: collaborating across backgrounds, communicating findings clearly, and carrying the work through two public presentations.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+                <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
+              </section>
+
+              <p class="border-t border-line pt-4 text-muted">
+                <a class="underline hover:text-fg" href="https://github.com/pedroolib/ShapeDetectionAI#real-time-shape-classification-system" target="_blank" rel="noopener noreferrer">Explore the ShapeDetectionAI repository ↗</a>
               </p>
             </>
           ) : (
