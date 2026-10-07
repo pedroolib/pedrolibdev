@@ -13,11 +13,11 @@ const work = [
   {
     id: 'project-1',
     year: '25—Now',
-    title: 'Autonomous USV — Autonomous perception and navigation for RoboBoat',
-    what: 'Building the perception stack for an autonomous surface vehicle using ROS 2, computer vision, and sensor fusion.',
-    impact: 'Building toward RoboBoat 2026, where the vehicle must autonomously perceive, navigate, and complete real-world maritime challenges.',
-    stack: '[TODO: e.g. ROS 2, Python, OpenCV]',
-    team: '[TODO: your role + collaborators]',
+    title: 'VantTec USV Perception — Perception stack for RoboBoat',
+    what: 'Rebuilt an autonomous surface vehicle’s ROS 2 perception stack after its stereo camera failed, trained its YOLO buoy dataset, and set up onboard serial telemetry, CAN networking, and remote terminal access.',
+    impact: 'Restored the object-range output the old pipeline had stopped publishing and made the boat field-testable over radio links, then competed with it at RoboBoat 2026.',
+    stack: 'ROS 2 Humble, Python, C++, OpenCV, NumPy, TensorRT, ONNX, YOLO, Velodyne VLP-16, Gazebo Harmonic, rosbag2, Docker, NVIDIA Jetson, SocketCAN, XBee telemetry, systemd, Git',
+    team: 'USV Perception Lead, working with the VantTec student robotics team.',
   },
   {
     id: 'project-2',
@@ -410,6 +410,16 @@ const discs = [
                     loading="lazy"
                     decoding="async"
                   />
+                ) : item.id === 'project-1' ? (
+                  <img
+                    class="work-thumb aspect-[4/3] w-full border border-line object-cover"
+                    src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (6).jpeg"
+                    width="1280"
+                    height="767"
+                    alt="Close view of the open electronics bay of the VantTec boat: compute enclosure, wiring and sensor mast"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ) : (
                   <div class="work-thumb flex aspect-[4/3] items-center justify-center border border-line bg-[#111318] p-6 text-center">
                     <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
@@ -624,7 +634,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">SentinelBox mounted in the HVAC unit concept</figcaption>
+                <figcaption class="text-dim">The install goal: one gateway living inside each rooftop unit.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -647,7 +657,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The prototype electronics under test, including the controller boards, sensor wiring, and fan.</figcaption>
+                <figcaption class="text-dim">The bench where the prototype earned its six-second detection number.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -686,7 +696,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The dashboard connects each unit’s location with its live health score and sensor-level explanation.</figcaption>
+                <figcaption class="text-dim">Staff pick a unit, see its health, and find which sensor is complaining.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -699,7 +709,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The 3D building twin makes it easy to see which rooftop units need attention.</figcaption>
+                <figcaption class="text-dim">Two rooftops, two health states, one glance.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -717,7 +727,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The SentinelBox team celebrating the first-place result together.</figcaption>
+                <figcaption class="text-dim">First place, Carrier Keep It Cool 2026.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -752,7 +762,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">MiNorte — a financial co-pilot for small businesses.</figcaption>
+                <figcaption class="text-dim">Built for the Banorte Challenge at HackMTY 2026.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -777,7 +787,7 @@ const discs = [
                     decoding="async"
                   />
                 </a>
-                <figcaption class="text-dim">The system separates deterministic financial calculations from agent reasoning and interface composition. Open the diagram for a full-size view.</figcaption>
+                <figcaption class="text-dim">Math lives in the engine, words live in the agents. Open the diagram for a full-size view.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -796,7 +806,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The weekly workspace turns analysis into a short list of actions and discoveries.</figcaption>
+                <figcaption class="text-dim">Monday morning for a shop owner: actions first, charts second.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -838,7 +848,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering.</figcaption>
+                <figcaption class="text-dim">Final talk of the summer, presented with Omar Dario Martinez Blackaller.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -857,7 +867,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The target mindset: Xilinx ZYNQ — every multiply-add in the classifier has a silicon cost.</figcaption>
+                <figcaption class="text-dim">Why the weights had to shrink to 4-bit integers. This board charges for every multiply-add.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -881,7 +891,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The team — collaborating across cultures, sharing knowledge as we debugged models and hardware together.</figcaption>
+                <figcaption class="text-dim">One summer of shared debugging, shared findings and one crowded whiteboard.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -904,7 +914,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">With Olivia Graeve at the ENLACE closing ceremony — Certificate of Participation, “High-performance processor design for artificial intelligence”, 26 June – 11 August 2023, La Jolla, CA.</figcaption>
+                <figcaption class="text-dim">With Olivia Graeve at the ENLACE closing ceremony. Summer research, 26 June to 11 August 2023, La Jolla.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -935,7 +945,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">6694 on the CRESCENDO field, lined up at the speaker. Everything we tuned for, packed into one two-minute match.</figcaption>
+                <figcaption class="text-dim">Two minutes per match. Months of tuning behind them.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -963,7 +973,7 @@ const discs = [
                   preload="metadata"
                   aria-label="Workshop test run: the 6694 robot driving and shooting notes at the practice speaker"
                 ></video>
-                <figcaption class="text-dim">Autonomous test run in the workshop. The robot drives itself to the practice speaker and shoots notes, with nobody touching the sticks.</figcaption>
+                <figcaption class="text-dim">Fifteen seconds with nobody touching the sticks.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -976,7 +986,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Celebrating a win, flag up, laptop still open. Software never really stops between matches.</figcaption>
+                <figcaption class="text-dim">The laptop stayed open through the celebration. There is always one more deploy.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -994,7 +1004,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Behind the glass at the alliance station. Telemetry up on the laptop, eyes on the robot.</figcaption>
+                <figcaption class="text-dim">You cannot pause a match to debug. You watch, and you trust the testing.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1013,7 +1023,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">2024 Team Spirit Award, Regional Hermosillo. Plaque and trophy.</figcaption>
+                <figcaption class="text-dim">Voted for energy, not points. This one meant the most.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -1026,7 +1036,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Pit crew with the robot. This is where the long hours happened: workshop tools, wiring fixes and code deploys between matches.</figcaption>
+                <figcaption class="text-dim">Where the long hours happened: workshop tools, wiring fixes and code deploys between matches.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -1039,7 +1049,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The full team outside Regional Hermosillo. Three seasons across Mexicali, Monterrey and Hermosillo taught me workshop skills, patience through slow work, and how much a team can do when it pulls together.</figcaption>
+                <figcaption class="text-dim">Three seasons across Mexicali, Monterrey and Hermosillo. Workshop skills, patience, and what a team can do pulling together.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1052,6 +1062,91 @@ const discs = [
               <p class="border-t border-line pt-4 text-muted">
                 <a class="underline hover:text-fg" href="https://github.com/atofo/RobotCode2024_6694" target="_blank" rel="noopener noreferrer">Explore the RobotCode2024_6694 repository ↗</a>
               </p>
+            </>
+          ) : item.id === 'project-1' ? (
+            <>
+              <section aria-labelledby="vanttec-intro">
+                <p id="vanttec-intro" class="mb-2 text-dim">VantTec student robotics team, Tecnológico de Monterrey — RoboBoat 2026 season</p>
+                <p class="text-muted">VantTec builds an autonomous surface vehicle for RoboBoat. The boat must find buoys, markers and docks on open water with no driver. I joined as Perception Lead, owning everything the boat sees and how far away it thinks things are.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (1).jpeg"
+                  width="1280"
+                  height="960"
+                  alt="Group selfie of students in black team shirts and event lanyards gathered around a small white twin-hull robot boat on a stand, one student holding an RC transmitter, with wiring and electronics visible inside the open hull and a work tent behind them"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">The task</h3>
+                <p class="text-muted">RoboBoat runs student boats through maritime tasks fully autonomously. The course is set with red and green gate buoys, markers and a dock, and the boat must detect each one, judge distances and navigate between them. Our season goal was a perception stack reliable enough to attempt every task, not just the easy ones.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">What I built</h3>
+                <p class="text-muted">I rebuilt the vision pipeline after the boat lost its ZED stereo camera. The new design pairs a Velodyne VLP-16 LiDAR with a USB webcam. YOLO finds buoys and markers as 2D boxes, and my ROS 2 node, <code>lidar_bbox_range_node.py</code>, projects LiDAR points into each box and takes a median range with MAD outlier rejection, publishing 3D positions downstream.</p>
+                <p class="text-muted">I also trained the YOLO buoy dataset the detector runs on, compiled the TensorRT engine for our hardware, and validated the whole loop in Gazebo Harmonic plus recorded boat data before trusting it near water. On the boat itself I set up the unglamorous plumbing that makes field tests possible: udev rules pinning every serial device, SocketCAN networking, a remote terminal over Holybro radios, and XBee telemetry nodes that republish topics to shore.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (2).jpeg"
+                  width="720"
+                  height="1280"
+                  alt="Wide view of a lake course with alternating red post buoys and green post buoys floating in lines on dark blue water, a small white robot boat at the left edge, and a red bridge spanning the far shore under a clear sky"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Glare, reflections, drifting buoys. This is why the design trusts LiDAR over appearances.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">In the water, under pressure</h3>
+                <p class="text-muted">Testing happened in an indoor pool at home and on open lakes at events. The lake means glare, reflections, drifting buoys and a boat that never sits still, which is exactly why the design leans on LiDAR range instead of trusting appearances. When the old depth-camera pipeline silently stopped publishing objects during a task, the logs showed hundreds of detections going in and zero objects coming out. That failure is what the rebuild replaced.</p>
+              </section>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">Results</h3>
+                <p class="text-muted">In simulation the new node reported a buoy at about 6.2 meters against a roughly 7 meter ground truth, while throwing out a mirrored false box. On recorded boat data it measured real dock structures at 2 to 5 meters and distant markers out to about 18 meters. We brought this stack to RoboBoat 2026.</p>
+              </section>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (4).jpeg"
+                  width="1280"
+                  height="960"
+                  alt="Five students standing around the white USV mounted on a wheeled cart on grass, with VANTTEC and Tecnológico de Monterrey branding on the hull and a RoboBoat feather flag beside them"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="space-y-2">
+                <img
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (5).jpeg"
+                  width="720"
+                  height="1280"
+                  alt="The white twin-hull robot boat floating in a lane of a large indoor swimming pool with Tec Borregos banners on the far wall"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Calm water first. The lake does not forgive untested code.</figcaption>
+              </figure>
+
+              <section class="space-y-2">
+                <h3 class="font-bold text-fg">My role</h3>
+                <p class="text-muted">As Perception Lead I owned the camera-to-distance path end to end: dataset, detector, ranging node, calibration tooling and the boat-side comms that let us test. I learned that the boring parts decide competitions, since a perfect detector means nothing if its output never reaches the boat. I worked with the wider VantTec student team across software, electrical and mechanical subgroups.</p>
+                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
+                <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
+              </section>
             </>
           ) : (
             <>
