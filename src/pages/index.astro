@@ -205,9 +205,9 @@ const discs = [
     <nav aria-label="Sections" class="site-nav sticky top-0 z-40 flex items-center justify-between border-b border-line px-4 py-2 backdrop-blur md:hidden">
       <span class="text-micro text-fg">Pedro Librado Uribe Reyes</span>
       <div class="flex gap-4 text-micro">
-        <a class="text-muted hover:text-fg" href="#about">About</a>
-        <a class="text-muted hover:text-fg" href="#projects">Projects</a>
-        <a class="text-muted hover:text-fg" href="#playground">Playground</a>
+        <a class="text-muted" href="#about">About</a>
+        <a class="text-muted" href="#projects">Projects</a>
+        <a class="text-muted" href="#playground">Playground</a>
       </div>
     </nav>
 
@@ -269,11 +269,11 @@ const discs = [
     </header>
 
     <!-- Vinyl hero -->
-    <section aria-label="Intro" class="relative flex min-h-[38vh] flex-wrap items-center justify-center gap-10 px-4 py-10 md:min-h-[46vh] md:gap-14 md:px-6">
+    <section aria-label="Intro" class="relative flex min-h-[38vh] flex-wrap items-center justify-center gap-[4vw] px-4 py-10 md:min-h-[46vh] md:gap-14 md:px-6">
       {discs.map((disc) => (
         <button
           type="button"
-          class="disc-btn relative h-52 w-52 md:h-64 md:w-64"
+          class="disc-btn relative aspect-square w-[min(13rem,26vw)] md:w-[min(16rem,26vw)]"
           data-track={disc.trackId}
           data-title={disc.song}
           aria-pressed="false"
@@ -494,7 +494,7 @@ const discs = [
                   <span class="float-right text-dim">{item.year}</span>
                 </p>
               </button>
-              <p class="mt-1 hidden text-micro text-dim md:block">{item.what}</p>
+              <p class="mt-1 text-micro text-dim">{item.what}</p>
             </article>
           ))}
         </div>
@@ -1725,6 +1725,47 @@ const discs = [
       window.addEventListener('load', updateProgress);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateProgress);
       updateProgress();
+
+      // Scroll-spy: highlight the mobile nav link for the section in view.
+      // Position-based (not IntersectionObserver): the active link is always
+      // the deepest section whose top sits above a probe line at 40% viewport
+      // height. Recomputed every scroll so it can never stick on a section
+      // you already left, and the last link holds at the page end.
+      const spyLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+      const spySections = spyLinks
+        .map((a) => document.querySelector(a.getAttribute('href') || ''))
+        .filter((el) => el instanceof HTMLElement);
+      function setActiveSpy(id) {
+        spyLinks.forEach((a) => {
+          const active = a.getAttribute('href') === `#${id}`;
+          a.classList.toggle('active', active);
+          if (active) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      }
+      let spyTicking = false;
+      function updateSpy() {
+        spyTicking = false;
+        if (!spySections.length || !spySections[0]) return;
+        const probe = window.scrollY + window.innerHeight * 0.4;
+        let current = spySections[0];
+        spySections.forEach((s) => {
+          if (s instanceof HTMLElement && s.getBoundingClientRect().top + window.scrollY <= probe) {
+            current = s;
+          }
+        });
+        if (current instanceof HTMLElement) setActiveSpy(current.id);
+      }
+      function scheduleSpy() {
+        if (!spyTicking) {
+          spyTicking = true;
+          window.requestAnimationFrame(updateSpy);
+        }
+      }
+      window.addEventListener('scroll', scheduleSpy, { passive: true });
+      window.addEventListener('resize', scheduleSpy);
+      window.addEventListener('load', updateSpy);
+      updateSpy();
 
       // Uniform synchronized columns: each column body drifts at its own
       // velocity, proportional to its length, so all columns run out of

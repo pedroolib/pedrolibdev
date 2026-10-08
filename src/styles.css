@@ -104,6 +104,11 @@
   background: rgba(236, 234, 227, 0.95);
 }
 
+/* Scroll-spy: nav link for the section currently in view */
+.site-nav a.active {
+  color: var(--fg);
+}
+
 /* Scroll progress: fixed bar at the very top, fills as the page scrolls */
 #scroll-progress {
   position: fixed;
