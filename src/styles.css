@@ -505,7 +505,13 @@ h2 {
 
 .about-next-btn,
 .repo-float {
-  z-index: 2;
+  z-index: 20;
+}
+
+/* Lift the hovered photo above neighboring cards/columns so its badge
+   always paints on top, including over composited video layers. */
+.about-photo.is-hover {
+  z-index: 40;
 }
 
 .about-next-float,
@@ -524,7 +530,7 @@ h2 {
   line-height: 1.5;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 3;
+  z-index: 50;
 }
 
 @media (hover: hover) {
