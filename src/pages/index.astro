@@ -1377,7 +1377,7 @@ const discs = [
         if (canHover()) scheduleContactClose();
       });
 
-      // Delegated so buttons inside infinitely-cloned columns keep working.
+      // Delegated so all column buttons keep working.
       // Each photo card cycles its own slides; captions live on the images.
       document.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
@@ -1595,7 +1595,7 @@ const discs = [
       });
       setTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 
-      // About photo: Next pill follows the cursor (delegated, clone-safe).
+      // About photo: Next pill follows the cursor.
       // Scroll re-anchors it since the photo moves under a still cursor.
       let hoverPhoto = null;
       let lastCursor = null;
@@ -1637,133 +1637,52 @@ const discs = [
         });
       }
 
-      // Infinite columns. Cloned ids are stripped (modals live once, outside the
-      // clones) and all buttons work through the delegated listeners above.
-      // Desktop: scroll-linked loop. Each column slides at a speed proportional to
-      // its own length and every column wraps at the same scroll point, so the
-      // repetition always stays in sync (more cards = faster, fewer = slower).
-      // Reduced-motion desktop / Mobile (single column): whole sets repeat to
-      // preserve About→Projects→Playground order.
-      function stripIds(root) {
-        root.querySelectorAll('[id]').forEach((el) => {
-          el.removeAttribute('id');
+      // Matched parallax: each column's content scrolls at its own velocity,
+      // proportional to its length, so all columns run out of content at the
+      // same point. Desktop only, no cloning. The transform goes on the inner
+      // section (never past its own column box), so the page never grows or
+      // leaves a gap; columns shorter than the viewport stay put.
+      const parallaxMedia = window.matchMedia('(min-width: 768px)');
+      const parallaxSections = Array.from(document.querySelectorAll('.col-stack')).map(
+        (col) => col.querySelector(':scope > section')
+      ).filter((el) => el instanceof HTMLElement);
+      let parallaxFrame = 0;
+      function updateParallax() {
+        parallaxFrame = 0;
+        if (!parallaxMedia.matches || REDUCED_MOTION) {
+          parallaxSections.forEach((section) => {
+            section.style.transform = '';
+          });
+          return;
+        }
+        const viewport = window.innerHeight;
+        const maxScroll = document.documentElement.scrollHeight - viewport;
+        if (maxScroll <= 0) return;
+        const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        // Lag model: the longest section moves naturally and finishes exactly
+        // at the page end; shorter sections drift down behind it by the
+        // difference, so every section ends at the same point.
+        const travels = parallaxSections.map((section) =>
+          Math.max(0, section.offsetHeight - viewport)
+        );
+        const maxTravel = Math.max(0, ...travels);
+        parallaxSections.forEach((section, k) => {
+          section.style.transform = `translate3d(0, ${progress * (maxTravel - travels[k])}px, 0)`;
         });
       }
-      if ('IntersectionObserver' in window) {
-        const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-        if (isDesktop && !REDUCED_MOTION) {
-          const columnsMain = document.getElementById('main');
-          const CLONE_MARGIN = 900;
-          const columns = [];
-          let mainTop = 0;
-          let maxPeriod = 1;
-          let frame = 0;
-
-          function cloneSection(col) {
-            const clone = col.template.cloneNode(true);
-            clone.removeAttribute('id');
-            stripIds(clone);
-            col.sentinel.before(clone);
-          }
-
-          function measure() {
-            mainTop = columnsMain.getBoundingClientRect().top + window.scrollY;
-            maxPeriod = 1;
-            columns.forEach((col) => {
-              const sections = col.el.querySelectorAll(':scope > section');
-              col.period =
-                sections.length > 1
-                  ? sections[1].offsetTop - sections[0].offsetTop
-                  : col.el.offsetHeight;
-              maxPeriod = Math.max(maxPeriod, col.period);
-              // Sentinel sits right after the last copy: layout bottom of content.
-              col.bottom = mainTop + col.sentinel.offsetTop;
-            });
-          }
-
-          function update() {
-            frame = 0;
-            const scrollY = window.scrollY;
-            const scrollRel = Math.max(0, scrollY - mainTop);
-            const viewport = window.innerHeight;
-            columns.forEach((col) => {
-              if (!col.period) return;
-              const t = ((scrollRel * col.period) / maxPeriod) % col.period;
-              col.el.style.transform = `translate3d(0, ${-t}px, 0)`;
-              while (col.bottom < scrollY + t + viewport + CLONE_MARGIN) {
-                cloneSection(col);
-                col.bottom += col.period;
-              }
-            });
-          }
-
-          function schedule() {
-            if (!frame) frame = window.requestAnimationFrame(update);
-          }
-
-          if (columnsMain) {
-            document.querySelectorAll('.col-stack').forEach((col) => {
-              const template = col.querySelector('section');
-              if (!template) return;
-              const sentinel = document.createElement('div');
-              sentinel.setAttribute('aria-hidden', 'true');
-              col.appendChild(sentinel);
-              const state = { el: col, template, sentinel, period: 0, bottom: 0 };
-              columns.push(state);
-              cloneSection(state);
-            });
-            measure();
-            update();
-            const remeasure = () => {
-              measure();
-              update();
-            };
-            window.addEventListener('scroll', schedule, { passive: true });
-            window.addEventListener('resize', remeasure);
-            window.addEventListener('load', remeasure);
-            // Monocraft swaps in after first paint and changes text heights.
-            if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
-          }
-        } else if (isDesktop) {
-          // Reduced motion: keep the plain per-column repeat, no parallax.
-          document.querySelectorAll('.col-stack').forEach((col) => {
-            const template = col.querySelector('section');
-            if (!template) return;
-            const sentinel = document.createElement('div');
-            sentinel.setAttribute('aria-hidden', 'true');
-            col.appendChild(sentinel);
-            new IntersectionObserver(
-              (entries) => {
-                if (!entries[0].isIntersecting) return;
-                const clone = template.cloneNode(true);
-                clone.removeAttribute('id');
-                stripIds(clone);
-                sentinel.before(clone);
-              },
-              { rootMargin: '900px 0px' }
-            ).observe(sentinel);
-          });
-        } else {
-          const columnsMain = document.getElementById('main');
-          if (columnsMain) {
-            const sentinel = document.createElement('div');
-            sentinel.id = 'infinite-sentinel';
-            sentinel.setAttribute('aria-hidden', 'true');
-            columnsMain.after(sentinel);
-            const infiniteObserver = new IntersectionObserver(
-              (entries) => {
-                if (!entries[0].isIntersecting) return;
-                const clone = columnsMain.cloneNode(true);
-                clone.removeAttribute('id');
-                stripIds(clone);
-                sentinel.before(clone);
-              },
-              { rootMargin: '900px 0px' }
-            );
-            infiniteObserver.observe(sentinel);
-          }
-        }
+      function scheduleParallax() {
+        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
       }
+      window.addEventListener('scroll', scheduleParallax, { passive: true });
+      window.addEventListener('resize', scheduleParallax);
+      window.addEventListener('load', scheduleParallax);
+      if (parallaxMedia.addEventListener) {
+        parallaxMedia.addEventListener('change', scheduleParallax);
+      }
+      // Monocraft swaps in after first paint and changes text heights.
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleParallax);
+      updateParallax();
+
     </script>
   </body>
 </html>

@@ -349,6 +349,20 @@ button {
   --column-brightness: 0.7;
 }
 
+/* Pinned Projects column: stays in place on desktop while the rest of the
+   page scrolls around it, with its own scroll panel. Scrollbars stay hidden
+   site-wide, like everywhere else. */
+@media (min-width: 768px) {
+  .col-stack[data-col="work"] {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    align-self: start;
+    overscroll-behavior: contain;
+  }
+}
+
 dialog {
   overscroll-behavior: contain;
 }
