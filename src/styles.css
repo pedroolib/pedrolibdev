@@ -200,6 +200,12 @@ body {
   overflow-x: clip;
 }
 
+/* Pixelation above is only for the tiled background. Content images stay
+   smooth — pixel-art keeps its own rule (.lamp-btn .lamp, vinyl discs). */
+img {
+  image-rendering: auto;
+}
+
 /* Darken the tiled dirt like Minecraft option menus so text stays readable */
 body::before {
   content: "";

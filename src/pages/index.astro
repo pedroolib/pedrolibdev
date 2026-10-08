@@ -1,5 +1,45 @@
 ---
 import '../styles.css';
+import { Image } from 'astro:assets';
+import aboutSelfieHome from '../assets/about/selfie-home.jpg';
+import aboutChampionPlaque from '../assets/about/champion-plaque.jpg';
+import aboutConcertCrowd from '../assets/about/concert-crowd.jpg';
+import aboutConcertSelfie from '../assets/about/concert-selfie.jpg';
+import aboutSnowboardSnow from '../assets/about/snowboard-snow.jpg';
+import discRed from '../assets/discs/red-disk.png';
+import discGreen from '../assets/discs/green-disk.png';
+import discWhite from '../assets/discs/white-disk.png';
+import lampOff from '../assets/lamps/redstone-lamp-off.png';
+import lampOn from '../assets/lamps/redstone-lamp-on.png';
+import fpgaControllerImg from '../assets/playground/fpgacontroller.jpg';
+import johnDeereImg from '../assets/playground/johndeere-sim.jpg';
+import senTeam from '../assets/projects/sentinelbox/team.webp';
+import senDevice from '../assets/projects/sentinelbox/device-rooftop.webp';
+import senElectronics from '../assets/projects/sentinelbox/electronics.webp';
+import senDashboard from '../assets/projects/sentinelbox/dashboard.webp';
+import senTwin from '../assets/projects/sentinelbox/3d-twin.webp';
+import minorteLogo from '../assets/projects/minorte/minorte-logo.png';
+import minorteDashboard from '../assets/projects/minorte/dashboard2.webp';
+import minorteArch from '../assets/projects/minorte/architecture.webp';
+import uribotQuote from '../assets/projects/uribot/conversation-quote.png';
+import uribotBooking from '../assets/projects/uribot/conversation-booking.png';
+import uribotBanner from '../assets/projects/uribot/uribot-banner.png';
+import innoField from '../assets/projects/innobotics/field-speaker-6694.jpeg';
+import innoCelebration from '../assets/projects/innobotics/celebration-flag.jpeg';
+import innoPit from '../assets/projects/innobotics/pit-crew.jpeg';
+import innoTeam from '../assets/projects/innobotics/full-team-hermosillo.jpeg';
+import innoSpirit from '../assets/projects/innobotics/spirit-award.jpeg';
+import innoDrive from '../assets/projects/innobotics/drive-station.jpeg';
+import shapeStage from '../assets/projects/shapedetection/stage-title.jpeg';
+import shapeZynq from '../assets/projects/shapedetection/zynq-board.jpeg';
+import shapeTeam from '../assets/projects/shapedetection/team-lab.jpeg';
+import shapeCert from '../assets/projects/shapedetection/olivia-graeve-cert.jpeg';
+import vantPits from '../assets/projects/vanttec/team-pits-selfie.jpeg';
+import vantLake from '../assets/projects/vanttec/lake-gates.jpeg';
+import vantCart from '../assets/projects/vanttec/crew-cart.jpeg';
+import vantPool from '../assets/projects/vanttec/pool-test.jpeg';
+import vantElectronics from '../assets/projects/vanttec/electronics-bay.jpeg';
+
 
 const experience = [
   { year: '25-Now', name: 'Vanttec', tags: 'USV Perception Lead', id: 'project-1' },
@@ -70,7 +110,8 @@ const playground = [
   {
     title: 'FPGA Controller — FPGA, UART, Digital Systems',
     desc: 'A custom hardware controller built on an FPGA to control the simulator through real-time UART communication.',
-    img: '/playground/fpgacontroller/IMG_4947.JPG',
+    img: fpgaControllerImg,
+    poster: fpgaControllerImg.src,
     imgW: 1200,
     imgH: 900,
     imgAlt: 'FPGA controller perfboard with seven-segment displays',
@@ -92,7 +133,7 @@ const playground = [
   {
     title: 'John Deere Simulator — Unity, C#',
     desc: 'A 2D farming simulator built in Unity to recreate and visualize tractor operation.',
-    img: '/playground/JohnDeereSim/JohnDeereSim.jpg',
+    img: johnDeereImg,
     imgW: 934,
     imgH: 523,
     imgAlt: 'JohnDeereSim pixel-art farming game screenshot',
@@ -110,9 +151,9 @@ const playground = [
 ];
 
 const discs = [
-  { src: '/red_disk.png', width: 129, height: 130, label: 'Play si preguntas por mi', pathId: 'circlePathRed', motto: 'You Are Going To Figure It Out. You Always Do •', trackId: '7z3rdMzhY122waIpkSsE7P', song: 'si preguntas por mi' },
-  { src: '/green_disk.png', width: 129, height: 129, label: "Play Desenfocao'", pathId: 'circlePathGreen', motto: "Never Give Up On What You Can't Stop Thinking Of •", trackId: '2CEf2gU5ZJamLXa3NrgAvA', song: "Desenfocao'" },
-  { src: '/white_disk.png', width: 129, height: 129, label: 'Play DIME QUIÉN????', pathId: 'circlePathWhite', motto: 'Keep Improving Yourself, Stop Trying To Prove It •', trackId: '1ImWmtI7DM2uFPNJHHbD8g', song: 'DIME QUIÉN????' },
+  { src: discRed, width: 129, height: 130, label: 'Play si preguntas por mi', pathId: 'circlePathRed', motto: 'You Are Going To Figure It Out. You Always Do •', trackId: '7z3rdMzhY122waIpkSsE7P', song: 'si preguntas por mi' },
+  { src: discGreen, width: 129, height: 129, label: "Play Desenfocao'", pathId: 'circlePathGreen', motto: "Never Give Up On What You Can't Stop Thinking Of •", trackId: '2CEf2gU5ZJamLXa3NrgAvA', song: "Desenfocao'" },
+  { src: discWhite, width: 129, height: 129, label: 'Play DIME QUIÉN????', pathId: 'circlePathWhite', motto: 'Keep Improving Yourself, Stop Trying To Prove It •', trackId: '1ImWmtI7DM2uFPNJHHbD8g', song: 'DIME QUIÉN????' },
 ];
 ---
 
@@ -132,10 +173,10 @@ const discs = [
         document.documentElement.dataset.theme = 'dark';
       }
     </script>
-    <title>PedroLib</title>
+    <title>Pedro Uribe Reyes — ROS 2 Perception Engineer, Monterrey</title>
     <meta
       name="description"
-      content="[TODO: one-line portfolio description. Replace with your own title, location, and focus.]"
+      content="Robotics engineer in Monterrey. ROS 2 perception with YOLO, LiDAR and Jetson for RoboBoat 2026, plus edge AI and full-stack AI products that ship."
     />
   </head>
   <body class="bg-ink text-fg">
@@ -159,7 +200,7 @@ const discs = [
     <!-- Header -->
     <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-12 md:px-6">
       <div class="relative self-start md:col-span-4" id="contact-wrap">
-        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
+        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes <span class="text-dim">— Robotics, AI & Software Engineer</span></h1>
         <button
           id="contact-toggle"
           class="mt-1 flex items-center gap-2 text-micro text-dim hover:text-fg"
@@ -179,7 +220,6 @@ const discs = [
       </div>
 
       <div class="md:col-span-3">
-        <p class="text-[16px] text-fg">Robotics, AI & Software Engineer</p>
         <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
       </div>
 
@@ -208,7 +248,7 @@ const discs = [
         </dl>
         <div class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 text-micro">
           <span class="text-dim">Skills</span>
-          <span class="text-muted">Python, C++, Java, ROS 2, Embedded Systems, IoT, Edge AI, Computer Vision, DevOps, Docker, Linux, NVIDIA Jetson, STM32, Full-Stack Development</span>
+          <span class="text-muted">Python, C++, Java, ROS 2, YOLO, TensorRT, LiDAR, OpenCV, Embedded Systems, IoT, Edge AI, Computer Vision, DevOps, Docker, Linux, NVIDIA Jetson, STM32, Full-Stack Development</span>
         </div>
       </div>
     </header>
@@ -233,7 +273,7 @@ const discs = [
             </text>
           </svg>
           <div class="absolute left-1/2 top-1/2 w-3/5 -translate-x-1/2 -translate-y-1/2">
-            <img
+            <Image
               src={disc.src}
               width={disc.width}
               height={disc.height}
@@ -249,6 +289,11 @@ const discs = [
       <p class="sr-only">[TODO: replace circular tagline with your own line.]</p>
     </section>
 
+    <!-- Recruiter summary -->
+    <section id="profile" aria-label="Profile summary" class="px-4 pb-2 md:px-6">
+      <p class="mx-auto max-w-3xl text-center text-micro text-muted">Pedro Librado Uribe Reyes is a robotics engineer in Monterrey. As Perception Lead on VantTec's autonomous boat, he rebuilt its ROS 2 vision stack with YOLO and LiDAR and competed at RoboBoat 2026. He also ships edge AI and full-stack products, researches at UCSD, and led FRC 6694 software.</p>
+    </section>
+
     <!-- Main 3 columns -->
     <main id="main" class="grid grid-cols-1 gap-10 px-4 pb-10 md:grid-cols-3 md:gap-6 md:px-6">
       <!-- About -->
@@ -260,19 +305,19 @@ const discs = [
         <div class="about-group">
         <div class="about-photo relative border border-line bg-paper">
           <div class="about-photo-img relative aspect-[4/5] overflow-hidden">
-            <img
+            <Image
               class="slide-img"
-              src="/about/1/IMG_2086.jpg"
+              src={aboutSelfieHome}
               width="954"
               height="1200"
               alt="Selfie at home"
-              loading="eager"
+              loading="lazy"
               decoding="async"
               data-cap="[TODO caption]"
             />
-            <img
+            <Image
               class="slide-img"
-              src="/about/1/IMG_2520.JPG"
+              src={aboutChampionPlaque}
               width="900"
               height="1200"
               alt="Holding a champion plaque on a soccer field at night"
@@ -281,9 +326,9 @@ const discs = [
               hidden
               data-cap="[TODO caption: e.g. talk, workshop, demo]"
             />
-            <img
+            <Image
               class="slide-img"
-              src="/about/1/IMG_9126.jpeg"
+              src={aboutConcertCrowd}
               width="900"
               height="1200"
               alt="Concert crowd"
@@ -312,9 +357,9 @@ const discs = [
 
         <div class="about-photo relative mt-8 border border-line bg-paper">
           <div class="about-photo-img relative aspect-[4/5] overflow-hidden">
-            <img
+            <Image
               class="slide-img"
-              src="/about/2/BC7CE8C4-D92A-4F55-8059-18EC3E153B7C.jpeg"
+              src={aboutSnowboardSnow}
               width="952"
               height="1090"
               alt="Sitting on the snow with a snowboard"
@@ -322,9 +367,9 @@ const discs = [
               decoding="async"
               data-cap="[TODO caption]"
             />
-            <img
+            <Image
               class="slide-img"
-              src="/about/2/7B26EE6D-1E75-4D57-87D4-447E8253B3F2.JPG"
+              src={aboutConcertSelfie}
               width="901"
               height="1200"
               alt="Selfie at a Rauw Alejandro concert"
@@ -367,9 +412,9 @@ const discs = [
                 aria-haspopup="dialog"
               >
                 {item.id === 'project-3' ? (
-                  <img
+                  <Image
                     class="work-thumb aspect-video w-full border border-line object-cover"
-                    src="/projects/sentinelbox/team.webp"
+                    src={senTeam}
                     width="900"
                     height="506"
                     alt="SentinelBox team celebrating its first-place hackathon result"
@@ -377,13 +422,19 @@ const discs = [
                     decoding="async"
                   />
                 ) : item.id === 'project-2' ? (
-                  <div class="work-thumb flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center">
-                    <span class="text-micro text-muted">[PHOTO SUGGESTION · CONVERSATION TO BOOKING]<br /><span class="text-dim">An anonymized customer chat, quote, and appointment flow</span></span>
-                  </div>
+                  <Image
+                    class="work-thumb aspect-[4/3] w-full border border-line bg-white object-contain"
+                    src={uribotBanner}
+                    width="995"
+                    height="345"
+                    alt="Uribot logo: a teal robot-cat mascot beside the word uribot"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ) : item.id === 'project-4' ? (
-                  <img
+                  <Image
                     class="work-thumb aspect-[16/10] w-full border border-line object-cover"
-                    src="/projects/minorte/MiNorteLogo.png"
+                    src={minorteLogo}
                     width="1680"
                     height="945"
                     alt="MiNorte logo on a light background"
@@ -391,9 +442,9 @@ const discs = [
                     decoding="async"
                   />
                 ) : item.id === 'project-5' ? (
-                  <img
+                  <Image
                     class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                    src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (7).jpeg"
+                    src={shapeStage}
                     width="1200"
                     height="900"
                     alt="Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering"
@@ -401,9 +452,9 @@ const discs = [
                     decoding="async"
                   />
                 ) : item.id === 'project-6' ? (
-                  <img
+                  <Image
                     class="work-thumb aspect-[72/101] w-full border border-line object-cover object-top"
-                    src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.05 AM (1).jpeg"
+                    src={innoField}
                     width="1200"
                     height="900"
                     alt="FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker"
@@ -411,9 +462,9 @@ const discs = [
                     decoding="async"
                   />
                 ) : item.id === 'project-1' ? (
-                  <img
+                  <Image
                     class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                    src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (6).jpeg"
+                    src={vantElectronics}
                     width="1280"
                     height="767"
                     alt="Close view of the open electronics bay of the VantTec boat: compute enclosure, wiring and sensor mast"
@@ -425,10 +476,10 @@ const discs = [
                     <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
                   </div>
                 )}
-                <p class="mt-2 text-micro text-muted">
-                  <span id={`${item.id}-title`} class="work-title text-fg">{item.title}</span>
+                <div class="mt-2 text-micro text-muted">
+                  <h3 id={`${item.id}-title`} class="work-title inline text-fg">{item.title}</h3>
                   <span class="float-right text-dim">{item.year}</span>
-                </p>
+                </div>
               </button>
               <p class="mt-1 hidden text-micro text-dim md:block">{item.what}</p>
             </article>
@@ -471,7 +522,7 @@ const discs = [
                           aria-label={item.videoAlt}
                         ></video>
                         {item.img && (
-                          <img
+                          <Image
                             class="slide-img"
                             src={item.img}
                             width={item.imgW}
@@ -497,7 +548,7 @@ const discs = [
                       )}
                     </div>
                   ) : item.img ? (
-                    <img
+                    <Image
                       class="work-thumb aspect-[4/3] w-full border border-line object-cover"
                       src={item.img}
                       width={item.imgW}
@@ -511,7 +562,7 @@ const discs = [
                       <span class="text-micro text-muted">[TODO playground visual]</span>
                     </div>
                   )}
-                  <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
+                  <h3 class="work-title mt-2 text-micro font-normal text-fg">{item.title}</h3>
                   <p class="mt-1 text-micro text-dim">{item.desc}</p>
                 </Card>
               </article>
@@ -526,7 +577,7 @@ const discs = [
     {work.map((item) => (
       <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="m-0 ml-auto flex h-[100dvh] max-h-[100dvh] w-[min(46rem,94vw)] max-w-none flex-col overflow-hidden border-0 border-l-2 border-line bg-ink p-0 text-fg">
         <div class="flex flex-none items-center justify-between gap-3 border-b border-line px-4 py-2">
-          <p id={`${item.id}-modal-title`} class="text-micro">{item.title} — {item.year}</p>
+          <h2 id={`${item.id}-modal-title`} class="text-micro font-normal">{item.title} — {item.year}</h2>
           <button class="close-modal flex-none rounded-full border border-line px-3 py-1 text-micro text-muted hover:text-fg" data-close={item.id} type="button">Close</button>
         </div>
         <div class="min-h-0 flex-1 space-y-6 overflow-y-auto px-4 py-4 text-micro">
@@ -538,10 +589,29 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Image suggestion: anonymized customer chat flowing from service question to quote and appointment">
-                  [PHOTO SUGGESTION 01 · CUSTOMER CHAT → QUOTE → APPOINTMENT]
-                </div>
-                <figcaption class="text-dim">Use a redacted real conversation or clearly labeled demo showing Uribot identifying the vehicle, checking the service price, and offering an appointment. Remove personal customer details.</figcaption>
+                <Image
+                  class="h-auto w-full border border-line bg-white"
+                  src={uribotBanner}
+                  width="995"
+                  height="345"
+                  alt="Uribot logo: a teal robot-cat mascot beside the word uribot"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Every tenant gets this face, with their own rules behind it.</figcaption>
+              </figure>
+
+              <figure class="space-y-2">
+                <Image
+                  class="h-auto w-full"
+                  src={uribotQuote}
+                  width="1080"
+                  height="1080"
+                  alt="Uribot answering an oil-change price question with exact peso prices, then offering to book an appointment"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Quote first, booking second. Exact prices from the price list, not from the model's imagination. Personal details removed.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -556,14 +626,18 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Diagram suggestion: customer messaging channels connect through Chatwoot webhooks to Uribot, AI tools, PostgreSQL, and Redis">
-                  [DIAGRAM SUGGESTION 02 · CHANNELS → CHATWOOT → URIBOT → BUSINESS TOOLS]
-                  <br />
-                  WhatsApp / Instagram / Messenger → Chatwoot → Uribot engine → AI agent → quotes, appointments, business knowledge
-                  <br />
-                  PostgreSQL + Redis · tenant-specific prompts, tools, and rules
-                </div>
-                <figcaption class="text-dim">A system diagram should show the full path from customer channel to tool execution and human handoff—one platform, configured per tenant.</figcaption>
+                <a href="/projects/uribot/uribotarchitecturefinal.svg" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size Uribot architecture diagram">
+                  <img
+                    class="h-auto w-full border border-line bg-white"
+                    src="/projects/uribot/uribotarchitecturefinal.svg"
+                    width="1624"
+                    height="1241"
+                    alt="Uribot architecture: messaging channels reach Chatwoot webhooks, a Flask app ingests and batches messages, an LLM orchestrator with function calling drives business tools, calendar and event logging, backed by database and queue storage"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <figcaption class="text-dim">The full path in one diagram, from channel to tool call to reply. Open it for a full-size view.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -573,36 +647,27 @@ const discs = [
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Measure the work the automation does</h3>
-                <p class="text-muted">A useful operations view should make the impact visible through real conversation, quote, appointment, and handoff activity. The dashboard visual below is a design prompt: use measured values from Uribot, or clearly mark any sample numbers as demo data.</p>
+                <h3 class="font-bold text-fg">The booking is the metric that matters</h3>
+                <p class="text-muted">A quote request for a 2013 Escape turns into a scheduled morning appointment: branch options, shop hours, all pulled from business data, without a human typing a word. Every conversation, quote, appointment and handoff is persisted, so the shop can see exactly what the automation did.</p>
               </section>
 
               <figure class="space-y-2">
-                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Dashboard suggestion with verified automation, quote, appointment, and conversion metrics; use demo labels for sample data">
-                  [DASHBOARD SUGGESTION 03 · VERIFIED ACTIVITY, NO INVENTED METRICS]
-                  <br />
-                  Automated conversations · Quotes generated · Appointments booked · Conversion rate
-                  <br />
-                  Show real measured values, or label sample values “Demo data”
-                </div>
-                <figcaption class="text-dim">Track automation as business activity—not just messages sent.</figcaption>
+                <Image
+                  class="h-auto w-full"
+                  src={uribotBooking}
+                  width="1080"
+                  height="1350"
+                  alt="Uribot confirming a booking step by step: vehicle and service identified, branch and morning hour requested from the customer"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">Quote to booking in four messages. Personal details removed.</figcaption>
               </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Built for real businesses</h3>
-                <p class="text-muted">The first use case came from the repetitive questions and service quotations at an automotive workshop. I shaped Uribot beyond that single workflow into a configurable platform for SMBs. Other tenant examples—such as restaurants, clinics, retail, or real estate—should be presented as platform concepts unless they are already running on Uribot.</p>
+                <p class="text-muted">The first use case came from the repetitive questions and service quotations at an automotive workshop. I shaped Uribot beyond that single workflow into a configurable platform for SMBs. Other industries such as restaurants, clinics, retail or real estate remain platform concepts until they run on Uribot.</p>
               </section>
-
-              <figure class="space-y-2">
-                <div class="flex aspect-video items-center justify-center border border-line bg-[#111318] p-6 text-center text-muted" role="img" aria-label="Diagram suggestion: one Uribot platform serving separate automotive, restaurant, clinic, retail, and real-estate tenants with their own tools">
-                  [DIAGRAM SUGGESTION 04 · ONE URIBOT, DIFFERENT SMB WORKFLOWS]
-                  <br />
-                  Automotive: quotes · appointments · service info
-                  <br />
-                  Restaurant: menu · reservations · orders · Clinic: services · appointments · FAQs
-                </div>
-                <figcaption class="text-dim">Show how each business gets its own tools and rules on shared platform infrastructure; label unshipped industries as examples.</figcaption>
-              </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My role</h3>
@@ -616,6 +681,10 @@ const discs = [
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Role: <span class="text-muted">{item.team}</span></p>
               </section>
+
+              <p class="border-t border-line pt-4 text-muted">
+                <a class="underline hover:text-fg" href="https://uribot.chat" target="_blank" rel="noopener noreferrer">Visit uribot.chat ↗</a>
+              </p>
             </>
           ) : item.id === 'project-3' ? (
             <>
@@ -625,9 +694,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-video w-full border border-line object-cover"
-                  src="/projects/sentinelbox/device-rooftop.webp"
+                  src={senDevice}
                   width="1440"
                   height="810"
                   alt="SentinelBox gateway mounted inside a rooftop HVAC unit, with the HVAC control board visible beside it"
@@ -648,9 +717,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/sentinelbox/electronics.webp"
+                  src={senElectronics}
                   width="960"
                   height="720"
                   alt="SentinelBox electronics prototype on a workbench, with ESP32 boards, sensor wiring, and a test fan"
@@ -687,9 +756,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-video w-full border border-line object-cover"
-                  src="/projects/sentinelbox/dashboard.webp"
+                  src={senDashboard}
                   width="1440"
                   height="810"
                   alt="SentinelBox dashboard showing the 3D building view, two monitored HVAC units, health scores, and a vibration warning"
@@ -700,9 +769,9 @@ const discs = [
               </figure>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-video w-full border border-line object-cover"
-                  src="/projects/sentinelbox/3d-twin.webp"
+                  src={senTwin}
                   width="1440"
                   height="810"
                   alt="3D digital twin showing a building with two rooftop HVAC units and their health states"
@@ -718,9 +787,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-video w-full border border-line object-cover object-[center_58%]"
-                  src="/projects/sentinelbox/team.webp"
+                  src={senTeam}
                   width="900"
                   height="506"
                   alt="SentinelBox project team and mentors holding the first-place hackathon award"
@@ -753,9 +822,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[16/10] w-full border border-line object-cover"
-                  src="/projects/minorte/MiNorteLogo.png"
+                  src={minorteLogo}
                   width="1680"
                   height="945"
                   alt="MiNorte logo on a light background"
@@ -776,10 +845,10 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <a href="/projects/minorte/arquitecturaMiNorte.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size MiNorte architecture diagram">
-                  <img
+                <a href={minorteArch.src} target="_blank" rel="noopener noreferrer" aria-label="Open the full-size MiNorte architecture diagram">
+                  <Image
                     class="h-auto w-full border border-line bg-[#111318]"
-                    src="/projects/minorte/architecture.webp"
+                    src={minorteArch}
                     width="1440"
                     height="771"
                     alt="MiNorte architecture: FastAPI financial engine, AI agents and MCP tools connect through validated UI schemas to a Next.js workspace and Supabase Postgres"
@@ -797,9 +866,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[16/10] w-full border border-line object-cover"
-                  src="/projects/minorte/dashboard2.webp"
+                  src={minorteDashboard}
                   width="1440"
                   height="900"
                   alt="MiNorte weekly financial workspace with prioritized actions, discoveries, and financial visualizations"
@@ -839,9 +908,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-video w-full border border-line object-cover"
-                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (7).jpeg"
+                  src={shapeStage}
                   width="1200"
                   height="675"
                   alt="Closing conference slide: High-performance processor design for artificial intelligence, presented at UC San Diego"
@@ -858,9 +927,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (1).jpeg"
+                  src={shapeZynq}
                   width="1200"
                   height="900"
                   alt="Xilinx ZYNQ development board used during high-performance AI processor research"
@@ -882,9 +951,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (3).jpeg"
+                  src={shapeTeam}
                   width="1200"
                   height="900"
                   alt="Research team of four posing together in the UCSD lab"
@@ -905,9 +974,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="h-auto w-full border border-line"
-                  src="/projects/ShapeDetection/WhatsApp Image 2026-10-07 at 9.41.04 AM (4).jpeg"
+                  src={shapeCert}
                   width="1200"
                   height="900"
                   alt="With Olivia Graeve, holding the UC San Diego ENLACE 2023 certificate of participation"
@@ -936,9 +1005,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.05 AM (1).jpeg"
+                  src={innoField}
                   width="1200"
                   height="900"
                   alt="FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker"
@@ -977,9 +1046,9 @@ const discs = [
               </figure>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM.jpeg"
+                  src={innoCelebration}
                   width="1200"
                   height="900"
                   alt="Innobotics team celebrating on the field with the team flag while a teammate reviews code on a laptop"
@@ -995,9 +1064,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="h-auto w-full border border-line"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (7).jpeg"
+                  src={innoDrive}
                   width="900"
                   height="1200"
                   alt="Drive team member in a 6694 jersey at the alliance station glass with match telemetry on a laptop"
@@ -1014,9 +1083,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="h-auto w-full border border-line"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (6).jpeg"
+                  src={innoSpirit}
                   width="900"
                   height="1200"
                   alt="2024 Team Spirit Award plaque and trophy from Regional Hermosillo held in front of 6694 jerseys"
@@ -1027,9 +1096,9 @@ const discs = [
               </figure>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (2).jpeg"
+                  src={innoPit}
                   width="1200"
                   height="900"
                   alt="Innobotics pit crew posing with the 6694 robot in the team pit"
@@ -1040,9 +1109,9 @@ const discs = [
               </figure>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/Innobotics/WhatsApp Image 2026-10-07 at 10.49.06 AM (4).jpeg"
+                  src={innoTeam}
                   width="1200"
                   height="900"
                   alt="Full Innobotics team holding a 6694 banner outside the Regional Hermosillo CRESCENDO venue"
@@ -1071,9 +1140,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (1).jpeg"
+                  src={vantPits}
                   width="1280"
                   height="960"
                   alt="Group selfie of students in black team shirts and event lanyards gathered around a small white twin-hull robot boat on a stand, one student holding an RC transmitter, with wiring and electronics visible inside the open hull and a work tent behind them"
@@ -1094,9 +1163,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (2).jpeg"
+                  src={vantLake}
                   width="720"
                   height="1280"
                   alt="Wide view of a lake course with alternating red post buoys and green post buoys floating in lines on dark blue water, a small white robot boat at the left edge, and a red bridge spanning the far shore under a clear sky"
@@ -1117,9 +1186,9 @@ const discs = [
               </section>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (4).jpeg"
+                  src={vantCart}
                   width="1280"
                   height="960"
                   alt="Five students standing around the white USV mounted on a wheeled cart on grass, with VANTTEC and Tecnológico de Monterrey branding on the hull and a RoboBoat feather flag beside them"
@@ -1129,9 +1198,9 @@ const discs = [
               </figure>
 
               <figure class="space-y-2">
-                <img
+                <Image
                   class="aspect-[4/3] w-full border border-line object-cover"
-                  src="/projects/vanttec_usv/WhatsApp Image 2026-10-07 at 11.31.36 AM (5).jpeg"
+                  src={vantPool}
                   width="720"
                   height="1280"
                   alt="The white twin-hull robot boat floating in a lane of a large indoor swimming pool with Tec Borregos banners on the far wall"
@@ -1206,23 +1275,23 @@ const discs = [
       aria-label="Switch to light mode"
       title="Toggle light / dark mode"
     >
-      <img
+      <Image
         class="lamp lamp-off"
-        src="/redstone_lamp_off.png"
+        src={lampOff}
         width="174"
         height="152"
         alt=""
         aria-hidden="true"
         loading="eager"
       />
-      <img
+      <Image
         class="lamp lamp-on"
-        src="/redstone_lamp_on.png"
+        src={lampOn}
         width="152"
         height="152"
         alt=""
         aria-hidden="true"
-        loading="eager"
+        loading="lazy"
       />
     </button>
 
@@ -1394,6 +1463,21 @@ const discs = [
       let spotifyReady = false;
       let pendingTrack = null;
       let currentTrackId = null;
+
+      // The Spotify IFrame API injects its player iframe without a title.
+      // Tag it for assistive tech as soon as it appears.
+      function titleSpotifyIframes() {
+        playerHost?.querySelectorAll('iframe:not([title])').forEach((frame) => {
+          frame.setAttribute('title', 'Spotify music player');
+        });
+      }
+      if (playerHost && 'MutationObserver' in window) {
+        new MutationObserver(titleSpotifyIframes).observe(playerHost, {
+          childList: true,
+          subtree: true,
+        });
+      }
+      titleSpotifyIframes();
 
       function showPill(title) {
         if (pillTitle) pillTitle.textContent = `♪ ${title}`;
