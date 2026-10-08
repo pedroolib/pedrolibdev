@@ -178,6 +178,19 @@ const discs = [
       name="description"
       content="Robotics engineer in Monterrey. ROS 2 perception with YOLO, LiDAR and Jetson for RoboBoat 2026, plus edge AI and full-stack AI products that ship."
     />
+    <link rel="canonical" href="https://pedrolib.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pedrolib.dev/" />
+    <meta property="og:title" content="Pedro Uribe Reyes — ROS 2 Perception Engineer, Monterrey" />
+    <meta property="og:description" content="Robotics engineer in Monterrey. ROS 2 perception with YOLO, LiDAR and Jetson for RoboBoat 2026, plus edge AI and full-stack AI products that ship." />
+    <meta property="og:image" content="https://pedrolib.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pedro Librado Uribe Reyes — Robotics, AI and Software Engineer — pedrolib.dev" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pedro Uribe Reyes — ROS 2 Perception Engineer, Monterrey" />
+    <meta name="twitter:description" content="Robotics engineer in Monterrey. ROS 2 perception with YOLO, LiDAR and Jetson for RoboBoat 2026, plus edge AI and full-stack AI products that ship." />
+    <meta name="twitter:image" content="https://pedrolib.dev/og-image.png" />
   </head>
   <body class="bg-ink text-fg">
     <a
@@ -200,7 +213,7 @@ const discs = [
     <!-- Header -->
     <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-12 md:px-6">
       <div class="relative self-start md:col-span-4" id="contact-wrap">
-        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes <span class="text-dim">— Robotics, AI & Software Engineer</span></h1>
+        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
         <button
           id="contact-toggle"
           class="mt-1 flex items-center gap-2 text-micro text-dim hover:text-fg"
@@ -220,6 +233,7 @@ const discs = [
       </div>
 
       <div class="md:col-span-3">
+        <p class="text-[16px] text-fg">Robotics, AI & Software Engineer</p>
         <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
       </div>
 
@@ -287,11 +301,6 @@ const discs = [
         </button>
       ))}
       <p class="sr-only">[TODO: replace circular tagline with your own line.]</p>
-    </section>
-
-    <!-- Recruiter summary -->
-    <section id="profile" aria-label="Profile summary" class="px-4 pb-2 md:px-6">
-      <p class="mx-auto max-w-3xl text-center text-micro text-muted">Pedro Librado Uribe Reyes is a robotics engineer in Monterrey. As Perception Lead on VantTec's autonomous boat, he rebuilt its ROS 2 vision stack with YOLO and LiDAR and competed at RoboBoat 2026. He also ships edge AI and full-stack products, researches at UCSD, and led FRC 6694 software.</p>
     </section>
 
     <!-- Main 3 columns -->
@@ -476,10 +485,10 @@ const discs = [
                     <span class="text-micro text-muted">[TODO work image {String(i + 1).padStart(2, '0')}]<br /><span class="text-dim">replace with real project still</span></span>
                   </div>
                 )}
-                <div class="mt-2 text-micro text-muted">
-                  <h3 id={`${item.id}-title`} class="work-title inline text-fg">{item.title}</h3>
+                <p class="mt-2 text-micro text-muted">
+                  <span id={`${item.id}-title`} class="work-title text-fg">{item.title}</span>
                   <span class="float-right text-dim">{item.year}</span>
-                </div>
+                </p>
               </button>
               <p class="mt-1 hidden text-micro text-dim md:block">{item.what}</p>
             </article>
@@ -562,7 +571,7 @@ const discs = [
                       <span class="text-micro text-muted">[TODO playground visual]</span>
                     </div>
                   )}
-                  <h3 class="work-title mt-2 text-micro font-normal text-fg">{item.title}</h3>
+                  <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
                   <p class="mt-1 text-micro text-dim">{item.desc}</p>
                 </Card>
               </article>
@@ -577,7 +586,7 @@ const discs = [
     {work.map((item) => (
       <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="m-0 ml-auto flex h-[100dvh] max-h-[100dvh] w-[min(46rem,94vw)] max-w-none flex-col overflow-hidden border-0 border-l-2 border-line bg-ink p-0 text-fg">
         <div class="flex flex-none items-center justify-between gap-3 border-b border-line px-4 py-2">
-          <h2 id={`${item.id}-modal-title`} class="text-micro font-normal">{item.title} — {item.year}</h2>
+          <p id={`${item.id}-modal-title`} class="text-micro">{item.title} — {item.year}</p>
           <button class="close-modal flex-none rounded-full border border-line px-3 py-1 text-micro text-muted hover:text-fg" data-close={item.id} type="button">Close</button>
         </div>
         <div class="min-h-0 flex-1 space-y-6 overflow-y-auto px-4 py-4 text-micro">
