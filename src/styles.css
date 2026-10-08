@@ -36,14 +36,18 @@
 [data-theme="light"] {
   color-scheme: light;
   --bg-tile: url("/iron_block.png");
-  --overlay: rgba(255, 255, 255, 0.62);
+  --overlay: rgba(255, 255, 255, 0.84);
   --thumb-tile: url("/netherite_block.png");
   --fg: #0e0e0e;
-  --muted: #2b2b2b;
+  --muted: #1e1e1e;
   --dim: #3a3a3a;
   --paper: #d8d5cd;
   --ink: #eceae3;
   --line: #a09a8d;
+}
+
+[data-theme="light"] body {
+  background-size: 96px 96px;
 }
 
 /* Light theme: same utilities, inverted tones */

@@ -22,7 +22,6 @@ import minorteLogo from '../assets/projects/minorte/minorte-logo.png';
 import minorteDashboard from '../assets/projects/minorte/dashboard2.webp';
 import minorteArch from '../assets/projects/minorte/architecture.webp';
 import uribotQuote from '../assets/projects/uribot/conversation-quote.png';
-import uribotBooking from '../assets/projects/uribot/conversation-booking.png';
 import uribotBanner from '../assets/projects/uribot/uribot-banner.png';
 import innoField from '../assets/projects/innobotics/field-speaker-6694.jpeg';
 import innoCelebration from '../assets/projects/innobotics/celebration-flag.jpeg';
@@ -213,8 +212,8 @@ const discs = [
     </nav>
 
     <!-- Header -->
-    <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-12 md:px-6">
-      <div class="relative self-start md:col-span-4" id="contact-wrap">
+    <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-3 md:px-6">
+      <div class="relative self-start" id="contact-wrap">
         <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
         <button
           id="contact-toggle"
@@ -234,16 +233,16 @@ const discs = [
         </div>
       </div>
 
-      <div class="md:col-span-3">
+      <div>
         <p class="text-[16px] text-fg">Robotics, AI & Software Engineer</p>
         <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
       </div>
 
-      <div class="md:col-span-5">
+      <div>
         <h2 class="sr-only">Experience index</h2>
-        <dl class="space-y-1 text-micro">
+        <dl class="grid grid-cols-[2.75rem_1fr] gap-x-3 gap-y-1 text-micro md:grid-cols-[3.5rem_auto_minmax(0,1fr)]">
           {experience.map((item) => (
-            <div class="tabular grid grid-cols-[2.75rem_1fr] gap-x-3 break-words md:grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1fr)]">
+            <div class="tabular contents">
               <dt class="sr-only">{item.name} year</dt>
               <dd class="text-dim">{item.year}</dd>
               <dd>
@@ -258,7 +257,7 @@ const discs = [
                   <span class="text-left text-fg">{item.name}</span>
                 )}
               </dd>
-              <dd class="col-start-2 text-dim md:col-start-3">{item.tags}</dd>
+              <dd class="col-start-2 break-words text-dim md:col-start-3 md:text-right">{item.tags}</dd>
             </div>
           ))}
         </dl>
@@ -528,13 +527,12 @@ const discs = [
                         <video
                           class="slide-img"
                           src={item.video}
-                          poster={item.poster || item.img}
                           width={item.videoW}
                           height={item.videoH}
-                          autoplay
                           muted
                           loop
                           playsinline
+                          preload="metadata"
                           aria-label={item.videoAlt}
                         ></video>
                         {item.img && (
@@ -607,20 +605,7 @@ const discs = [
 
               <figure class="space-y-2">
                 <Image
-                  class="h-auto w-full border border-line bg-white"
-                  src={uribotBanner}
-                  width="995"
-                  height="345"
-                  alt="Uribot logo: a teal robot-cat mascot beside the word uribot"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <figcaption class="text-dim">Every tenant gets this face, with their own rules behind it.</figcaption>
-              </figure>
-
-              <figure class="space-y-2">
-                <Image
-                  class="h-auto w-full"
+                  class="h-auto w-full rounded-2xl bg-white"
                   src={uribotQuote}
                   width="1080"
                   height="1080"
@@ -667,19 +652,6 @@ const discs = [
                 <h3 class="font-bold text-fg">The booking is the metric that matters</h3>
                 <p class="text-muted">A quote request for a 2013 Escape turns into a scheduled morning appointment: branch options, shop hours, all pulled from business data, without a human typing a word. Every conversation, quote, appointment and handoff is persisted, so the shop can see exactly what the automation did.</p>
               </section>
-
-              <figure class="space-y-2">
-                <Image
-                  class="h-auto w-full"
-                  src={uribotBooking}
-                  width="1080"
-                  height="1350"
-                  alt="Uribot confirming a booking step by step: vehicle and service identified, branch and morning hour requested from the customer"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <figcaption class="text-dim">Quote to booking in four messages. Personal details removed.</figcaption>
-              </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Built for real businesses</h3>
@@ -743,7 +715,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The bench where the prototype earned its six-second detection number.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -795,7 +766,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Two rooftops, two health states, one glance.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -892,7 +862,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Monday morning for a shop owner: actions first, charts second.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -977,7 +946,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">One summer of shared debugging, shared findings and one crowded whiteboard.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1031,7 +999,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Two minutes per match. Months of tuning behind them.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1059,7 +1026,6 @@ const discs = [
                   preload="metadata"
                   aria-label="Workshop test run: the 6694 robot driving and shooting notes at the practice speaker"
                 ></video>
-                <figcaption class="text-dim">Fifteen seconds with nobody touching the sticks.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -1072,7 +1038,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The laptop stayed open through the celebration. There is always one more deploy.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1090,7 +1055,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">You cannot pause a match to debug. You watch, and you trust the testing.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1109,7 +1073,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Voted for energy, not points. This one meant the most.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -1135,7 +1098,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Three seasons across Mexicali, Monterrey and Hermosillo. Workshop skills, patience, and what a team can do pulling together.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1224,7 +1186,6 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Calm water first. The lake does not forgive untested code.</figcaption>
               </figure>
 
               <section class="space-y-2">
@@ -1643,6 +1604,43 @@ const discs = [
           v.removeAttribute('autoplay');
           v.pause();
         });
+      }
+
+      // Demo videos play only while their card is hovered/focused, and pause
+      // on leave. Reduced-motion users stay paused. Touch / no-hover devices
+      // can't hover, so those videos play while on screen instead.
+      if (!REDUCED_MOTION) {
+        const cardVideos = Array.from(document.querySelectorAll('.work-card video'));
+        if (window.matchMedia('(hover: hover)').matches) {
+          cardVideos.forEach((v) => {
+            const card = v.closest('.work-card');
+            if (!(card instanceof HTMLElement)) return;
+            card.addEventListener('mouseenter', () => {
+              if (!v.hasAttribute('hidden')) v.play().catch(() => {});
+            });
+            card.addEventListener('mouseleave', () => {
+              v.pause();
+            });
+            card.addEventListener('focusin', () => {
+              if (!v.hasAttribute('hidden')) v.play().catch(() => {});
+            });
+            card.addEventListener('focusout', () => {
+              v.pause();
+            });
+          });
+        } else if ('IntersectionObserver' in window) {
+          const vidObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!(entry.target instanceof HTMLVideoElement)) return;
+                if (entry.isIntersecting) entry.target.play().catch(() => {});
+                else entry.target.pause();
+              });
+            },
+            { threshold: 0.25 }
+          );
+          cardVideos.forEach((v) => vidObserver.observe(v));
+        }
       }
 
       // Scroll reveal: images and paragraphs fade up when seen, fade back
