@@ -503,6 +503,11 @@ h2 {
   padding: 0;
 }
 
+.about-next-btn,
+.repo-float {
+  z-index: 2;
+}
+
 .about-next-float,
 .repo-float {
   position: absolute;
@@ -519,6 +524,7 @@ h2 {
   line-height: 1.5;
   white-space: nowrap;
   pointer-events: none;
+  z-index: 3;
 }
 
 @media (hover: hover) {

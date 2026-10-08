@@ -1283,6 +1283,8 @@ const discs = [
 
     <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script>
+      import { syncDemoVideoPlayback } from '../scripts/demo-video-playback.js';
+
       const toggle = document.getElementById('contact-toggle');
       const panel = document.getElementById('contact-panel');
       const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1362,10 +1364,10 @@ const discs = [
             if (k === i) img.removeAttribute('hidden');
             else img.setAttribute('hidden', '');
           });
-          zone?.querySelectorAll('video').forEach((v) => {
-            if (v.hasAttribute('hidden')) v.pause();
-            else v.play().catch(() => {});
-          });
+          const card = zone?.closest('.work-card');
+          if (card instanceof HTMLElement) {
+            zone?.querySelectorAll('video').forEach((v) => syncDemoVideoPlayback(v, card));
+          }
           if (cap) {
             const text = slides[i]?.getAttribute('data-cap') || '[TODO caption]';
             cap.textContent = `${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')} — ${text}`;
@@ -1615,18 +1617,11 @@ const discs = [
           cardVideos.forEach((v) => {
             const card = v.closest('.work-card');
             if (!(card instanceof HTMLElement)) return;
-            card.addEventListener('mouseenter', () => {
-              if (!v.hasAttribute('hidden')) v.play().catch(() => {});
-            });
-            card.addEventListener('mouseleave', () => {
-              v.pause();
-            });
-            card.addEventListener('focusin', () => {
-              if (!v.hasAttribute('hidden')) v.play().catch(() => {});
-            });
-            card.addEventListener('focusout', () => {
-              v.pause();
-            });
+            const syncPlayback = () => syncDemoVideoPlayback(v, card);
+            card.addEventListener('mouseenter', syncPlayback);
+            card.addEventListener('mouseleave', syncPlayback);
+            card.addEventListener('focusin', syncPlayback);
+            card.addEventListener('focusout', syncPlayback);
           });
         } else if ('IntersectionObserver' in window) {
           const vidObserver = new IntersectionObserver(
