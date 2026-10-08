@@ -590,7 +590,7 @@ const discs = [
 
     <!-- Case-study side panel -->
     {work.map((item) => (
-      <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="m-0 ml-auto flex h-[100dvh] max-h-[100dvh] w-[min(46rem,94vw)] max-w-none flex-col overflow-hidden border-0 border-l-2 border-line bg-ink p-0 text-fg">
+      <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="m-0 ml-auto flex h-[100dvh] max-h-[100dvh] w-[94vw] max-w-none flex-col overflow-hidden border-0 border-l-2 border-line bg-ink p-0 text-fg md:w-[calc(66.667vw-16px)]">
         <div class="flex flex-none items-center justify-between gap-3 border-b border-line px-4 py-2">
           <p id={`${item.id}-modal-title`} class="text-micro">{item.title} — {item.year}</p>
           <button class="close-modal flex-none rounded-full border border-line px-3 py-1 text-micro text-muted hover:text-fg" data-close={item.id} type="button">Close</button>
