@@ -200,6 +200,8 @@ const discs = [
       Skip to content
     </a>
 
+    <div id="scroll-progress" aria-hidden="true"><div id="scroll-progress-fill"></div></div>
+
     <!-- Mobile mini nav -->
     <nav aria-label="Sections" class="site-nav sticky top-0 z-40 flex items-center justify-between border-b border-line px-4 py-2 backdrop-blur md:hidden">
       <span class="text-micro text-fg">Pedro Librado Uribe Reyes</span>
@@ -307,8 +309,9 @@ const discs = [
     <main id="main" class="grid grid-cols-1 gap-10 px-4 pb-10 md:grid-cols-3 md:gap-6 md:px-6">
       <!-- About -->
       <div class="col-stack" data-col="about">
+        <h2 id="about-heading" class="col-heading text-[16px] font-normal text-dim">About</h2>
+        <div class="col-body">
       <section id="about" aria-labelledby="about-heading" class="about-sec scroll-mt-16 min-w-0">
-        <h2 id="about-heading" class="mb-3 text-[16px] font-normal text-dim">About</h2>
 
         <div class="about-blur">
         <div class="about-group">
@@ -406,12 +409,14 @@ const discs = [
         </div>
         </div>
       </section>
+        </div>
       </div>
 
       <!-- Projects -->
       <div class="col-stack" data-col="work">
+        <h2 id="projects-heading" class="col-heading text-[16px] font-normal text-dim">Projects</h2>
+        <div class="col-body">
       <section id="projects" aria-labelledby="projects-heading" class="projects-sec scroll-mt-16 min-w-0">
-        <h2 id="projects-heading" class="mb-3 text-[16px] font-normal text-dim">Projects</h2>
         <div class="space-y-8">
           {work.map((item, i) => (
             <article class="work-card group" aria-labelledby={`${item.id}-title`}>
@@ -495,12 +500,14 @@ const discs = [
           ))}
         </div>
       </section>
+        </div>
       </div>
 
       <!-- Playground -->
       <div class="col-stack" data-col="playground">
+        <h2 id="playground-heading" class="col-heading text-[16px] font-normal text-dim">Playground</h2>
+        <div class="col-body">
       <section id="playground" aria-labelledby="playground-heading" class="playground-sec scroll-mt-16 min-w-0">
-        <h2 id="playground-heading" class="mb-3 text-[16px] font-normal text-dim">Playground</h2>
         <div class="space-y-8">
           {playground.map((item) => {
             const Card = item.repo ? 'a' : 'div';
@@ -579,6 +586,7 @@ const discs = [
           })}
         </div>
       </section>
+        </div>
       </div>
     </main>
 
@@ -1377,7 +1385,7 @@ const discs = [
         if (canHover()) scheduleContactClose();
       });
 
-      // Delegated so all column buttons keep working.
+      // Delegated click handling for photo slides and modals.
       // Each photo card cycles its own slides; captions live on the images.
       document.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
@@ -1595,7 +1603,7 @@ const discs = [
       });
       setTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 
-      // About photo: Next pill follows the cursor.
+      // About photo: Next pill follows the cursor (delegated, clone-safe).
       // Scroll re-anchors it since the photo moves under a still cursor.
       let hoverPhoto = null;
       let lastCursor = null;
@@ -1637,51 +1645,85 @@ const discs = [
         });
       }
 
-      // Matched parallax: each column's content scrolls at its own velocity,
-      // proportional to its length, so all columns run out of content at the
-      // same point. Desktop only, no cloning. The transform goes on the inner
-      // section (never past its own column box), so the page never grows or
-      // leaves a gap; columns shorter than the viewport stay put.
-      const parallaxMedia = window.matchMedia('(min-width: 768px)');
-      const parallaxSections = Array.from(document.querySelectorAll('.col-stack')).map(
-        (col) => col.querySelector(':scope > section')
-      ).filter((el) => el instanceof HTMLElement);
-      let parallaxFrame = 0;
-      function updateParallax() {
-        parallaxFrame = 0;
-        if (!parallaxMedia.matches || REDUCED_MOTION) {
-          parallaxSections.forEach((section) => {
-            section.style.transform = '';
-          });
-          return;
-        }
-        const viewport = window.innerHeight;
-        const maxScroll = document.documentElement.scrollHeight - viewport;
-        if (maxScroll <= 0) return;
-        const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-        // Lag model: the longest section moves naturally and finishes exactly
-        // at the page end; shorter sections drift down behind it by the
-        // difference, so every section ends at the same point.
-        const travels = parallaxSections.map((section) =>
-          Math.max(0, section.offsetHeight - viewport)
+      // Scroll reveal: images and paragraphs fade up when seen, fade back
+      // after scrolling ~one card past them, so seeing them again replays
+      // the same slow animation. Skipped for reduced-motion users.
+      // Two observers give real hysteresis: entry fires on the normal
+      // viewport line, exit fires only ~one card beyond the viewport.
+      // (A single observer can't do this — it only fires at the crossing
+      // moment when distance is ~0, so a distance check there never passes.)
+      const revealSupported = !REDUCED_MOTION && 'IntersectionObserver' in window;
+      const revealEnterObserver = revealSupported
+        ? new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) entry.target.classList.add('in');
+              });
+            },
+            // threshold 0 so small titles and tall About paragraphs trigger
+            // on the same viewport line (8% above the bottom), not on a
+            // percentage of their own height which made titles fire earlier.
+            { rootMargin: '0px 0px -8% 0px', threshold: 0 }
+          )
+        : null;
+      const revealExitObserver = revealSupported
+        ? new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) entry.target.classList.remove('in');
+              });
+            },
+            // Expanded root: stays intersecting until ~350px (~one card)
+            // past the viewport edge, then hides so a return visit replays.
+            { rootMargin: '350px 0px 350px 0px', threshold: 0 }
+          )
+        : null;
+      function watchReveals(root) {
+        if (!revealEnterObserver || !revealExitObserver) return;
+        const els = Array.from(
+          (root || document).querySelectorAll(
+            '.work-card .work-thumb, .work-card .about-photo, .work-card p, .about-photo, .about-texts p, .about-texts h3'
+          )
+        ).filter(
+          (el) =>
+            !el.classList.contains('in') &&
+            !el.classList.contains('reveal') &&
+            el.getClientRects().length > 0
         );
-        const maxTravel = Math.max(0, ...travels);
-        parallaxSections.forEach((section, k) => {
-          section.style.transform = `translate3d(0, ${progress * (maxTravel - travels[k])}px, 0)`;
+        // First paint the hidden state, then start observing. Without the
+        // reflow, elements already in the viewport get .reveal + .in in the
+        // same frame and skip the slow transition (fast flash).
+        els.forEach((el) => el.classList.add('reveal'));
+        if (els.length) void document.body.offsetHeight;
+        els.forEach((el) => {
+          revealEnterObserver.observe(el);
+          revealExitObserver.observe(el);
         });
       }
-      function scheduleParallax() {
-        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
+      watchReveals(document);
+
+      // Scroll progress bar: fixed bar at the very top fills left-to-right
+      // as the page scrolls. No dependencies, works with reduced motion.
+      const progressFill = document.getElementById('scroll-progress-fill');
+      let progressTicking = false;
+      function updateProgress() {
+        progressTicking = false;
+        if (!progressFill) return;
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+        progressFill.style.transform = `scaleX(${progress})`;
       }
-      window.addEventListener('scroll', scheduleParallax, { passive: true });
-      window.addEventListener('resize', scheduleParallax);
-      window.addEventListener('load', scheduleParallax);
-      if (parallaxMedia.addEventListener) {
-        parallaxMedia.addEventListener('change', scheduleParallax);
+      function scheduleProgress() {
+        if (!progressTicking) {
+          progressTicking = true;
+          window.requestAnimationFrame(updateProgress);
+        }
       }
-      // Monocraft swaps in after first paint and changes text heights.
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleParallax);
-      updateParallax();
+      window.addEventListener('scroll', scheduleProgress, { passive: true });
+      window.addEventListener('resize', scheduleProgress);
+      window.addEventListener('load', updateProgress);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateProgress);
+      updateProgress();
 
     </script>
   </body>

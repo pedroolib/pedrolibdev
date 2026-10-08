@@ -100,6 +100,26 @@
   background: rgba(236, 234, 227, 0.95);
 }
 
+/* Scroll progress: fixed bar at the very top, fills as the page scrolls */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+
+#scroll-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--fg);
+}
+
 /* Theme lamp (redstone lamp): off in dark mode, glowing on in light mode */
 .lamp-btn {
   position: fixed;
@@ -255,37 +275,54 @@ button {
 
 .work-card img:not(.slide-img),
 .work-thumb {
-  filter: blur(var(--column-blur, 2px)) brightness(var(--column-brightness, 0.7));
-  transition: filter 200ms ease;
+  filter: blur(var(--column-blur, 2px)) brightness(var(--column-brightness, 0.45));
+  transition: filter 1200ms ease;
+}
+
+/* Scroll reveal: cards, photos and individual paragraphs fade up on entry.
+   Guarded by motion preference so content is never hidden for
+   reduced-motion users (JS also skips adding .reveal for them). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 1200ms ease,
+      transform 1200ms ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Every visual in a column shares the same dim/active state. */
 .about-photo {
-  filter: brightness(var(--column-brightness, 0.7));
-  transition: filter 200ms ease;
+  filter: brightness(var(--column-brightness, 0.45));
+  transition: filter 1200ms ease;
 }
 
 .about-texts {
-  filter: brightness(var(--column-brightness, 0.7));
-  transition: filter 200ms ease;
+  filter: brightness(var(--column-brightness, 0.45));
+  transition: filter 1200ms ease;
 }
 
 /* Work/Playground titles stay subdued until their column is active. */
 .work-card .work-title {
   color: #6b6b6b;
-  transition: color 200ms ease;
+  transition: color 1200ms ease;
 }
 
 /* All card letters transition together with their column. */
 .work-card .text-dim,
 .work-card .text-muted {
-  transition: color 200ms ease;
+  transition: color 1200ms ease;
 }
 
 /* About photos stay blurred until their column is active. */
 .about-photo .about-photo-img {
   filter: blur(var(--column-blur, 2px));
-  transition: filter 200ms ease;
+  transition: filter 1200ms ease;
 }
 
 /* Hovering or focusing one item brightens every visual in that column. */
@@ -325,7 +362,7 @@ button {
 
 /* Cards, images, labels, and section titles light up as one column. */
 .col-stack h2 {
-  transition: color 200ms ease;
+  transition: color 1200ms ease;
 }
 
 .col-stack:has(.work-card:hover, .about-photo:hover, .about-texts:hover) .work-title,
@@ -339,28 +376,44 @@ button {
   color: var(--fg);
 }
 
-/* Infinite column stacks: sections pile up with uniform rhythm */
+/* Combined: keep the slow fade-up AND the column dim/light transitions.
+   Without this, .text-muted/.work-title (color) and .work-thumb/.about-photo
+   (filter) override .reveal's opacity/transform, so cards pop in instead of
+   fading like the About paragraphs. */
+@media (prefers-reduced-motion: no-preference) {
+  .work-card .work-thumb.reveal,
+  .work-card .about-photo.reveal,
+  .work-card p.reveal,
+  .about-photo.reveal,
+  .about-texts p.reveal,
+  .about-texts h3.reveal {
+    transition:
+      opacity 1200ms ease,
+      transform 1200ms ease,
+      filter 1200ms ease,
+      color 1200ms ease;
+  }
+}
+
+/* Column stacks: heading sits tight above the first image like the reference */
 .col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  --column-blur: 2px;
+  --column-brightness: 0.45;
+}
+
+.col-stack > .col-heading {
+  margin-bottom: 0.5rem;
+}
+
+.col-stack > .col-body {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
   min-width: 0;
-  --column-blur: 2px;
-  --column-brightness: 0.7;
-}
-
-/* Pinned Projects column: stays in place on desktop while the rest of the
-   page scrolls around it, with its own scroll panel. Scrollbars stay hidden
-   site-wide, like everywhere else. */
-@media (min-width: 768px) {
-  .col-stack[data-col="work"] {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    align-self: start;
-    overscroll-behavior: contain;
-  }
 }
 
 dialog {
