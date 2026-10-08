@@ -1660,10 +1660,13 @@ const discs = [
                 if (entry.isIntersecting) entry.target.classList.add('in');
               });
             },
-            // threshold 0 so small titles and tall About paragraphs trigger
-            // on the same viewport line (8% above the bottom), not on a
-            // percentage of their own height which made titles fire earlier.
-            { rootMargin: '0px 0px -8% 0px', threshold: 0 }
+              // threshold 0 so small titles and tall About paragraphs trigger
+              // on the same viewport line, not on a percentage of their own
+              // height which made titles fire earlier. Bottom margin is 0 so
+              // end-of-page content can still trigger: with a negative bottom
+              // margin the last descriptions sit in the excluded zone at max
+              // scroll and stay stuck invisible.
+              { rootMargin: '0px 0px 0px 0px', threshold: 0 }
           )
         : null;
       const revealExitObserver = revealSupported
@@ -1724,6 +1727,70 @@ const discs = [
       window.addEventListener('load', updateProgress);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateProgress);
       updateProgress();
+
+      // Uniform synchronized columns: each column body drifts at its own
+      // velocity, proportional to its length, so all columns run out of
+      // content at the same point and the page stops right at the content.
+      // The longest column (Projects) moves naturally — i.e. fastest — while
+      // shorter columns lag behind by exactly their length difference, so
+      // tops start aligned and bottoms end aligned. Kicks in only after the
+      // section titles scroll out of view; before that offset stays 0.
+      // Desktop + motion only; transforms live on .col-body so headings stay
+      // put and reveal transforms on children are untouched.
+      const parallaxMedia = window.matchMedia('(min-width: 768px)');
+      const parallaxBodies = Array.from(
+        document.querySelectorAll('.col-stack > .col-body')
+      ).filter((el) => el instanceof HTMLElement);
+      const parallaxHeading = document.querySelector(
+        '.col-stack[data-col="work"] > .col-heading'
+      );
+      let parallaxFrame = 0;
+      function headingsExitScrollY() {
+        if (!(parallaxHeading instanceof HTMLElement)) return 0;
+        const rect = parallaxHeading.getBoundingClientRect();
+        return rect.top + window.scrollY + rect.height;
+      }
+      function updateParallax() {
+        parallaxFrame = 0;
+        const disable = !parallaxMedia.matches || REDUCED_MOTION;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const exitY = headingsExitScrollY();
+        if (disable || maxScroll <= 0 || maxScroll <= exitY) {
+          parallaxBodies.forEach((body) => {
+            body.style.transform = '';
+          });
+          return;
+        }
+        if (window.scrollY <= exitY) {
+          parallaxBodies.forEach((body) => {
+            body.style.transform = '';
+          });
+          return;
+        }
+        // Re-measure live: fonts and late images shift body heights.
+        const travels = parallaxBodies.map((body) =>
+          Math.max(0, body.offsetHeight - window.innerHeight)
+        );
+        const maxTravel = Math.max(0, ...travels);
+        const progress = Math.min(1, Math.max(0, (window.scrollY - exitY) / (maxScroll - exitY)));
+        parallaxBodies.forEach((body, k) => {
+          const offset = progress * (maxTravel - travels[k]);
+          body.style.transform = offset
+            ? `translate3d(0, ${offset.toFixed(1)}px, 0)`
+            : '';
+        });
+      }
+      function scheduleParallax() {
+        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
+      }
+      window.addEventListener('scroll', scheduleParallax, { passive: true });
+      window.addEventListener('resize', scheduleParallax);
+      window.addEventListener('load', updateParallax);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateParallax);
+      if (parallaxMedia.addEventListener) {
+        parallaxMedia.addEventListener('change', updateParallax);
+      }
+      updateParallax();
 
     </script>
   </body>
