@@ -41,12 +41,12 @@ import vantElectronics from '../assets/projects/vanttec/electronics-bay.jpeg';
 
 
 const experience = [
-  { year: '25-Now', name: 'Vanttec', tags: 'USV Perception Lead', id: 'project-1' },
+  { year: '25—Now', name: 'Vanttec', tags: 'USV Perception Lead', id: 'project-1' },
   { year: '26', name: 'SMALC', tags: 'Robotics Education Volunteer', id: null },
   { year: '25', name: 'Botbusters', tags: 'FTC Robotics Mentor', id: null },
   { year: '23', name: 'UC San Diego', tags: 'Research Assistant', id: 'project-5' },
   { year: '22—24', name: 'Innobotics', tags: 'Software Lead & Captain', id: 'project-6' },
-  { year: '16-22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: null }
+  { year: '16—22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: null }
 ];
 
 const work = [
@@ -1024,11 +1024,11 @@ const discs = [
                   class="h-auto w-full border border-line"
                   src="/projects/Innobotics/WhatsApp Video 2026-10-07 at 10.49.06 AM.mp4"
                   controls
-                  autoplay
+                  data-panel-autoplay
                   muted
                   loop
                   playsinline
-                  preload="metadata"
+                  preload="none"
                   aria-label="Workshop test run: the 6694 robot driving and shooting notes at the practice speaker"
                 ></video>
               </figure>
@@ -1395,11 +1395,18 @@ const discs = [
         dlg.classList.remove('closing');
         delete dlg.dataset.closing;
         dlg.showModal();
+        // Panel videos download and play only once their panel is open.
+        if (!REDUCED_MOTION) {
+          dlg.querySelectorAll('video[data-panel-autoplay]').forEach((v) => {
+            v.play().catch(() => {});
+          });
+        }
       }
       function closeDialog(dlg) {
         if (!(dlg instanceof HTMLDialogElement) || !dlg.open || dlg.dataset.closing) return;
         dlg.dataset.closing = '1';
         dlg.classList.add('closing');
+        dlg.querySelectorAll('video').forEach((v) => v.pause());
         window.setTimeout(() => {
           dlg.classList.remove('closing');
           delete dlg.dataset.closing;

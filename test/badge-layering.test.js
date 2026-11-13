@@ -7,7 +7,7 @@ const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'ut
 test('playground badges have an explicit layer above the video frame', () => {
   assert.match(
     styles,
-    /\.about-next-btn,\s*\.repo-float\s*\{[^}]*z-index:\s*2;/s
+    /\.about-next-btn,\s*\.repo-float\s*\{[^}]*z-index:\s*20;/s
   );
-  assert.match(styles, /\.about-next-float,\s*\.repo-float\s*\{[^}]*z-index:\s*3;/s);
+  assert.match(styles, /\.about-next-float,\s*\.repo-float\s*\{[^}]*z-index:\s*50;/s);
 });
