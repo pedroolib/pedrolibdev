@@ -109,7 +109,7 @@ const work = [
 const playground = [
   {
     title: 'FPGA Controller — FPGA, UART, Digital Systems',
-    desc: 'A custom hardware controller built on an FPGA to control the simulator through real-time UART communication.',
+    desc: 'A handheld controller with seven-segment displays that runs on an FPGA. It controls the John Deere simulator in real time over UART.',
     img: fpgaControllerImg,
     poster: fpgaControllerImg.src,
     imgW: 1200,
@@ -122,7 +122,7 @@ const playground = [
   },
   {
     title: 'Smart Tractor — Embedded Systems, RTOS, Computer Vision',
-    desc: 'An STM32-based tractor controlled with Logitech pedals, with a Grafana dashboard and vision-based operator drowsiness detection.',
+    desc: 'An STM32 tractor that you drive with Logitech pedals. FreeRTOS tasks run a Simulink engine and transmission model every 40 ms, show the gear on an LCD and send telemetry to Grafana. If commands stop arriving, the tractor brakes by itself. Computer vision detects when the operator gets drowsy.',
     poster: '/playground/smarttractor/poster.jpg',
     video: '/playground/smarttractor/VideoTractor.mp4',
     videoW: 640,
@@ -132,7 +132,7 @@ const playground = [
   },
   {
     title: 'John Deere Simulator — Unity, C#',
-    desc: 'A 2D farming simulator built in Unity to recreate and visualize tractor operation.',
+    desc: 'A 2D pixel-art farming simulator in Unity that shows how a tractor operates in the field.',
     img: johnDeereImg,
     imgW: 934,
     imgH: 523,
@@ -150,7 +150,7 @@ const playground = [
   },
   {
     title: 'Football Sim RL — Multi-Agent RL, PPO, Python',
-    desc: 'A deterministic 2D football simulator where the quarterback, receivers, cornerbacks and pass rusher each learn their role with PPO and behavior cloning.',
+    desc: 'A deterministic 2D football simulator. The quarterback, receivers, cornerbacks and pass rusher each learn their role with PPO and behavior cloning. Over 100 test drives, the learned quarterback scored a touchdown on 30% of drives, against 21% for the rule-based one.',
     poster: '/playground/footballsim/poster.jpg',
     video: '/playground/footballsim/demo.mp4',
     videoW: 1280,
