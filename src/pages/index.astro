@@ -183,23 +183,24 @@ const discs = [
         document.documentElement.dataset.theme = 'dark';
       }
     </script>
-    <title>PedroLib</title>
+    <title>Pedro Librado Uribe Reyes — Robotics, AI &amp; Software Engineer</title>
     <meta
       name="description"
-      content="Robotics and Digital Systems Engineer building intelligent systems across robotics, AI, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship."
+      content="Robotics, AI and software engineer building intelligent systems across robotics, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship."
     />
     <link rel="canonical" href="https://pedrolib.dev/" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pedrolib.dev/" />
-    <meta property="og:title" content="Pedro Librado Uribe Reyes — Robotics & Digital Systems Engineer" />
-    <meta property="og:description" content="Robotics and Digital Systems Engineer building intelligent systems across robotics, AI, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship." />
+    <meta property="og:title" content="Pedro Librado Uribe Reyes — Robotics, AI & Software Engineer" />
+    <meta property="og:description" content="Robotics, AI and software engineer building intelligent systems across robotics, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship." />
     <meta property="og:image" content="https://pedrolib.dev/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Pedro Librado Uribe Reyes — Robotics, AI and Software Engineer — pedrolib.dev" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pedro Librado Uribe Reyes — Robotics & Digital Systems Engineer" />
-    <meta name="twitter:description" content="Robotics and Digital Systems Engineer building intelligent systems across robotics, AI, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship." />
+    <meta name="twitter:title" content="Pedro Librado Uribe Reyes — Robotics, AI & Software Engineer" />
+    <meta name="twitter:description" content="Robotics, AI and software engineer building intelligent systems across robotics, embedded systems, and software. Turning ideas into autonomous machines, edge AI, and products that ship." />
     <meta name="twitter:image" content="https://pedrolib.dev/og-image.png" />
   </head>
   <body class="bg-ink text-fg">
@@ -246,12 +247,11 @@ const discs = [
 
       <div>
         <p class="text-[16px] text-fg">Robotics, AI & Software Engineer</p>
-        <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
-      </div>
+        <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>      </div>
 
       <div>
         <h2 class="sr-only">Experience index</h2>
-        <dl class="grid grid-cols-[2.75rem_1fr] gap-x-3 gap-y-1 text-micro md:grid-cols-[3.5rem_auto_minmax(0,1fr)]">
+        <dl class="grid grid-cols-[3.5rem_1fr] gap-x-3 gap-y-1 text-micro md:grid-cols-[3.5rem_auto_minmax(0,1fr)]">
           {experience.map((item) => (
             <div class="tabular contents">
               <dt class="sr-only">{item.name} year</dt>
@@ -312,7 +312,6 @@ const discs = [
           </div>
         </button>
       ))}
-      <p class="sr-only">[TODO: replace circular tagline with your own line.]</p>
     </section>
 
     <!-- Main 3 columns -->
@@ -335,7 +334,6 @@ const discs = [
               alt="Selfie at home"
               loading="lazy"
               decoding="async"
-              data-cap="[TODO caption]"
             />
             <Image
               class="slide-img"
@@ -346,7 +344,6 @@ const discs = [
               loading="lazy"
               decoding="async"
               hidden
-              data-cap="[TODO caption: e.g. talk, workshop, demo]"
             />
             <Image
               class="slide-img"
@@ -357,7 +354,6 @@ const discs = [
               loading="lazy"
               decoding="async"
               hidden
-              data-cap="[TODO caption: e.g. portrait, process, sketch]"
             />
           </div>
           <button
@@ -387,7 +383,6 @@ const discs = [
               alt="Sitting on the snow with a snowboard"
               loading="lazy"
               decoding="async"
-              data-cap="[TODO caption]"
             />
             <Image
               class="slide-img"
@@ -398,7 +393,6 @@ const discs = [
               loading="lazy"
               decoding="async"
               hidden
-              data-cap="[TODO caption]"
             />
           </div>
           <button
@@ -1292,7 +1286,6 @@ const discs = [
       <button id="jukebox-stop" type="button" class="mc-stop" aria-label="Stop music">✕</button>
     </div>
 
-    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script>
       import { syncDemoVideoPlayback } from '../scripts/demo-video-playback.js';
       import Lenis from 'lenis';
@@ -1381,7 +1374,7 @@ const discs = [
             zone?.querySelectorAll('video').forEach((v) => syncDemoVideoPlayback(v, card));
           }
           if (cap) {
-            const text = slides[i]?.getAttribute('data-cap') || '[TODO caption]';
+            const text = slides[i]?.getAttribute('alt') || '';
             cap.textContent = `${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')} — ${text}`;
           }
           return;
@@ -1495,9 +1488,20 @@ const discs = [
           b.setAttribute('aria-pressed', b.getAttribute('data-track') === id ? 'true' : 'false');
         });
       }
+      // Load the Spotify IFrame API on the first disc click, not on every visit.
+      let spotifyScriptAdded = false;
+      function loadSpotifyApi() {
+        if (spotifyScriptAdded) return;
+        spotifyScriptAdded = true;
+        const s = document.createElement('script');
+        s.src = 'https://open.spotify.com/embed/iframe-api/v1';
+        s.async = true;
+        document.head.appendChild(s);
+      }
       function playTrack(id, title) {
         currentTrackId = id;
         markPressed(id);
+        loadSpotifyApi();
         if (spotifyReady && spotifyController) {
           spotifyController.loadUri(`spotify:track:${id}`);
           spotifyController.play();

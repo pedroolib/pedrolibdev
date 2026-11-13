@@ -8,7 +8,7 @@ module.exports = {
         paper: '#0a0a0a',
         fg: '#e8e8e8',
         muted: '#a1a1a1',
-        dim: '#6b6b6b',
+        dim: '#8a8a8a',
         line: '#222222',
       },
       fontFamily: {

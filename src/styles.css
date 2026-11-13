@@ -27,7 +27,7 @@
   --thumb-tile: url("/iron_block.png");
   --fg: #e8e8e8;
   --muted: #a1a1a1;
-  --dim: #6b6b6b;
+  --dim: #8a8a8a;
   --paper: #0a0a0a;
   --ink: #000000;
   --line: #222222;
@@ -147,6 +147,13 @@
     inset 2px 2px 0 rgba(255, 255, 255, 0.22),
     inset -2px -2px 0 rgba(0, 0, 0, 0.55);
   cursor: pointer;
+}
+
+/* On phones, leave room at the end so the fixed lamp never hides the last lines. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(44px + 2rem);
+  }
 }
 
 .lamp-btn:hover {
@@ -324,7 +331,7 @@ button {
 
 /* Work/Playground titles stay subdued until their column is active. */
 .work-card .work-title {
-  color: #6b6b6b;
+  color: var(--dim);
   transition: color 1200ms ease;
 }
 
@@ -418,6 +425,14 @@ button {
   min-width: 0;
   --column-blur: 2px;
   --column-brightness: 0.45;
+}
+
+/* Touch screens have no hover to light a column, so show every visual clearly. */
+@media (hover: none) {
+  .col-stack {
+    --column-blur: 0px;
+    --column-brightness: 1;
+  }
 }
 
 .col-stack > .col-heading {
