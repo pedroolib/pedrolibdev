@@ -1,0 +1,8 @@
+---
+// Keeps each image in its original format (passthrough service copies bytes, so the extension must match).
+import { Image as AstroImage } from 'astro:assets';
+import type { ImageProps } from 'astro:assets';
+type Props = ImageProps;
+const props = Astro.props;
+---
+<AstroImage {...props} format={(props.src as ImageMetadata).format} />

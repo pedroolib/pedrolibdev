@@ -47,7 +47,7 @@
 }
 
 [data-theme="light"] body {
-  background-size: 96px 96px;
+  --bg-tile-size: 96px 96px;
 }
 
 /* Light theme: same utilities, inverted tones */
@@ -172,6 +172,11 @@
   display: none;
 }
 
+/* Lenis does its own easing, so CSS smooth scroll must be off while it runs. */
+html.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
 html {
   scroll-behavior: smooth;
   /* NOTE: no `scrollbar-width` here on purpose — in Chromium it switches to
@@ -220,9 +225,6 @@ body {
   @apply text-fg antialiased;
   font-family: "Monocraft", ui-monospace, SFMono-Regular, Menlo, monospace;
   background-color: #000;
-  background-image: var(--bg-tile);
-  background-repeat: repeat;
-  background-size: 64px 64px;
   image-rendering: pixelated;
   font-size: 12px;
   line-height: 1.6;
@@ -235,12 +237,16 @@ img {
   image-rendering: auto;
 }
 
-/* Darken the tiled dirt like Minecraft option menus so text stays readable */
+/* Tiled background, darkened like Minecraft option menus so text stays
+   readable. It lives on a fixed layer so it stays still while content scrolls. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: var(--overlay);
+  background-image: linear-gradient(var(--overlay), var(--overlay)), var(--bg-tile);
+  background-repeat: repeat;
+  background-size: auto, var(--bg-tile-size, 64px 64px);
+  image-rendering: pixelated;
   pointer-events: none;
   z-index: 0;
 }

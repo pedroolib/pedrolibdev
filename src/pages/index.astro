@@ -1,6 +1,6 @@
 ---
 import '../styles.css';
-import { Image } from 'astro:assets';
+import Image from '../components/Image.astro';
 import aboutSelfieHome from '../assets/about/selfie-home.jpg';
 import aboutChampionPlaque from '../assets/about/champion-plaque.jpg';
 import aboutConcertCrowd from '../assets/about/concert-crowd.jpg';
@@ -1295,6 +1295,7 @@ const discs = [
     <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script>
       import { syncDemoVideoPlayback } from '../scripts/demo-video-playback.js';
+      import Lenis from 'lenis';
 
       const toggle = document.getElementById('contact-toggle');
       const panel = document.getElementById('contact-panel');
@@ -1836,6 +1837,31 @@ const discs = [
         parallaxMedia.addEventListener('change', updateParallax);
       }
       updateParallax();
+
+      // Eased wheel scrolling (desktop, motion allowed). Lenis sets the scroll
+      // position from JS each frame and we move the columns in the same frame,
+      // so all three columns stay in lockstep instead of the native-scrolled
+      // one running a frame ahead of the transformed ones.
+      let lenis = null;
+      function syncSmoothScroll() {
+        const want = parallaxMedia.matches && !REDUCED_MOTION;
+        if (want && !lenis) {
+          lenis = new Lenis({
+            autoRaf: true,
+            lerp: 0.1,
+            // Let side-panel dialogs scroll natively.
+            prevent: (node) => !!node.closest?.('dialog'),
+          });
+          lenis.on('scroll', updateParallax);
+        } else if (!want && lenis) {
+          lenis.destroy();
+          lenis = null;
+        }
+      }
+      syncSmoothScroll();
+      if (parallaxMedia.addEventListener) {
+        parallaxMedia.addEventListener('change', syncSmoothScroll);
+      }
 
     </script>
   </body>
