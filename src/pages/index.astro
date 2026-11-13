@@ -54,17 +54,17 @@ const work = [
     id: 'project-1',
     year: '25—Now',
     title: 'VantTec USV Perception — Perception stack for RoboBoat',
-    what: 'Rebuilt an autonomous surface vehicle’s ROS 2 perception stack after its stereo camera failed, trained its YOLO buoy dataset, and set up onboard serial telemetry, CAN networking, and remote terminal access.',
-    impact: 'Restored the object-range output the old pipeline had stopped publishing and made the boat field-testable over radio links, then competed with it at RoboBoat 2026.',
-    stack: 'ROS 2 Humble, Python, C++, OpenCV, NumPy, TensorRT, ONNX, YOLO, Velodyne VLP-16, Gazebo Harmonic, rosbag2, Docker, NVIDIA Jetson, SocketCAN, XBee telemetry, systemd, Git',
-    team: 'USV Perception Lead, working with the VantTec student robotics team.',
+    what: 'Rebuilt the ROS 2 perception stack of an autonomous surface vehicle after its stereo camera failed. Trained its YOLO buoy dataset and set up its XBee telemetry and remote terminal access.',
+    impact: 'Brought back the object ranges that the old pipeline stopped publishing, and made the boat testable in the field over radio links. I am bringing it to RoboBoat 2027.',
+    stack: 'ROS 2 Humble, Python, C++, OpenCV, NumPy, TensorRT, ONNX, YOLO, Velodyne VLP-16, Gazebo Harmonic, rosbag2, Docker, NVIDIA Jetson, XBee telemetry, systemd, Git',
+    team: 'USV Perception Lead on the VantTec student robotics team.',
   },
   {
     id: 'project-2',
     year: '25—Now',
     title: 'Uribot — AI automation for small businesses',
-    what: 'A multi-tenant AI platform that turns customer chats across WhatsApp, Instagram, and Messenger into qualified leads, quotes, and appointments—with a human handoff when needed.',
-    impact: 'Grew from an automotive-workshop assistant into reusable SMB automation and has generated approximately US$1,500 to date.',
+    what: 'A multi-tenant AI platform that turns customer chats on WhatsApp, Instagram, and Messenger into qualified leads, quotes, and appointments, with a human handoff when needed.',
+    impact: 'Started as an assistant for one automotive workshop and grew into reusable automation for small businesses. Revenue to date: approximately US$1,500.',
     stack: 'Python, Flask, OpenAI, PostgreSQL, Redis, Chatwoot, MinIO, Docker, Coolify, Traefik',
     team: 'Founder · Product & Software Engineering',
   },
@@ -72,17 +72,17 @@ const work = [
     id: 'project-3',
     year: '26',
     title: 'SentinelBox — Catching HVAC failures before they happen',
-    what: 'A team-built predictive-maintenance system that learns each HVAC unit’s normal behavior and spots early signs of trouble using edge AI.',
-    impact: 'Won 1st place at Carrier’s 2026 Keep It Cool Hackathon. In controlled prototype tests, SentinelBox reported a 6-second average detection time and 0% false alarms.',
+    what: 'Team-built predictive maintenance for HVAC units: an ESP32 gateway learns how each unit normally runs and spots early trouble with an on-device neural network.',
+    impact: 'Won 1st place at the 2026 Carrier Keep It Cool Hackathon. In controlled prototype tests, the team measured a 6-second average detection time and 0% false alarms.',
     stack: 'ESP32, C/C++, UART, MPU6500, INA219, MAX6675, embedded neural network, Next.js, SQLite',
-    team: 'A collaborative project by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.',
+    team: 'A team project by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.',
   },
   {
     id: 'project-5',
     year: '23',
     title: 'High-performance processor design for artificial intelligence — UCSD ENLACE',
-    what: 'A real-time geometric shape classifier built at UC San Diego that pairs a linear SVM with 4-bit quantized weights designed with hardware implementation in mind.',
-    impact: 'Held 98%+ accuracy after quantization, ran live from a webcam in Colab, and was presented at the ENLACE closing conference at UCSD and as an invited talk at the UCSD-ENLACE-México Symposium in Tijuana.',
+    what: 'A real-time shape classifier built at UC San Diego. It uses a linear SVM with its weights quantized to 4-bit integers, with a hardware version in mind.',
+    impact: 'Kept 98%+ accuracy after quantization and ran live from a webcam in Colab. I presented it at the ENLACE closing conference at UCSD and in an invited talk at the UCSD-ENLACE-México Symposium in Tijuana.',
     stack: 'Python, OpenCV, scikit-learn, NumPy, Matplotlib, Google Colab, Xilinx ZYNQ',
     team: 'UCSD ENLACE Summer Research 2023 · Vertically-integrated VLSI Information Processing Lab · Prof. Mingu Kang · Mentors Chang Eun Song, Zihan Xia, Ashkan Moradi · with Omar Dario Martinez Blackaller',
   },
@@ -90,8 +90,8 @@ const work = [
   id: 'project-6',
   year: '22—25',
   title: 'Innobotics FRC 6694 — Competition robotics software and leadership',
-  what: 'Led robot software, autonomous routines, and PID and feedforward control for FRC Team 6694 across three seasons in Mexicali, Monterrey, and Hermosillo.',
-  impact: '3rd place plus Spirit Award at Hermosillo 2024. 5th place plus Imagery Award at Monterrey 2023. Built over long build-season hours with a fully student-run team.',
+  what: 'Three seasons with FRC Team 6694 in Mexicali, Monterrey, and Hermosillo. I started in mechanics, became captain, then led the robot code, autonomous routines, and PID and feedforward control.',
+  impact: '3rd place and the Spirit Award at Hermosillo 2024. 5th place and the Imagery Award at Monterrey 2023. All of it came from long build seasons with a fully student-run team.',
   stack: 'Java, WPILib, PID + feedforward control, NetworkTables, Gradle',
   team: 'FRC Team 6694 Innobotics · Software Lead & Captain · Feb 2022 – Jan 2025',
   },
@@ -99,10 +99,10 @@ const work = [
     id: 'project-4',
     year: '26',
     title: 'MiNorte — An AI financial team for small businesses',
-    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business banking and invoice data into grounded insights, generative dashboards, and useful next steps.',
-    impact: 'Responded to the challenge to build real-time AI-generated financial interfaces with MCP, using a deterministic engine so the AI explains verified numbers instead of inventing them.',
+    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business bank and invoice data into insights with evidence, a generated weekly dashboard, and next steps.',
+    impact: 'Answered the challenge brief: financial interfaces that AI generates in real time, built on MCP. A deterministic engine calculates every number, and the AI only explains it.',
     stack: 'Python, FastAPI, Next.js 14, TypeScript, Supabase/Postgres, OpenAI, MCP, Playwright',
-    team: 'A collaborative HackMTY 2026 project: I focused on product logic and backend systems, while teammates implemented the frontend and Playwright ticket-automation flow.',
+    team: 'A HackMTY 2026 team project. I worked on the product logic, the backend systems and part of the frontend. My teammates built the rest of the frontend and the Playwright ticket-automation flow.',
   },
 ];
 
@@ -605,7 +605,7 @@ const discs = [
             <>
               <section aria-labelledby="uribot-intro">
                 <p id="uribot-intro" class="mb-2 text-dim">From the first customer message to the next business action</p>
-                <p class="text-muted">Uribot is an AI automation platform for small businesses. It started with a real automotive workshop and grew into a multi-tenant system for answering customer questions, qualifying leads, preparing quotes, and booking appointments across messaging channels.</p>
+                <p class="text-muted">Uribot is an AI automation platform for small businesses. It started at a real automotive workshop. It grew into a multi-tenant system that answers customer questions, qualifies leads, prepares quotes, and books appointments on messaging channels.</p>
               </section>
 
               <figure class="space-y-2">
@@ -618,18 +618,18 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Quote first, booking second. Exact prices from the price list, not from the model's imagination. Personal details removed.</figcaption>
+                <figcaption class="text-dim">Quote first, booking second. The exact prices come straight from the shop's price list. Personal details removed.</figcaption>
               </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">From conversation to action</h3>
-                <p class="text-muted">Uribot does more than draft replies. The AI identifies what the customer needs, then calls a business tool for information or an action. For an automotive shop, it can collect the vehicle and service details, use <code>cotizador_global()</code> to retrieve a quote, call <code>mas_info_servicio()</code> for follow-up questions, and use <code>agendar_cita()</code> to offer a booking. If a person should take over, <code>esperando_asesor()</code> routes the conversation to a human in Chatwoot.</p>
-                <p class="text-muted">The model manages intent and conversation; configured tools handle prices, schedules, and business rules so the assistant has a reliable source for its answers.</p>
+                <p class="text-muted">The AI finds out what the customer needs, then calls a business tool to get information or to take an action. For an automotive shop, it collects the vehicle and service details and uses <code>cotizador_global()</code> to get a quote. It calls <code>mas_info_servicio()</code> for follow-up questions and <code>agendar_cita()</code> to book the appointment in Google Calendar. When a person must take over, <code>esperando_asesor()</code> tags the conversation in Chatwoot and the bot stops replying, so a human advisor takes it from there.</p>
+                <p class="text-muted">The model handles intent and conversation. Configured tools handle prices, schedules, and business rules, so prices and times come from business data. If no price matches the request, the tool logs a failed quote and tells the customer that an advisor will help.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">One platform, each business’s own rules</h3>
-                <p class="text-muted">Uribot keeps each tenant’s prompts, services, pricing, schedules, enabled tools, and conversations separate. The same platform can therefore support different customer workflows without spinning up a one-off bot and backend for every business.</p>
+                <h3 class="font-bold text-fg">Separate configuration for each business</h3>
+                <p class="text-muted">Uribot keeps each tenant's system prompt, services, prices, schedules, enabled tools, and conversations separate. Each business turns tools on or off and gives every tool its own configuration. One platform runs all these customer workflows, so no business needs its own bot and backend.</p>
               </section>
 
               <figure class="space-y-2">
@@ -648,30 +648,30 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Reliable conversations, not one-message-at-a-time replies</h3>
-                <p class="text-muted">Customers often send details across several short messages. Uribot uses Redis to batch message bursts by account and conversation, then responds with the combined context instead of reacting separately to every fragment. Conversations, messages, quotations, appointments, and tool activity are persisted so the business can follow what happened.</p>
-                <p class="text-muted">Chatwoot brings WhatsApp, Instagram, Messenger, and other channels into one inbox. When automation reaches its limit, the handoff keeps the conversation available to a human advisor instead of trapping the customer in a bot loop.</p>
+                <h3 class="font-bold text-fg">Message batching and human handoff</h3>
+                <p class="text-muted">Customers often send their details in several short messages. Uribot collects each burst in Redis, per account and conversation. It waits until 6 seconds pass with no new message, or until 10 messages arrive. Then it answers all of them in one reply. It also stores tool activity, so the business can follow what happened.</p>
+                <p class="text-muted">Chatwoot brings WhatsApp, Instagram, Messenger, and other channels into one inbox. When the automation cannot go further, the handoff passes the conversation to a human advisor in the same inbox.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">The booking is the metric that matters</h3>
-                <p class="text-muted">A quote request for a 2013 Escape turns into a scheduled morning appointment: branch options, shop hours, all pulled from business data, without a human typing a word. Every conversation, quote, appointment and handoff is persisted, so the shop can see exactly what the automation did.</p>
+                <h3 class="font-bold text-fg">From quote to booking</h3>
+                <p class="text-muted">The booking is the result I care about most. A quote request for a 2013 Escape turns into a scheduled morning appointment, and no person types a word. The branch options and shop hours come from business data. Uribot stores every conversation, quote, appointment, and handoff, so the shop can see exactly what the automation did.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Built for real businesses</h3>
-                <p class="text-muted">The first use case came from the repetitive questions and service quotations at an automotive workshop. I shaped Uribot beyond that single workflow into a configurable platform for SMBs. Other industries such as restaurants, clinics, retail or real estate remain platform concepts until they run on Uribot.</p>
+                <h3 class="font-bold text-fg">First use case</h3>
+                <p class="text-muted">The first use case came from the repeated questions and service quotes at an automotive workshop. I then turned that single workflow into a configurable platform for small businesses. Restaurants, clinics, retail, and real estate stay concepts until a business in those industries runs on Uribot.</p>
               </section>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My role</h3>
-                <p class="text-muted">As founder, I designed and built Uribot across product and software engineering: the multi-tenant architecture, conversation engine, AI tool system, channel integrations, data layer, and deployment infrastructure. I also shaped the product experience and the workflows that let automation hand off to a person when needed.</p>
-                <p class="text-muted">Uribot has generated approximately <strong class="font-bold text-fg">US$1,500</strong> to date.</p>
+                <p class="text-muted">As founder, I designed and built Uribot, both the product and the software. That covers the multi-tenant architecture, conversation engine, AI tool system, channel integrations, data layer, and deployment infrastructure. I also designed the product experience and the workflows that hand a conversation to a person when needed.</p>
+                <p class="text-muted">Revenue to date: approximately <strong class="font-bold text-fg">US$1,500</strong>.</p>
               </section>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Self-managed production infrastructure</h3>
-                <p class="text-muted">Uribot runs on a containerized stack managed with Coolify. Traefik routes traffic to the API and Chatwoot, while PostgreSQL stores business and conversation data, Redis handles message coordination, and MinIO provides object storage. Keeping the services together makes the platform’s deployments and operations manageable end to end.</p>
+                <p class="text-muted">Uribot runs on a containerized stack that I manage with Coolify. Traefik routes traffic to the API and to Chatwoot. PostgreSQL stores business and conversation data, Redis holds the message batches, and MinIO provides object storage. With all the services in one place, I deploy and run the whole platform myself.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Role: <span class="text-muted">{item.team}</span></p>
               </section>
@@ -683,8 +683,8 @@ const discs = [
           ) : item.id === 'project-3' ? (
             <>
               <section aria-labelledby="sentinel-intro">
-                <p id="sentinel-intro" class="mb-2 text-dim">Predictive maintenance, right at the edge</p>
-                <p class="text-muted">SentinelBox helps catch HVAC problems before they become breakdowns. The team built a retrofit prototype that learns each unit’s normal behavior from operating data, then flags unusual changes locally—without depending on the cloud.</p>
+                <p id="sentinel-intro" class="mb-2 text-dim">Predictive maintenance at the edge</p>
+                <p class="text-muted">SentinelBox looks for HVAC problems before they turn into breakdowns. The team built a retrofit prototype that learns the normal behavior of each unit from its operating data. It flags unusual changes on site and needs no cloud connection.</p>
               </section>
 
               <figure class="space-y-2">
@@ -697,17 +697,17 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">The install goal: one gateway living inside each rooftop unit.</figcaption>
+                <figcaption class="text-dim">The install goal: one gateway inside each rooftop unit.</figcaption>
               </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">The problem</h3>
-                <p class="text-muted">Most maintenance starts after performance has already dropped. Fixed thresholds can also be a poor fit across units: what is normal for one fan may look like a fault on another. Early clues are present in operating signals, but they are rarely used to anticipate failure.</p>
+                <p class="text-muted">Most maintenance starts after performance drops. Fixed thresholds also fit badly across units: a normal reading for one fan can look like a fault on another. The early clues are already in the operating signals, but maintenance teams rarely use them to predict failure.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Start with a practical MVP</h3>
-                <p class="text-muted">I helped shape the MVP around three non-negotiables: build on signals available from the HVAC equipment, keep installation plug-and-play, and make the health decision without requiring internet access. The design pairs current and temperature readings with vibration sensing, adding a gateway that can process data on site.</p>
+                <h3 class="font-bold text-fg">MVP requirements</h3>
+                <p class="text-muted">I helped set three requirements for the MVP. It had to use signals the HVAC equipment already measures, install plug-and-play, and decide unit health with no internet access. The design adds a gateway with its own MPU6500 vibration sensor. The gateway combines vibration with the current and temperature readings and processes everything on site.</p>
               </section>
 
               <figure class="space-y-2">
@@ -724,8 +724,8 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">From sensor readings to an early warning</h3>
-                <p class="text-muted">The HVAC nodes send their readings to the ESP32 gateway over UART. The gateway adds vibration measurements, compares each unit against its own learned baseline, and runs a compact neural network on-device. It then sends readings to a local dashboard, where the team could inspect equipment health, trends, and likely causes. Keeping inference on the gateway means the system can make its decision without a cloud round trip.</p>
-                <p class="text-muted">Instead of assuming every fan behaves the same, SentinelBox learns a baseline for each unit. After roughly 90 seconds of learning, it can watch for meaningful deviations and surface a maintenance state.</p>
+                <p class="text-muted">Each HVAC node reads current with an INA219 and temperature with a MAX6675, then sends the values to the ESP32 gateway over UART. Every 2 seconds, the gateway adds its own vibration measurements and compares the readings with the learned baseline of that unit. Then it runs a small neural network on the chip: 259 parameters, about 1 KB, written in plain C. The gateway posts the results to a local dashboard that shows health, trends, and the likely cause of a warning.</p>
+                <p class="text-muted">SentinelBox learns a separate baseline for each unit from about 90 seconds of normal operation. After that, the status changes only when 3 of the last 5 readings look abnormal, so one spike does not trigger an alert.</p>
               </section>
 
               <figure class="space-y-2">
@@ -744,8 +744,8 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">A building view for maintenance teams</h3>
-                <p class="text-muted">The local dashboard turns model output into a view of the building: staff can select a unit, see its current health, and inspect which sensor is driving a warning. I created the first draft of the 3D building view as part of the server and dashboard integration.</p>
+                <h3 class="font-bold text-fg">Dashboard and 3D building view</h3>
+                <p class="text-muted">The local dashboard turns the model output into a view of the building. Staff can select a unit, see its current health, and check which sensor causes a warning. To find that sensor, the gateway runs the network again with the other sensors held at their baseline values. I made the first draft of the 3D building view as part of the server and dashboard work.</p>
               </section>
 
               <figure class="space-y-2">
@@ -775,7 +775,7 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My contributions</h3>
-                <p class="text-muted">I designed and built the electronics, and worked with a teammate on the UART communication that connected the HVAC nodes to the gateway. I also connected ESP32 readings to the server, created the first draft of the 3D building view, and contributed to developing the model. Across the project, I helped translate the MVP idea into a working system alongside the rest of the team.</p>
+                <p class="text-muted">I designed and built the electronics. With a teammate, I worked on the UART link between the HVAC nodes and the gateway. I also connected the ESP32 readings to the server, made the first draft of the 3D building view, and helped develop the model. Throughout the project, I worked with the rest of the team to turn the MVP idea into a working system.</p>
               </section>
 
               <figure class="space-y-2">
@@ -793,24 +793,24 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Prototype results</h3>
-                <p class="text-muted">SentinelBox won 1st place at Carrier’s 2026 Keep It Cool Hackathon. In the project’s controlled prototype validation, the team reported a 6-second average detection time, a 90-second baseline-learning period, and a 0% false-alarm rate. These are prototype test results, not a claim of long-term field performance.</p>
+                <p class="text-muted">SentinelBox won 1st place at the 2026 Carrier Keep It Cool Hackathon. For validation, the team ran the prototype normally and then disturbed it on purpose. A hair dryer raised the temperature, and airflow or rotor interference changed the current and vibration. The team measured a 6-second average detection time, a 90-second baseline-learning period, and a 0% false-alarm rate. These numbers come from controlled prototype tests only, and they do not show long-term field performance.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Built by a team</h3>
-                <p class="text-muted">SentinelBox was developed collaboratively by Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez.</p>
+                <h3 class="font-bold text-fg">The team</h3>
+                <p class="text-muted">Eduardo Pérez, Pedro Uribe, Alejandro Chio, Emiliano Méndez, and Miguelangel Rodríguez built SentinelBox together.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
               </section>
 
               <p class="border-t border-line pt-4 text-muted">
-                <a class="underline hover:text-fg" href="https://github.com/ayexxxd/SentinelBox" target="_blank" rel="noopener noreferrer">Explore the SentinelBox repository ↗</a>
+                <a class="underline hover:text-fg" href="https://github.com/ayexxxd/SentinelBox" target="_blank" rel="noopener noreferrer">View the SentinelBox repository ↗</a>
               </p>
             </>
           ) : item.id === 'project-4' ? (
             <>
               <section aria-labelledby="minorte-intro">
                 <p id="minorte-intro" class="mb-2 text-dim">A financial team inside your Banorte account</p>
-                <p class="text-muted">MiNorte helps small businesses understand their numbers and decide what to do next. It brings banking and invoice data together, calculates the financial facts deterministically, then uses AI to explain them in plain language and shape a useful interface around each insight.</p>
+                <p class="text-muted">MiNorte helps small businesses understand their numbers and decide what to do next. It combines bank movements with invoice data, and a deterministic engine calculates the figures. Then AI explains them in plain Spanish and builds interface cards around each insight.</p>
               </section>
 
               <figure class="space-y-2">
@@ -828,12 +828,12 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">The Banorte Challenge at HackMTY 2026</h3>
-                <p class="text-muted">The brief called for AI agents that generate interfaces in real time, an open use case in financial services, and required MCP. MiNorte brought those constraints together around a concrete small-business need: turning financial activity into understandable, evidence-backed guidance.</p>
+                <p class="text-muted">The brief asked for AI agents that generate interfaces in real time, for an open use case in financial services, and it required MCP. We applied it to one small-business need: clear financial guidance that shows its evidence.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">The engine calculates. The AI explains.</h3>
-                <p class="text-muted">Financial answers are only useful when the numbers can be trusted. MiNorte’s deterministic engine handles calculations such as cash flow, profitability, tax estimates, reconciliation, and receivables. AI agents use MCP tools to retrieve that verified information, explain what it means, and help owners explore decisions—without making up financial figures.</p>
+                <h3 class="font-bold text-fg">The financial engine and the AI agents</h3>
+                <p class="text-muted">A financial answer is only useful if the owner can trust the numbers. The MiNorte engine is deterministic. It calculates cash flow, profitability, tax estimates, reconciliation, and receivables. The AI agents get these figures through MCP tools. They explain what the numbers mean and help owners test decisions. They never make up a figure.</p>
               </section>
 
               <figure class="space-y-2">
@@ -848,13 +848,13 @@ const discs = [
                     decoding="async"
                   />
                 </a>
-                <figcaption class="text-dim">Math lives in the engine, words live in the agents. Open the diagram for a full-size view.</figcaption>
+                <figcaption class="text-dim">The engine does all the calculations, and the agents write the explanations. Open the diagram for a full-size view.</figcaption>
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Interfaces generated from real needs</h3>
-                <p class="text-muted">An Analyst finds and ranks insights with supporting evidence. A UI Designer turns those insights into cards from a validated component catalog, so the workspace can adapt its visual explanation while staying within a predictable interface system.</p>
-                <p class="text-muted">The weekly view brings together key financial indicators, recommended actions, and discoveries. In chat, owners can ask follow-up questions, compare scenarios such as a hire or loan, and inspect the evidence behind an answer.</p>
+                <h3 class="font-bold text-fg">The agents and the generated interface</h3>
+                <p class="text-muted">An Analyst agent ranks 10 insights and cites evidence from the engine for each one. A UI Designer agent turns them into cards from a validated component catalog, and every card includes a chart. The catalog keeps the generated interface predictable.</p>
+                <p class="text-muted">The weekly view shows four anchor metrics with comments, recommended actions, and discoveries that rotate every week. In chat, owners ask follow-up questions and see the evidence behind each answer. The Consultant agent answers with exact figures, evaluates a new hire or expense, and compares loans by their total annual cost (CAT).</p>
               </section>
 
               <figure class="space-y-2">
@@ -870,19 +870,19 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">From insight to action</h3>
-                <p class="text-muted">MiNorte connects analysis to everyday operations: it can surface overdue receivables and support collection follow-ups, while a receipt-to-invoice workflow helps move a purchase toward CFDI issuance. The Playwright browser flow pauses for human confirmation before irreversible steps.</p>
+                <h3 class="font-bold text-fg">Collections and receipt invoicing</h3>
+                <p class="text-muted">MiNorte also acts on its analysis. It finds overdue receivables and sends real reminder emails through Resend, after the owner confirms, and never twice in 24 hours. For a purchase, the owner uploads a photo of the receipt. MiNorte extracts the data, and a Playwright browser agent fills in the CFDI invoice request. The agent stops for human confirmation before irreversible steps, and also stops at a CAPTCHA or an unexpected login.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">My contributions, alongside the team</h3>
-                <p class="text-muted">I spent most of my time building the systems behind MiNorte—the financial logic, backend, MCP tools, and AI workflows that turn business data into useful insights and dashboard cards. I also helped shape the product and sketched the first interface. My teammates brought the frontend to life and built the Playwright ticket-automation flow, based on an idea I contributed. We built the project together.</p>
-                <p class="text-muted">MiNorte was a collaborative HackMTY project, with the team bringing the financial workflows, interface, AI, and browser automation together.</p>
+                <h3 class="font-bold text-fg">My contributions and the team</h3>
+                <p class="text-muted">I spent most of my time on the systems behind MiNorte: the financial logic, the backend, the MCP tools, and the AI workflows that turn business data into insights and dashboard cards. I also helped shape the product and made the original design. On the frontend, I built some of the shadcn cards and the dashboard pages. My teammates built the rest of the frontend. They also built the Playwright ticket-automation flow, which started from an idea of mine.</p>
+                <p class="text-muted">MiNorte was a HackMTY team project. The final app combines the financial workflows, the interface, the AI agents, and the browser automation.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Built for the Banorte challenge</h3>
-                <p class="text-muted">MiNorte demonstrates one way to make real-time AI interfaces useful in financial services: let reliable systems own the math, give agents structured tools through MCP, and make the result legible and actionable for the person running the business.</p>
+                <h3 class="font-bold text-fg">Summary and stack</h3>
+                <p class="text-muted">MiNorte is one way to make real-time AI interfaces useful in financial services. A deterministic system does the math, and the agents get structured tools through MCP. The owner gets results that are easy to read and act on.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
               </section>
@@ -895,7 +895,7 @@ const discs = [
             <>
               <section aria-labelledby="shape-intro">
                 <p id="shape-intro" class="mb-2 text-dim">High-performance processor design for artificial intelligence — UCSD ENLACE, summer 2023</p>
-                <p class="text-muted">ShapeDetectionAI is a real-time shape classifier I built as a research intern at UC San Diego: a linear SVM that recognizes circles, squares, triangles, and stars from tiny 16×16 images, then runs live from a webcam. The twist is hardware thinking — the learned weights are quantized down to 4-bit integers so the same dot-product decision could map efficiently onto silicon.</p>
+                <p class="text-muted">ShapeDetectionAI is a real-time shape classifier I built as a research intern at UC San Diego. It is a linear SVM that recognizes circles, squares, triangles, and stars in tiny 16×16 images, and it runs live from a webcam. I designed it with hardware in mind: the learned weights are quantized to 4-bit integers, so the same dot-product decision can map efficiently onto silicon.</p>
               </section>
 
               <figure class="space-y-2">
@@ -913,8 +913,8 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">The research setting</h3>
-                <p class="text-muted">June–August 2023, ENLACE Summer Research Program in the Vertically-integrated VLSI Information Processing Lab with Prof. Mingu Kang and mentors Chang Eun Song, Zihan Xia, and Ashkan Moradi, alongside Omar Dario Martinez Blackaller. The lab studies how machine-learning models can run on efficient custom hardware, so every software choice had a hardware cost in mind.</p>
-                <p class="text-muted">I joined a multicultural team of researchers and PhDs from different backgrounds, shared findings with the academic community, and stayed hands-on from data prep through live demo and final talk.</p>
+                <p class="text-muted">From June to August 2023, I was in the ENLACE Summer Research Program at the Vertically-integrated VLSI Information Processing Lab. I worked with Prof. Mingu Kang, mentors Chang Eun Song, Zihan Xia, and Ashkan Moradi, and alongside Omar Dario Martinez Blackaller. The lab studies how to run machine-learning models on efficient custom hardware. So I made every software choice with its hardware cost in mind.</p>
+                <p class="text-muted">I joined a multicultural team of researchers and PhDs from different backgrounds. I shared our findings with the academic community and stayed hands-on from data prep to the live demo and the final talk.</p>
               </section>
 
               <figure class="space-y-2">
@@ -927,18 +927,18 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Why the weights had to shrink to 4-bit integers. This board charges for every multiply-add.</figcaption>
+                <figcaption class="text-dim">This board is why the weights shrank to 4-bit integers. Every multiply-add on it has a cost.</figcaption>
               </figure>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">How the classifier works</h3>
-                <p class="text-muted">The notebook pipeline is deliberately small enough to reason about in hardware: load PNGs per shape class, resize to 16×16 with OpenCV, convert to grayscale, flatten to a 256-dimensional vector. Training uses a one-vs-all split — pick a <code>target_shape</code> (circle, square, triangle, or star), binarize labels to 1 / 0, and fit <code>SVC(kernel='linear')</code> from scikit-learn.</p>
-                <p class="text-muted">Inference is a single decision: <code>dot(w, pixels) + b &gt; 0</code>. For webcam frames the image is resized the same way, thresholded at 100 into a binary image, and passed through that same dot product — “this image is a square :)” or not.</p>
+                <p class="text-muted">I kept the notebook pipeline small enough to reason about in hardware. It loads the PNGs for each shape class and resizes them to 16×16 with OpenCV. Then it converts them to grayscale and flattens each one to a 256-value vector. Training is one-vs-all. You pick a <code>target_shape</code> (circle, square, triangle, or star), set its labels to 1 and all others to 0, and fit <code>SVC(kernel='linear')</code> from scikit-learn.</p>
+                <p class="text-muted">Inference is one decision: <code>dot(w, pixels) + b &gt; 0</code>. A webcam frame goes through the same resize, and a threshold at 100 turns it into a black-and-white image. The same dot product then gives the answer: "This image is a square :)" or not.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Quantized for hardware, without losing accuracy</h3>
-                <p class="text-muted">Float weights are cheap in Colab and expensive on chip. I scaled the learned coefficients by 50, rounded to integers, then clipped to a 4-bit range of −8 to 7 — the range called out directly in the notebook. Re-running the 3,000-image test split with only integer <code>w_int</code> / <code>b_int</code> held 98%+ accuracy, showing the model survives aggressive quantization and stays a cheap integer dot product.</p>
+                <h3 class="font-bold text-fg">Quantizing the weights for hardware</h3>
+                <p class="text-muted">Float weights are cheap in Colab and expensive on a chip. I scaled the learned weights and bias by 50 and rounded them to integers. Then I clipped the weights to the 4-bit range of −8 to 7, the range the notebook calls out. On the 3,000-image test set, the square detector scored 98.77% with float weights and 98.37% with only the integer <code>w_int</code> and <code>b_int</code>.</p>
               </section>
 
               <figure class="space-y-2">
@@ -955,12 +955,12 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Live from the webcam</h3>
-                <p class="text-muted">The Colab demo captures a photo through the browser with JavaScript, decodes it from base64 to <code>photo.jpg</code>, then runs the exact training-time preprocessing before the quantized decision. No server round trip for the math itself — capture, resize, binarize, dot product, answer.</p>
+                <p class="text-muted">The Colab demo captures a photo in the browser with JavaScript and decodes it from base64 to <code>photo.jpg</code>. Then it runs the same resize and grayscale steps as training, plus the threshold, before the quantized decision. The math needs no call to an outside server: capture, resize, binarize, dot product, answer.</p>
               </section>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Presented twice</h3>
-                <p class="text-muted">First at the ENLACE closing conference at UC San Diego, presenting our contributions and experience to the program. Then as an invited speaker at the UCSD-ENLACE-México Symposium at Instituto Tecnológico de Tijuana in September 2023, presenting the research topic to an audience of upper- and middle-higher-level students and teachers to promote science and technology.</p>
+                <h3 class="font-bold text-fg">Two presentations</h3>
+                <p class="text-muted">I first presented our contributions and experience at the ENLACE closing conference at UC San Diego. In September 2023, I was an invited speaker at the UCSD-ENLACE-México Symposium at Instituto Tecnológico de Tijuana. There I presented the research topic to upper- and middle-higher-level students and teachers to promote science and technology.</p>
               </section>
 
               <figure class="space-y-2">
@@ -978,7 +978,7 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My role</h3>
-                <p class="text-muted">As researcher I built the SVM training and quantization flow in the notebook, ran the webcam classification loop, and contributed to the hardware-oriented analysis. Just as important was the teamwork: collaborating across backgrounds, communicating findings clearly, and carrying the work through two public presentations.</p>
+                <p class="text-muted">As a researcher, I built the SVM training and quantization flow in the notebook and ran the webcam classification loop. I also helped with the hardware-oriented analysis. The teamwork mattered to me as much as the code. I worked with people from different backgrounds, explained our findings, and took the work through two public presentations.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
               </section>
@@ -991,7 +991,7 @@ const discs = [
             <>
               <section aria-labelledby="inno-intro">
                 <p id="inno-intro" class="mb-2 text-dim">FRC Team 6694 Innobotics. Mexicali, Monterrey and Hermosillo, 2022 to 2025</p>
-                <p class="text-muted">Three seasons of FIRST Robotics Competition as Software Lead and Captain. I owned the robot code, the subsystems, the autonomous routines, and the PID and feedforward tuning, and I helped lead a student-run team through build season, regionals and playoffs in Monterrey and Hermosillo.</p>
+                <p class="text-muted">Three seasons of FIRST Robotics Competition with Team 6694, first in mechanics, then as Captain and Software Lead. I owned the robot code, the subsystems, the autonomous routines, and the PID and feedforward tuning. I also helped lead a student-run team through build season, regionals and playoffs in Monterrey and Hermosillo.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1007,16 +1007,16 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">My path: wrenches first, code second</h3>
-                <p class="text-muted">I did not start in software. My first two seasons were in mechanics, cutting, drilling and assembling, learning every tool in the workshop, because I wanted to understand the whole robot before picking a specialty. That decision paid off. In my second year the team trusted me as captain, leading people through jobs I had done myself.</p>
-                <p class="text-muted">Then in my third year I moved to what I had always wanted: programming, as Software Lead. Knowing the machine from the inside changed how I wrote code. Every setpoint I tuned, I could picture the gearbox behind it and the pit crew who would have to fix it if I got it wrong.</p>
+                <h3 class="font-bold text-fg">My path from mechanics to software</h3>
+                <p class="text-muted">I did not start in software. My first two seasons were in mechanics: cutting, drilling, assembling and learning every tool in the workshop. I wanted to understand the whole robot before I picked a specialty. In my second year the team made me captain, and I led people through jobs I had done myself.</p>
+                <p class="text-muted">In my third year I moved to what I always wanted: programming, as Software Lead. I knew the machine from the inside, and that changed how I wrote code. For every setpoint I tuned, I pictured the gearbox behind it and the pit crew who had to fix it if I got it wrong.</p>
               </section>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">What I built</h3>
-                <p class="text-muted">The 2024 robot code is Java on WPILib, organized the way WPILib wants: subsystems for the drivetrain, intake, launcher, shooter, arm and both climbers, plus small command classes, all wired together in <code>RobotContainer</code>. My main job was making the mechanisms behave the same way every time, with PID plus feedforward tuning and NetworkTables telemetry so we could debug from the driver station.</p>
-                <p class="text-muted">My favorite detail is a small rule with a big effect. The robot will not shoot until the shooter wheels are truly up to speed. Pressing X runs a check on <code>atSetpoint()</code>. If the wheels are there, the feeder fires a note into them. If not, nothing happens. No hopeful shots and no jammed notes. Underneath, the shooter is a <code>PIDSubsystem</code> with a feedforward model, measured by an encoder with a set tolerance, and it streams <code>Shooter Rate</code> and <code>At Setpoint</code> to SmartDashboard. Those were the numbers we stared at between matches.</p>
-                <p class="text-muted">The rest of the machine plays from one Xbox controller. Right bumper spins the shooter up, left bumper stops it, B grabs a note, A spits one back out, and the D-pad walks the arm through tuned positions. The repo even keeps our homework: SysId characterization routines and DataLog configs, because we measured the real motors instead of guessing constants.</p>
+                <p class="text-muted">The 2024 robot code is Java on WPILib, in its command-based structure. It has subsystems for the drivetrain, intake, launcher, shooter, arm and both climbers, plus small command classes, all wired together in <code>RobotContainer</code>. My main job was to make the mechanisms behave the same way every time. I used PID plus feedforward tuning, and NetworkTables telemetry let us debug from the driver station. Autonomous routines such as RED 3, RED 4 and BLUE 4 live on season branches, picked from a SmartDashboard chooser.</p>
+                <p class="text-muted">My favorite detail is a simple rule: the robot does not shoot until the shooter wheels reach speed. Pressing X checks <code>atSetpoint()</code>: if the wheels are there, the feeder fires a note into them, and if not, nothing happens. That meant no hopeful shots and no jammed notes. The shooter is a <code>PIDSubsystem</code> with a feedforward model and a target of 85 rotations per second. An encoder measures wheel speed against a set tolerance, and the subsystem streams <code>Shooter Rate</code> and <code>At Setpoint</code> to SmartDashboard. Those were the numbers we stared at between matches.</p>
+                <p class="text-muted">The whole robot runs from one Xbox controller. Right bumper spins the shooter up, left bumper stops it, B grabs a note and A spits one back out. D-pad up and down nudge the arm setpoint, and D-pad left, D-pad right and the stick clicks jump to fixed arm positions. The repo also keeps our homework: SysId characterization routines and DataLog configs. We used them to measure the real motors and get the constants from data.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1046,8 +1046,8 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Operating under match pressure</h3>
-                <p class="text-muted">At the driver station there is no pause button. You read the telemetry, trust the autonomous routine you tested in the pit, and talk to your crew. I spent matches behind the glass with the team, calling plays and watching mechanisms we had tuned for weeks do their job in seconds.</p>
+                <h3 class="font-bold text-fg">Match day at the driver station</h3>
+                <p class="text-muted">At the driver station there is no pause button. You read the telemetry, trust the autonomous routine you tested in the pit and talk to your crew. I spent matches behind the glass with the team. I called plays and watched mechanisms we tuned for weeks do their job in seconds.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1063,9 +1063,9 @@ const discs = [
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">Results that stuck</h3>
-                <p class="text-muted">Hermosillo 2024 brought a 3rd place regional finish plus the Spirit Award. Monterrey 2023 brought a 5th place finish plus the Imagery Award. The Spirit Award means the most to me. It goes to the team with the heart, and we were loud, united and proud of the machine we built together.</p>
-                <p class="text-muted">None of it came fast. Build season is long nights in the shop doing work that takes hours and cannot be rushed, and those nights teach you dedication and patience whether you planned to learn them or not.</p>
+                <h3 class="font-bold text-fg">Results and awards</h3>
+                <p class="text-muted">At Hermosillo 2024 we finished 3rd and won the Spirit Award. At Monterrey 2023 we finished 5th and won the Imagery Award. The Spirit Award means the most to me. It goes to the team with the most heart, and we were loud, united and proud of the machine we built together.</p>
+                <p class="text-muted">None of it came fast. Build season meant long nights in the shop on work that takes hours and cannot be rushed. Those nights taught me dedication and patience, whether I planned to learn them or not.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1090,7 +1090,7 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Where the long hours happened: workshop tools, wiring fixes and code deploys between matches.</figcaption>
+                <figcaption class="text-dim">The pit, where we spent the long hours on tool work, wiring fixes and code deploys between matches.</figcaption>
               </figure>
 
               <figure class="space-y-2">
@@ -1107,7 +1107,7 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My role</h3>
-                <p class="text-muted">As Software Lead and Captain I owned the robot code and the controls tuning, ran the software side of match preparation, and helped lead the team on and off the field. That meant everything from running workshop tools during build season to coordinating the drive crew at regionals.</p>
+                <p class="text-muted">As Software Lead and Captain I owned the robot code and the controls tuning, and I ran the software side of match preparation. I also helped lead the team on and off the field, from workshop tools during build season to the drive crew at regionals.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
               </section>
@@ -1119,8 +1119,8 @@ const discs = [
           ) : item.id === 'project-1' ? (
             <>
               <section aria-labelledby="vanttec-intro">
-                <p id="vanttec-intro" class="mb-2 text-dim">VantTec student robotics team, Tecnológico de Monterrey — RoboBoat 2026 season</p>
-                <p class="text-muted">VantTec builds an autonomous surface vehicle for RoboBoat. The boat must find buoys, markers and docks on open water with no driver. I joined as Perception Lead, owning everything the boat sees and how far away it thinks things are.</p>
+                <p id="vanttec-intro" class="mb-2 text-dim">VantTec student robotics team, Tecnológico de Monterrey — RoboBoat 2027 season</p>
+                <p class="text-muted">VantTec builds an autonomous surface vehicle for RoboBoat. The boat must find buoys, markers and docks on open water with no driver. I joined as Perception Lead and owned everything the boat sees and how far away it thinks things are.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1137,13 +1137,13 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">The task</h3>
-                <p class="text-muted">RoboBoat runs student boats through maritime tasks fully autonomously. The course is set with red and green gate buoys, markers and a dock, and the boat must detect each one, judge distances and navigate between them. Our season goal was a perception stack reliable enough to attempt every task, not just the easy ones.</p>
+                <p class="text-muted">RoboBoat sends student boats through maritime tasks with no human control. The course has red and green gate buoys, markers and a dock. The boat must detect each one, judge how far away it is and steer between them. Our season goal was a perception stack reliable enough to attempt every task.</p>
               </section>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">What I built</h3>
-                <p class="text-muted">I rebuilt the vision pipeline after the boat lost its ZED stereo camera. The new design pairs a Velodyne VLP-16 LiDAR with a USB webcam. YOLO finds buoys and markers as 2D boxes, and my ROS 2 node, <code>lidar_bbox_range_node.py</code>, projects LiDAR points into each box and takes a median range with MAD outlier rejection, publishing 3D positions downstream.</p>
-                <p class="text-muted">I also trained the YOLO buoy dataset the detector runs on, compiled the TensorRT engine for our hardware, and validated the whole loop in Gazebo Harmonic plus recorded boat data before trusting it near water. On the boat itself I set up the unglamorous plumbing that makes field tests possible: udev rules pinning every serial device, SocketCAN networking, a remote terminal over Holybro radios, and XBee telemetry nodes that republish topics to shore.</p>
+                <p class="text-muted">I rebuilt the vision pipeline after the boat lost its ZED stereo camera. The new design pairs a Velodyne VLP-16 LiDAR with a Logitech C920 USB webcam. YOLO finds buoys and markers as 2D boxes. My ROS 2 node, <code>lidar_bbox_range_node.py</code>, projects LiDAR points into each box and takes the median range, with MAD outlier rejection. It publishes 3D positions in the same message format the old ZED node used, so the mission code needed no changes.</p>
+                <p class="text-muted">I also trained the YOLO buoy dataset that the detector runs on and compiled the TensorRT engine for our hardware. Before I trusted the loop near water, I tested it in Gazebo Harmonic and on recorded boat data. On the boat I also set up the unglamorous plumbing that field tests need. That meant udev rules that pin every serial device and a remote terminal over Holybro radios. It also meant XBee telemetry nodes that republish topics to shore.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1156,17 +1156,17 @@ const discs = [
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption class="text-dim">Glare, reflections, drifting buoys. This is why the design trusts LiDAR over appearances.</figcaption>
+                <figcaption class="text-dim">The lake course: glare, reflections and drifting buoys.</figcaption>
               </figure>
 
               <section class="space-y-2">
-                <h3 class="font-bold text-fg">In the water, under pressure</h3>
-                <p class="text-muted">Testing happened in an indoor pool at home and on open lakes at events. The lake means glare, reflections, drifting buoys and a boat that never sits still, which is exactly why the design leans on LiDAR range instead of trusting appearances. When the old depth-camera pipeline silently stopped publishing objects during a task, the logs showed hundreds of detections going in and zero objects coming out. That failure is what the rebuild replaced.</p>
+                <h3 class="font-bold text-fg">Testing in the pool and on lakes</h3>
+                <p class="text-muted">We tested in an indoor pool at home and on open lakes at events. A lake brings glare, reflections, drifting buoys and a boat that never sits still. Appearance alone is hard to trust there, so the design takes distance from LiDAR range. During one task, the old depth-camera pipeline silently stopped publishing objects. The logs showed hundreds of detections going in and zero objects coming out. My rebuild replaced that pipeline.</p>
               </section>
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">Results</h3>
-                <p class="text-muted">In simulation the new node reported a buoy at about 6.2 meters against a roughly 7 meter ground truth, while throwing out a mirrored false box. On recorded boat data it measured real dock structures at 2 to 5 meters and distant markers out to about 18 meters. We brought this stack to RoboBoat 2026.</p>
+                <p class="text-muted">In simulation the new node placed a buoy at about 6.2 meters against a ground truth of roughly 7 meters. It also rejected a mirrored false box. On recorded boat data it measured real dock structures at 2 to 5 meters and distant markers at 15 to 17 meters. I am bringing this stack to RoboBoat 2027.</p>
               </section>
 
               <figure class="space-y-2">
@@ -1195,7 +1195,7 @@ const discs = [
 
               <section class="space-y-2">
                 <h3 class="font-bold text-fg">My role</h3>
-                <p class="text-muted">As Perception Lead I owned the camera-to-distance path end to end: dataset, detector, ranging node, calibration tooling and the boat-side comms that let us test. I learned that the boring parts decide competitions, since a perfect detector means nothing if its output never reaches the boat. I worked with the wider VantTec student team across software, electrical and mechanical subgroups.</p>
+                <p class="text-muted">As Perception Lead I owned the camera-to-distance path end to end: dataset, detector, ranging node, calibration tooling and the boat-side comms that let us test. I also wrote the team guide for camera-LiDAR calibration. I learned that the boring parts decide competitions, since a perfect detector means nothing if its output never reaches the boat. I worked with the wider VantTec student team across software, electrical and mechanical subgroups.</p>
                 <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
                 <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
               </section>
