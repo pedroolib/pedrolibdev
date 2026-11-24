@@ -726,3 +726,99 @@ h2 {
 .site-nav:not(.show-name) #nav-name {
   opacity: 0;
 }
+
+/* Case-study panels in an IEEE paper layout: numbered headings, two text columns, and "Fig. N." captions under small figures. */
+.ieee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem 2rem;
+  counter-reset: ieee-sec ieee-fig;
+  font-family: "Monocraft", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ieee > * {
+  width: 100%;
+}
+
+.ieee section p {
+  color: var(--fg);
+}
+
+.ieee section p:not(.text-dim) + p:not(.text-dim) {
+  text-indent: 1em;
+}
+
+.ieee section p.text-dim {
+  color: var(--dim);
+}
+
+.ieee > section:first-child > p:first-child {
+  column-span: all;
+  margin-bottom: 0.75em;
+  color: var(--dim);
+  text-align: center;
+}
+
+.ieee h3 {
+  column-span: all;
+  margin-bottom: 0.5em;
+  counter-increment: ieee-sec;
+  font-size: 15px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ieee h3::before {
+  content: counter(ieee-sec, upper-roman) ". ";
+}
+
+.ieee code {
+  font-family: inherit;
+}
+
+.ieee figure :is(img, video) {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(60vh, 560px);
+  margin-inline: auto;
+  border-radius: 0;
+}
+
+.ieee figcaption {
+  margin-top: 0.5em;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ieee figcaption::before {
+  counter-increment: ieee-fig;
+  content: "Fig. " counter(ieee-fig) ". ";
+  color: var(--fg);
+}
+
+@media (min-width: 768px) {
+  .ieee section {
+    column-count: 2;
+    column-gap: 2rem;
+  }
+
+  /* One figure fits one text column. Two figures in a row sit side by side. */
+  .ieee > figure {
+    width: calc(50% - 1rem);
+  }
+
+  /* Diagrams that open full size span both columns, as IEEE figure* does. */
+  .ieee > figure:has(> a) {
+    width: 100%;
+  }
+
+  .ieee > figure:has(> a) figcaption {
+    text-align: center;
+  }
+}
