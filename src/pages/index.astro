@@ -215,7 +215,7 @@ const discs = [
 
     <!-- Mobile mini nav -->
     <nav aria-label="Sections" class="site-nav sticky top-0 z-40 flex items-center justify-between border-b border-line px-4 py-2 backdrop-blur md:hidden">
-      <span class="text-micro text-fg">Pedro Librado Uribe Reyes</span>
+      <span id="nav-name" class="text-micro text-fg" aria-hidden="true">Pedro Librado Uribe Reyes</span>
       <div class="flex gap-4 text-micro">
         <a class="-my-1 py-1 text-muted" href="#projects">Projects</a>
         <a class="-my-1 py-1 text-muted" href="#about">About</a>
@@ -227,15 +227,18 @@ const discs = [
     <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-3 md:px-6">
       <div class="relative self-start" id="contact-wrap">
         <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
-        <button
-          id="contact-toggle"
-          class="mt-1 -mb-1 flex items-center gap-2 py-1 text-micro text-dim hover:text-fg"
-          aria-expanded="false"
-          aria-controls="contact-panel"
-        >
-          <span>libradouribe25@gmail.com</span>
-          <span aria-hidden="true" class="contact-icon inline-block text-base leading-none">+</span>
-        </button>
+        <div id="contact-row" class="mt-1 -mb-1 flex items-center gap-1 text-micro">
+          <a class="py-1 text-dim hover:text-fg" href="mailto:libradouribe25@gmail.com">libradouribe25@gmail.com</a>
+          <button
+            id="contact-toggle"
+            class="flex min-w-6 items-center justify-center py-1 text-dim hover:text-fg"
+            aria-expanded="false"
+            aria-controls="contact-panel"
+            aria-label="More contact links"
+          >
+            <span aria-hidden="true" class="contact-icon inline-block text-base leading-none">+</span>
+          </button>
+        </div>
         <div id="contact-panel" class="absolute left-0 top-full z-40 hidden min-w-[10rem] flex-col gap-1 pt-2 text-micro" hidden>
           <a class="drop-link text-muted hover:text-fg" href="https://www.instagram.com/pedroo.lib/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
           <a class="drop-link text-muted hover:text-fg" href="mailto:libradouribe25@gmail.com" aria-label="Email">Email</a>
@@ -249,7 +252,7 @@ const discs = [
       <div>
         <p class="text-[16px] text-fg">Robotics, AI & Software Engineer</p>
         <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
-        <p class="mt-2 max-w-[42ch] text-micro text-muted">Looking for an internship or research stay where I build something and get AI running on real hardware: robots, brain-computer interfaces, or the hardware that runs AI. I want to find what I am most passionate about and prepare for a field with strong industry demand.</p>
+        <p class="mt-2 max-w-[42ch] text-micro text-muted">Looking for an internship or research stay where I get AI running on real hardware: robots, brain-computer interfaces, or the hardware that runs AI. Robotics engineering student at Tecnológico de Monterrey, graduating June 2028.</p>
         <p class="mt-2 flex flex-wrap gap-x-4 text-micro">
           <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener">Resume</a>
           <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
@@ -282,7 +285,7 @@ const discs = [
         </dl>
         <div class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 text-micro">
           <span class="text-dim">Skills</span>
-          <span class="text-muted">Python, C++, Java, ROS 2, YOLO, TensorRT, LiDAR, OpenCV, Embedded Systems, IoT, Edge AI, Computer Vision, DevOps, Docker, Linux, NVIDIA Jetson, STM32, Full-Stack Development</span>
+          <span class="text-muted">Python, C/C++, Java, TypeScript, ROS 2, PyTorch, YOLO, TensorRT, CUDA, OpenCV, LiDAR-camera fusion, NVIDIA Jetson, STM32, ESP32, FreeRTOS, FPGA (VHDL, Verilog), Docker, Linux, FastAPI, PostgreSQL</span>
         </div>
       </div>
     </header>
@@ -336,12 +339,22 @@ const discs = [
           <div class="about-photo-img relative aspect-[4/5] overflow-hidden">
             <Image
               class="slide-img"
+              src={vantPits}
+              width="1280"
+              height="960"
+              alt="Group selfie of the VantTec team in black team shirts around the white twin-hull robot boat in the competition pits"
+              loading="lazy"
+              decoding="async"
+            />
+            <Image
+              class="slide-img"
               src={aboutSelfieHome}
               width="954"
               height="1200"
               alt="Selfie at home"
               loading="lazy"
               decoding="async"
+              hidden
             />
             <Image
               class="slide-img"
@@ -414,10 +427,8 @@ const discs = [
 
         <div class="about-texts mt-8 space-y-5 text-micro">
           <h3 class="font-bold text-fg">About Me</h3>
-          <p class="text-muted">When I'm not building something, I'm usually with people: out with my friends or my girlfriend, watching a game, or just talking.</p>
-          <p class="text-muted">I'm a Barça, Kansas City Chiefs and Dodgers fan, and I play flag football whenever I get the chance. I'm pretty competitive, so I get more invested in games than I probably should.</p>
-          <p class="text-muted">I've played video games most of my life, mostly Minecraft. I started on version 1.7 and somehow never stopped, and that's where the look of this website comes from.</p>
-          <p class="text-muted">There's almost always music on in the background, usually reggaeton. Rauw Alejandro is my favorite artist.</p>
+          <p class="text-muted">Outside of building things, I'm with friends, playing flag football, or watching Barça, the Chiefs or the Dodgers. There's almost always reggaeton on, usually Rauw Alejandro.</p>
+          <p class="text-muted">I've played Minecraft since version 1.7, and that's where the look of this website comes from.</p>
         </div>
         </div>
       </section>
@@ -539,6 +550,7 @@ const discs = [
                           src={item.video}
                           width={item.videoW}
                           height={item.videoH}
+                          poster={item.poster}
                           muted
                           loop
                           playsinline
@@ -570,6 +582,7 @@ const discs = [
                       {item.repo && (
                         <span aria-hidden="true" class="repo-float">↗ Repo</span>
                       )}
+                      <span aria-hidden="true" class="play-float">▶ Tap to play</span>
                     </div>
                   ) : item.img ? (
                     <Image
@@ -1250,6 +1263,18 @@ const discs = [
       const toggle = document.getElementById('contact-toggle');
       const panel = document.getElementById('contact-panel');
       const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const IS_TOUCH = window.matchMedia('(hover: none)').matches;
+
+      // Phone nav: show the name only once the header name is off screen.
+      const siteNav = document.querySelector('.site-nav');
+      const headerName = document.querySelector('header h1');
+      if (siteNav && headerName && 'IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+          siteNav.classList.toggle('show-name', !entry.isIntersecting);
+        }).observe(headerName);
+      } else {
+        siteNav?.classList.add('show-name');
+      }
       function setContactOpen(open) {
         toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
         if (!panel) return;
@@ -1276,8 +1301,8 @@ const discs = [
       toggle?.addEventListener('click', () => {
         setContactOpen(!isContactOpen());
       });
-      // Hover opens only over the email button. The stay-open zone is exactly the
-      // button (full email text + cross width) plus the panel — nothing else.
+      // Hover opens over the email row (address link + toggle). The stay-open
+      // zone is exactly that row plus the panel, nothing else.
       // Click still works for touch/keyboard.
       const canHover = () => window.matchMedia('(hover: hover)').matches;
       let contactCloseTimer = null;
@@ -1294,12 +1319,13 @@ const discs = [
           contactCloseTimer = null;
         }, 250);
       }
-      toggle?.addEventListener('mouseenter', () => {
+      const contactRow = document.getElementById('contact-row');
+      contactRow?.addEventListener('mouseenter', () => {
         if (!canHover()) return;
         cancelContactClose();
         setContactOpen(true);
       });
-      toggle?.addEventListener('mouseleave', () => {
+      contactRow?.addEventListener('mouseleave', () => {
         if (canHover()) scheduleContactClose();
       });
       panel?.addEventListener('mouseenter', () => {
@@ -1314,6 +1340,16 @@ const discs = [
       // Each photo card cycles its own slides; captions live on the images.
       document.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
+        // Touch screens: a tap on a demo video plays or pauses it, so phones
+        // download a video only when the visitor asks for it.
+        const tapZone = IS_TOUCH ? e.target.closest('.work-card .about-photo') : null;
+        const tapVideo = tapZone?.querySelector('video:not([hidden])');
+        if (tapVideo instanceof HTMLVideoElement && (tapVideo.paused || !e.target.closest('.about-next-btn'))) {
+          e.preventDefault();
+          if (tapVideo.paused) tapVideo.play().catch(() => {});
+          else tapVideo.pause();
+          return;
+        }
         const nextBtn = e.target.closest('.about-next-btn');
         if (nextBtn) {
           const zone = nextBtn.closest('.about-photo');
@@ -1589,8 +1625,8 @@ const discs = [
       }
 
       // Demo videos play only while their card is hovered/focused, and pause
-      // on leave. Reduced-motion users stay paused. Touch / no-hover devices
-      // can't hover, so those videos play while on screen instead.
+      // on leave. Reduced-motion users stay paused. Touch screens play a
+      // video only when it is tapped (see the click handler).
       if (!REDUCED_MOTION) {
         const cardVideos = Array.from(document.querySelectorAll('.work-card video'));
         if (window.matchMedia('(hover: hover)').matches) {
@@ -1603,19 +1639,17 @@ const discs = [
             card.addEventListener('focusin', syncPlayback);
             card.addEventListener('focusout', syncPlayback);
           });
-        } else if ('IntersectionObserver' in window) {
-          const vidObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (!(entry.target instanceof HTMLVideoElement)) return;
-                if (entry.isIntersecting) entry.target.play().catch(() => {});
-                else entry.target.pause();
-              });
-            },
-            { threshold: 0.25 }
-          );
-          cardVideos.forEach((v) => vidObserver.observe(v));
         }
+      }
+
+      // Touch screens: show "Tap to play" while a visible demo video is paused.
+      if (IS_TOUCH) {
+        document.querySelectorAll('.work-card video').forEach((v) => {
+          const zone = v.closest('.about-photo');
+          const sync = () => zone?.classList.toggle('is-playing', !v.paused && !v.hidden);
+          v.addEventListener('play', sync);
+          v.addEventListener('pause', sync);
+        });
       }
 
       // Scroll reveal: images and paragraphs fade up when seen, fade back

@@ -39,8 +39,8 @@
   --overlay: rgba(255, 255, 255, 0.84);
   --thumb-tile: url("/netherite_block.png");
   --fg: #0e0e0e;
-  --muted: #1e1e1e;
-  --dim: #3a3a3a;
+  --muted: #2a2a2a;
+  --dim: #4a4a4a;
   --paper: #d8d5cd;
   --ink: #eceae3;
   --line: #a09a8d;
@@ -693,4 +693,36 @@ h2 {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Touch screens: "Tap to play" pill on demo videos that are not playing.
+   Hidden on hover screens, where videos play on hover. */
+.play-float {
+  display: none;
+}
+
+@media (hover: none) {
+  .work-card .about-photo:not(.is-playing):has(video:not([hidden])) .play-float {
+    display: block;
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    z-index: 50;
+    background: #fff;
+    color: #000;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 12px;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+}
+
+/* Phones: the nav shows the name only after the header name scrolls away. */
+#nav-name {
+  transition: opacity 200ms ease;
+}
+
+.site-nav:not(.show-name) #nav-name {
+  opacity: 0;
 }

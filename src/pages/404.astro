@@ -1,0 +1,31 @@
+---
+import '../styles.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/gif" href="/favicon.gif" />
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem('pedrolibdev-theme') === 'light' ? 'light' : 'dark';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+    <title>Page not found — Pedro Librado Uribe Reyes</title>
+  </head>
+  <body class="bg-ink text-fg">
+    <main class="flex min-h-[100dvh] flex-col items-start justify-center gap-4 px-4 md:px-6">
+      <p class="text-micro text-dim">404</p>
+      <h1 class="text-[16px] font-normal text-fg">This block does not exist.</h1>
+      <p class="max-w-[42ch] text-micro text-muted">The page you asked for is not here. It may have moved, or the link may be wrong.</p>
+      <a class="-my-1 py-1 text-micro text-fg underline underline-offset-4 hover:text-muted" href="/">Back to pedrolib.dev</a>
+    </main>
+  </body>
+</html>
