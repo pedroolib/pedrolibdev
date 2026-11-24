@@ -12,5 +12,5 @@ test('lists SMALC as a 2026 robotics education volunteer experience', () => {
 });
 
 test('lists the current VantTec role before the completed SMALC role', () => {
-  assert.ok(page.indexOf("name: 'Vanttec'") < page.indexOf("name: 'SMALC'"));
+  assert.ok(page.indexOf("name: 'VantTec'") < page.indexOf("name: 'SMALC'"));
 });
