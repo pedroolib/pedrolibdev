@@ -784,7 +784,7 @@ h2 {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: min(60vh, 560px);
+  max-height: min(50vh, 480px);
   margin-inline: auto;
   border-radius: 0;
 }
@@ -802,7 +802,8 @@ h2 {
   color: var(--fg);
 }
 
-@media (min-width: 768px) {
+/* Below 1280px the panel is too narrow for two Monocraft columns. */
+@media (min-width: 1280px) {
   .ieee section {
     column-count: 2;
     column-gap: 2rem;
