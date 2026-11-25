@@ -18,9 +18,7 @@ import senDevice from '../assets/projects/sentinelbox/device-rooftop.webp';
 import senElectronics from '../assets/projects/sentinelbox/electronics.webp';
 import senDashboard from '../assets/projects/sentinelbox/dashboard.webp';
 import senTwin from '../assets/projects/sentinelbox/3d-twin.webp';
-import minorteLogo from '../assets/projects/minorte/minorte-logo.png';
 import minorteDashboard from '../assets/projects/minorte/dashboard2.webp';
-import minorteArch from '../assets/projects/minorte/architecture.webp';
 import uribotQuote from '../assets/projects/uribot/conversation-quote.png';
 import uribotBanner from '../assets/projects/uribot/uribot-banner.png';
 import innoField from '../assets/projects/innobotics/field-speaker-6694.jpeg';
@@ -95,15 +93,6 @@ const work = [
     stack: 'Java, WPILib, PID + feedforward control, NetworkTables, Gradle',
     team: 'FRC Team 6694 Innobotics · Software Lead & Captain · Feb 2022 – Jan 2025',
   },
-  {
-    id: 'project-4',
-    year: '26',
-    title: 'MiNorte — An AI financial team for small businesses',
-    what: 'A HackMTY 2026 Banorte Challenge project that turns small-business bank and invoice data into insights with evidence, a generated weekly dashboard, and next steps.',
-    impact: 'Answered the challenge brief: financial interfaces that AI generates in real time, built on MCP. A deterministic engine calculates every number, and the AI only explains it.',
-    stack: 'Python, FastAPI, Next.js 14, TypeScript, Supabase/Postgres, OpenAI, MCP, Playwright',
-    team: 'A HackMTY 2026 team project. I worked on the product logic, the backend systems and part of the frontend. My teammates built the rest of the frontend and the Playwright ticket-automation flow.',
-  },
 ];
 
 const playground = [
@@ -149,6 +138,15 @@ const playground = [
     videoH: 720,
     videoAlt: 'Demo video: Minecraft fishing bot casting and reeling automatically',
     repo: 'https://github.com/pedroolib/Minecraft-Fishing-AIBot',
+  },
+  {
+    title: 'MiNorte — AI Agents, MCP, Python',
+    desc: 'A HackMTY 2026 team project for the Banorte Challenge. A deterministic engine calculates cash flow, taxes and receivables for small businesses. AI agents explain the numbers through MCP tools and build a weekly dashboard.',
+    img: minorteDashboard,
+    imgW: 1440,
+    imgH: 900,
+    imgAlt: 'MiNorte weekly financial workspace with prioritized actions, discoveries, and financial visualizations',
+    repo: 'https://github.com/pedroolib/MiNorte-by-Banorte',
   },
   {
     title: 'John Deere Simulator — Unity, C#',
@@ -469,16 +467,6 @@ const discs = [
                     loading="lazy"
                     decoding="async"
                   />
-                ) : item.id === 'project-4' ? (
-                  <Image
-                    class="work-thumb aspect-[16/10] w-full border border-line object-cover"
-                    src={minorteLogo}
-                    width="1680"
-                    height="945"
-                    alt="MiNorte logo on a light background"
-                    loading="lazy"
-                    decoding="async"
-                  />
                 ) : item.id === 'project-5' ? (
                   <Image
                     class="work-thumb aspect-[4/3] w-full border border-line object-cover"
@@ -542,9 +530,10 @@ const discs = [
             return (
               <article class="work-card">
                 <Card class="block" {...cardLink}>
-                  {item.video ? (
+                  {item.video || item.repo ? (
                     <div class="about-photo relative aspect-[4/3] w-full border border-line">
                       <div class="about-photo-img absolute inset-0">
+                        {item.video && (
                         <video
                           class="slide-img"
                           src={item.video}
@@ -557,6 +546,7 @@ const discs = [
                           preload="metadata"
                           aria-label={item.videoAlt}
                         ></video>
+                        )}
                         {item.img && (
                           <Image
                             class="slide-img"
@@ -566,11 +556,11 @@ const discs = [
                             alt={item.imgAlt}
                             loading="lazy"
                             decoding="async"
-                            hidden
+                            hidden={item.video ? true : undefined}
                           />
                         )}
                       </div>
-                      {item.img && (
+                      {item.video && item.img && (
                         <button
                           class="about-next-btn absolute inset-0 h-full w-full cursor-pointer"
                           type="button"
@@ -582,7 +572,7 @@ const discs = [
                       {item.repo && (
                         <span aria-hidden="true" class="repo-float">↗ Repo</span>
                       )}
-                      <span aria-hidden="true" class="play-float">▶ Tap to play</span>
+                      {item.video && <span aria-hidden="true" class="play-float">▶ Tap to play</span>}
                     </div>
                   ) : item.img ? (
                     <Image
@@ -818,91 +808,6 @@ const discs = [
 
               <p class="border-t border-line pt-4 text-muted">
                 <a class="underline hover:text-fg" href="https://github.com/ayexxxd/SentinelBox" target="_blank" rel="noopener noreferrer">View the SentinelBox repository ↗</a>
-              </p>
-            </>
-          ) : item.id === 'project-4' ? (
-            <>
-              <section aria-labelledby="minorte-intro">
-                <p id="minorte-intro" class="mb-2 text-dim">A financial team inside your Banorte account</p>
-                <p class="text-muted">MiNorte helps small businesses understand their numbers and decide what to do next. It combines bank movements with invoice data, and a deterministic engine calculates the figures. Then AI explains them in plain Spanish and builds interface cards around each insight.</p>
-              </section>
-
-              <figure>
-                <Image
-                  class="aspect-[16/10] w-full border border-line object-cover"
-                  src={minorteLogo}
-                  width="1680"
-                  height="945"
-                  alt="MiNorte logo on a light background"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <figcaption class="text-dim">Built for the Banorte Challenge at HackMTY 2026.</figcaption>
-              </figure>
-
-              <section>
-                <h3 class="font-bold text-fg">The Banorte Challenge at HackMTY 2026</h3>
-                <p class="text-muted">The brief asked for AI agents that generate interfaces in real time, for an open use case in financial services, and it required MCP. We applied it to one small-business need: clear financial guidance that shows its evidence.</p>
-              </section>
-
-              <section>
-                <h3 class="font-bold text-fg">The financial engine and the AI agents</h3>
-                <p class="text-muted">A financial answer is only useful if the owner can trust the numbers. The MiNorte engine is deterministic. It calculates cash flow, profitability, tax estimates, reconciliation, and receivables. The AI agents get these figures through MCP tools. They explain what the numbers mean and help owners test decisions. They never make up a figure.</p>
-              </section>
-
-              <figure>
-                <a href={minorteArch.src} target="_blank" rel="noopener noreferrer" aria-label="Open the full-size MiNorte architecture diagram">
-                  <Image
-                    class="h-auto w-full border border-line bg-[#111318]"
-                    src={minorteArch}
-                    width="1440"
-                    height="771"
-                    alt="MiNorte architecture: FastAPI financial engine, AI agents and MCP tools connect through validated UI schemas to a Next.js workspace and Supabase Postgres"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </a>
-                <figcaption class="text-dim">The engine does all the calculations, and the agents write the explanations. Open the diagram for a full-size view.</figcaption>
-              </figure>
-
-              <section>
-                <h3 class="font-bold text-fg">The agents and the generated interface</h3>
-                <p class="text-muted">An Analyst agent ranks 10 insights and cites evidence from the engine for each one. A UI Designer agent turns them into cards from a validated component catalog, and every card includes a chart. The catalog keeps the generated interface predictable.</p>
-                <p class="text-muted">The weekly view shows four anchor metrics with comments, recommended actions, and discoveries that rotate every week. In chat, owners ask follow-up questions and see the evidence behind each answer. The Consultant agent answers with exact figures, evaluates a new hire or expense, and compares loans by their total annual cost (CAT).</p>
-              </section>
-
-              <figure>
-                <Image
-                  class="aspect-[16/10] w-full border border-line object-cover"
-                  src={minorteDashboard}
-                  width="1440"
-                  height="900"
-                  alt="MiNorte weekly financial workspace with prioritized actions, discoveries, and financial visualizations"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-
-              <section>
-                <h3 class="font-bold text-fg">Collections and receipt invoicing</h3>
-                <p class="text-muted">MiNorte also acts on its analysis. It finds overdue receivables and sends real reminder emails through Resend, after the owner confirms, and never twice in 24 hours. For a purchase, the owner uploads a photo of the receipt. MiNorte extracts the data, and a Playwright browser agent fills in the CFDI invoice request. The agent stops for human confirmation before irreversible steps, and also stops at a CAPTCHA or an unexpected login.</p>
-              </section>
-
-              <section>
-                <h3 class="font-bold text-fg">My contributions and the team</h3>
-                <p class="text-muted">I spent most of my time on the systems behind MiNorte: the financial logic, the backend, the MCP tools, and the AI workflows that turn business data into insights and dashboard cards. I also helped shape the product and made the original design. On the frontend, I built some of the shadcn cards and the dashboard pages. My teammates built the rest of the frontend. They also built the Playwright ticket-automation flow, which started from an idea of mine.</p>
-                <p class="text-muted">MiNorte was a HackMTY team project. The final app combines the financial workflows, the interface, the AI agents, and the browser automation.</p>
-              </section>
-
-              <section>
-                <h3 class="font-bold text-fg">Summary and stack</h3>
-                <p class="text-muted">MiNorte is one way to make real-time AI interfaces useful in financial services. A deterministic system does the math, and the agents get structured tools through MCP. The owner gets results that are easy to read and act on.</p>
-                <p class="text-dim">Stack: <span class="text-muted">{item.stack}</span></p>
-                <p class="text-dim">Team: <span class="text-muted">{item.team}</span></p>
-              </section>
-
-              <p class="border-t border-line pt-4 text-muted">
-                <a class="underline hover:text-fg" href="https://github.com/pedroolib/MiNorte-by-Banorte" target="_blank" rel="noopener noreferrer">Explore the MiNorte repository ↗</a>
               </p>
             </>
           ) : item.id === 'project-5' ? (
