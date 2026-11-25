@@ -297,7 +297,7 @@ button {
 
 .work-card img:not(.slide-img),
 .work-thumb {
-  filter: blur(var(--column-blur, 2px)) brightness(var(--column-brightness, 0.45));
+  filter: blur(var(--column-blur, 0.5px)) brightness(var(--column-brightness, 0.75));
   transition: filter 1200ms ease;
 }
 
@@ -320,12 +320,12 @@ button {
 
 /* Every visual in a column shares the same dim/active state. */
 .about-photo {
-  filter: brightness(var(--column-brightness, 0.45));
+  filter: brightness(var(--column-brightness, 0.75));
   transition: filter 1200ms ease;
 }
 
 .about-texts {
-  filter: brightness(var(--column-brightness, 0.45));
+  filter: brightness(var(--column-brightness, 0.75));
   transition: filter 1200ms ease;
 }
 
@@ -341,9 +341,9 @@ button {
   transition: color 1200ms ease;
 }
 
-/* About photos stay blurred until their column is active. */
+/* About photos are slightly soft until their column is active. */
 .about-photo .about-photo-img {
-  filter: blur(var(--column-blur, 2px));
+  filter: blur(var(--column-blur, 0.5px));
   transition: filter 1200ms ease;
 }
 
@@ -423,8 +423,8 @@ button {
   flex-direction: column;
   gap: 0;
   min-width: 0;
-  --column-blur: 2px;
-  --column-brightness: 0.45;
+  --column-blur: 0.5px;
+  --column-brightness: 0.75;
 }
 
 /* Touch screens have no hover to light a column, so show every visual clearly. */
@@ -815,11 +815,19 @@ h2 {
   }
 
   /* Diagrams that open full size span both columns, as IEEE figure* does. */
-  .ieee > figure:has(> a) {
+  .ieee > figure:has(> a),
+  .ieee > figure.ieee-wide {
     width: 100%;
   }
 
-  .ieee > figure:has(> a) figcaption {
+  .ieee > figure:has(> a) figcaption,
+  .ieee > figure.ieee-wide figcaption {
     text-align: center;
   }
+}
+
+/* Card descriptions: one step larger than the 12px labels, for easier reading. */
+.card-desc {
+  font-size: 13px;
+  line-height: 1.55;
 }

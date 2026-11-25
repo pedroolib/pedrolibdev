@@ -36,6 +36,7 @@ import vantLake from '../assets/projects/vanttec/lake-gates.jpeg';
 import vantCart from '../assets/projects/vanttec/crew-cart.jpeg';
 import vantPool from '../assets/projects/vanttec/pool-test.jpeg';
 import vantElectronics from '../assets/projects/vanttec/electronics-bay.jpeg';
+import vantFusion from '../assets/projects/vanttec/presa-lidar-yolo.jpg';
 
 
 const experience = [
@@ -51,9 +52,9 @@ const work = [
   {
     id: 'project-1',
     year: '25—Now',
-    title: 'VantTec USV Perception — Perception stack for RoboBoat',
-    what: 'Rebuilt the ROS 2 perception stack of an autonomous surface vehicle after its stereo camera failed. Trained its YOLO buoy dataset and set up its XBee telemetry and remote terminal access.',
-    impact: 'Brought back the object ranges that the old pipeline stopped publishing, and made the boat testable in the field over radio links. I am bringing it to RoboBoat 2027.',
+    title: 'VantTec USV Perception — Camera and LiDAR fusion for RoboBoat',
+    what: 'A ROS 2 node that fuses YOLO detections with Velodyne LiDAR points to measure how far away each buoy is. Live on the boat: 4.3 m measured, 4.26 m by tape measure.',
+    impact: 'Brought back the object ranges that the old pipeline stopped publishing, with a LiDAR-camera calibration of 1.5 px mean reprojection error. I am bringing it to RoboBoat 2027.',
     stack: 'ROS 2 Humble, Python, C++, OpenCV, NumPy, TensorRT, ONNX, YOLO, Velodyne VLP-16, Gazebo Harmonic, rosbag2, Docker, NVIDIA Jetson, XBee telemetry, systemd, Git',
     team: 'USV Perception Lead on the VantTec student robotics team.',
   },
@@ -250,7 +251,7 @@ const discs = [
       <div class="lg:pr-12">
         <p class="text-[16px] text-fg">B.S. Robotics &amp; Digital Systems Student <span class="whitespace-nowrap">@ Tec de Monterrey</span></p>
         <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
-        <p class="mt-2 text-micro text-muted">Looking for an internship or research stay in robotics, BCI or AI hardware. Graduating June 2028.</p>
+        <p class="mt-2 text-micro text-muted">Looking for an internship or research stay in robotics or AI hardware. Graduating June 2028.</p>
         <p class="mt-2 flex flex-wrap gap-x-4 text-micro">
           <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener">Resume</a>
           <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
@@ -384,7 +385,7 @@ const discs = [
           </button>
         </div>
 
-        <div class="about-texts mt-8 space-y-5 text-micro">
+        <div class="about-texts mt-8 space-y-5 text-[13px] leading-[1.6]">
           <p><strong class="font-bold text-fg">Background</strong> <span class="text-dim">—</span> <span class="text-muted">I grew up in Mexicali, Mexico, and I've been building things since I was a kid. Robotics competitions got me into engineering early, and they still shape how I work: build it, break it, fix it, and try again.</span></p>
           <p><strong class="font-bold text-fg">Focus</strong> <span class="text-dim">—</span> <span class="text-muted">I like designing systems where the hardware and software have to work for the people using them. I work across robotics, AI, embedded systems and software, and I care most about efficiency and about building things people can use every day.</span></p>
           <p><strong class="font-bold text-fg">Concerns</strong> <span class="text-dim">—</span> <span class="text-muted">Technology should make things simpler and more efficient. Extra complexity has a cost, so I only add it when it pays for itself. I also want what I build to get past the prototype stage and actually get used.</span></p>
@@ -423,7 +424,7 @@ const discs = [
           </button>
         </div>
 
-        <div class="about-texts mt-8 space-y-5 text-micro">
+        <div class="about-texts mt-8 space-y-5 text-[13px] leading-[1.6]">
           <h3 class="font-bold text-fg">About Me</h3>
           <p class="text-muted">Outside of building things, I'm with friends, playing flag football, or watching Barça, the Chiefs or the Dodgers. There's almost always reggaeton on, usually Rauw Alejandro.</p>
           <p class="text-muted">I've played Minecraft since version 1.7, and that's where the look of this website comes from.</p>
@@ -490,10 +491,10 @@ const discs = [
                 ) : item.id === 'project-1' ? (
                   <Image
                     class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                    src={vantElectronics}
-                    width="1280"
-                    height="767"
-                    alt="Close view of the open electronics bay of the VantTec boat: compute enclosure, wiring and sensor mast"
+                    src={vantFusion}
+                    width="1230"
+                    height="694"
+                    alt="Camera view from the VantTec boat on a lake, with LiDAR points drawn over the image and a YOLO box around a red buoy labeled round 4.3 m"
                     loading="lazy"
                     decoding="async"
                   />
@@ -503,7 +504,7 @@ const discs = [
                   <span class="float-right text-dim">{item.year}</span>
                 </p>
               </button>
-              <p class="mt-1 text-micro text-dim">{item.what}</p>
+              <p class="card-desc mt-1 text-muted">{item.what}</p>
             </article>
           ))}
         </div>
@@ -586,7 +587,7 @@ const discs = [
                     />
                   ) : null}
                   <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
-                  <p class="mt-1 text-micro text-dim">{item.desc}</p>
+                  <p class="card-desc mt-1 text-muted">{item.desc}</p>
                 </Card>
               </article>
             );
@@ -1042,16 +1043,22 @@ const discs = [
                 <p class="text-muted">VantTec builds an autonomous surface vehicle for RoboBoat. The boat must find buoys, markers and docks on open water with no driver. I joined as Perception Lead and owned everything the boat sees and how far away it thinks things are.</p>
               </section>
 
-              <figure>
-                <Image
-                  class="aspect-[4/3] w-full border border-line object-cover"
-                  src={vantPits}
+              <figure class="ieee-wide">
+                <video
+                  class="h-auto w-full border border-line"
+                  src="/projects/vanttec/visionsystemx.mp4"
+                  poster="/projects/vanttec/visionsystemx-poster.jpg"
                   width="1280"
-                  height="960"
-                  alt="Group selfie of students in black team shirts and event lanyards gathered around a small white twin-hull robot boat on a stand, one student holding an RC transmitter, with wiring and electronics visible inside the open hull and a work tent behind them"
-                  loading="lazy"
-                  decoding="async"
-                />
+                  height="720"
+                  controls
+                  data-panel-autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="VisionSystemX demo: Velodyne point clouds, the hallway calibration with a planar board, the solvePnP result, and the field test on the lake where a YOLO box around a red buoy reads round 4.3 m"
+                ></video>
+                <figcaption>Live on the boat's NVIDIA Jetson at Presa de La Boca. For this buoy the node reads 4.3 m, and the tape measure reads 4.26 m.</figcaption>
               </figure>
 
               <section>
@@ -1061,8 +1068,14 @@ const discs = [
 
               <section>
                 <h3 class="font-bold text-fg">What I built</h3>
-                <p class="text-muted">I rebuilt the vision pipeline after the boat lost its ZED stereo camera. The new design pairs a Velodyne VLP-16 LiDAR with a Logitech C920 USB webcam. YOLO finds buoys and markers as 2D boxes. My ROS 2 node, <code>lidar_bbox_range_node.py</code>, projects LiDAR points into each box and takes the median range, with MAD outlier rejection. It publishes 3D positions in the same message format the old ZED node used, so the mission code needed no changes.</p>
+                <p class="text-muted">The boat used a ZED stereo camera for depth. When the ZED stopped working, I replaced it with a Logitech C920 USB webcam and a Velodyne VLP-16 LiDAR. YOLO finds buoys and markers and draws a 2D box around each one. My ROS 2 node, <code>lidar_bbox_range_node.py</code>, moves every LiDAR point into the camera frame and projects it onto the image. It keeps only the points inside a slightly shrunken box, so the water and the shore behind the buoy do not count. The median distance of those points, after MAD outlier rejection, is the distance to the buoy. The node publishes in the same message format the old ZED node used, so the mission code needed no changes.</p>
                 <p class="text-muted">I also trained the YOLO buoy dataset that the detector runs on and compiled the TensorRT engine for our hardware. Before I trusted the loop near water, I tested it in Gazebo Harmonic and on recorded boat data. On the boat I also set up the unglamorous plumbing that field tests need. That meant udev rules that pin every serial device and a remote terminal over Holybro radios. It also meant XBee telemetry nodes that republish topics to shore.</p>
+              </section>
+
+              <section>
+                <h3 class="font-bold text-fg">Calibrating a sparse LiDAR to the camera</h3>
+                <p class="text-muted">The distances are only right if the software knows exactly where the LiDAR sits relative to the camera. I spent a night walking a dark hallway with a 70 × 61 cm MDF board. My first try was to click the board center in the point cloud by hand, and that gave 13 px of error. The VLP-16 has only 16 rings, so most clicks land between them.</p>
+                <p class="text-muted">So I wrote my own tool. It fits a plane and the board rectangle to the ends of every ring that hits the board, and it ignores my torso. With 17 point pairs, solvePnP gave a mean reprojection error of 1.5 px. The LiDAR position came out within about 2 cm of the tape measure. The webcam autofocus alone moved the focal length by 2%, so I locked the focus and recalibrated.</p>
               </section>
 
               <figure>
@@ -1078,15 +1091,40 @@ const discs = [
                 <figcaption class="text-dim">The lake course: glare, reflections and drifting buoys.</figcaption>
               </figure>
 
+              <figure>
+                <Image
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src={vantElectronics}
+                  width="1280"
+                  height="767"
+                  alt="Close view of the open electronics bay of the VantTec boat: compute enclosure, wiring and sensor mast"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="text-dim">The electronics bay, where the perception stack runs.</figcaption>
+              </figure>
+
               <section>
-                <h3 class="font-bold text-fg">Testing in the pool and on lakes</h3>
-                <p class="text-muted">We tested in an indoor pool at home and on open lakes at events. A lake brings glare, reflections, drifting buoys and a boat that never sits still. Appearance alone is hard to trust there, so the design takes distance from LiDAR range. During one task, the old depth-camera pipeline silently stopped publishing objects. The logs showed hundreds of detections going in and zero objects coming out. My rebuild replaced that pipeline.</p>
+                <h3 class="font-bold text-fg">Testing on the water</h3>
+                <p class="text-muted">We tested in an indoor pool at home, on open lakes at events, and live on the boat at Presa de La Boca. A lake brings glare, reflections, drifting buoys and a boat that never sits still. Appearance alone is hard to trust there, so the design takes distance from LiDAR range. During one task, the old depth-camera pipeline silently stopped publishing objects. The logs showed hundreds of detections going in and zero objects coming out. My rebuild replaced that pipeline.</p>
               </section>
 
               <section>
                 <h3 class="font-bold text-fg">Results</h3>
-                <p class="text-muted">In simulation the new node placed a buoy at about 6.2 meters against a ground truth of roughly 7 meters. It also rejected a mirrored false box. On recorded boat data it measured real dock structures at 2 to 5 meters and distant markers at 15 to 17 meters. I am bringing this stack to RoboBoat 2027.</p>
+                <p class="text-muted">Live on the boat's Jetson at Presa de La Boca, the node measured a buoy at 4.3 m, and the tape measure read 4.26 m. In simulation it placed a buoy at about 6.2 m against a ground truth of roughly 7 m, and it rejected a mirrored false box. On recorded boat data it measured real dock structures at 2 to 5 m and distant markers at 15 to 17 m. I am bringing this stack to RoboBoat 2027.</p>
               </section>
+
+              <figure>
+                <Image
+                  class="aspect-[4/3] w-full border border-line object-cover"
+                  src={vantPits}
+                  width="1280"
+                  height="960"
+                  alt="Group selfie of students in black team shirts and event lanyards gathered around a small white twin-hull robot boat on a stand, one student holding an RC transmitter, with wiring and electronics visible inside the open hull and a work tent behind them"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
 
               <figure>
                 <Image
