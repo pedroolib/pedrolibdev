@@ -91,7 +91,22 @@ const resumeIndex = [
   { slug: 'smart-tractor', year: '26', name: 'Smart Tractor', role: 'Embedded systems', repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
     video: '/playground/smarttractor/VideoTractor.mp4', poster: '/playground/smarttractor/poster.jpg',
     imgAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
-    proof: 'STM32 firmware on FreeRTOS runs a Simulink engine model every 40 ms, with MQTT telemetry to Grafana and fail-safe braking.' },
+    proof: 'STM32 firmware on FreeRTOS runs a Simulink engine model every 40 ms, with MQTT telemetry to Grafana, fail-safe braking and drowsiness detection.' },
+];
+
+// Copied from the resume's Awards, Presentations, Leadership and Interests sections, newest first.
+const awards = [
+  { year: '2026', what: 'Carrier Keep It Cool Hackathon, Monterrey (SentinelBox)', result: '1st place' },
+  { year: '2026', what: 'RoboBoat 2026, autonomous surface vehicle competition (VantTec)', result: 'Top Latin American team' },
+  { year: '2025–26', what: 'FTC software mentor, Botbusters (4 teams). Robotics teacher, SMALC (class of 25 children)', result: 'Volunteering' },
+  { year: '2024–26', what: "Flag football league champion: men's 2025 and 2026, mixed 2025, and 2024 with finals MVP", result: '4 league titles' },
+  { year: '2023–24', what: 'FRC Regionals: Hermosillo 2024 (3rd place) and Monterrey 2023 (5th place)', result: 'Spirit and Imagery Awards' },
+  { year: '2023–24', what: "Volunteer, Mexicali: robot STEM booth at the Intuitive race, and activities at 3 children's homes", result: 'Volunteering' },
+  { year: '2023', what: 'AI hardware research talks: ENLACE conference, UC San Diego, and UCSD-ENLACE-México Symposium', result: 'Invited talk' },
+  { year: '2023', what: 'Baja California State Youth Award, Science and Technology', result: 'Honorable mention' },
+  { year: '2021', what: 'NASEF Farmcraft, representing Mexico', result: '1st place worldwide' },
+  { year: '2021', what: 'World Robot Olympiad Mexico', result: '3rd place national' },
+  { year: '2018–21', what: 'Infomatrix World Finals, Bucharest (3rd place worldwide). Robomatrix (2nd place continental). Named a "SOLACYT Legend"', result: '3rd worldwide' },
 ];
 
 const work = [
@@ -154,8 +169,8 @@ const playground = [
     repo: 'https://github.com/pedroolib/football-sim-rl',
   },
   {
-    title: 'FPGA Controller — FPGA, UART, Digital Systems',
-    desc: 'A handheld controller with seven-segment displays that runs on an FPGA. It controls the John Deere simulator in real time over UART.',
+    title: 'FPGA Controller — VHDL, FPGA, UART',
+    desc: 'A handheld controller with seven-segment displays, written in VHDL on a DE10-Lite FPGA board. It controls the John Deere simulator in real time over UART at 115200 baud.',
     img: fpgaControllerImg,
     poster: fpgaControllerImg.src,
     imgW: 1200,
@@ -276,6 +291,7 @@ const discs = [
             <p class="mt-4 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[17px]">
               I'm looking for an <span class="text-fg">internship or research stay in robotics or AI hardware</span>.
               I graduate in June 2028 and live in Monterrey, Nuevo León, México.
+              Before Tec, I earned the <span class="text-fg">IB Diploma</span> at CETYS Preparatoria in Mexicali.
             </p>
             <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[16px] md:text-[17px]">
               <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="mailto:libradouribe25@gmail.com">Email</a>
@@ -286,11 +302,14 @@ const discs = [
               <span aria-hidden="true" class="text-dim">·</span>
               <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
             </p>
-            {/* Skills hidden for now: remove this comment wrapper to show them again.
-            <p class="mt-4 max-w-[70ch] text-[14px] leading-[1.6]">
-              <span class="text-dim">Skills </span><span class="text-muted">Python, C/C++, Java, TypeScript, ROS 2, PyTorch, YOLO, TensorRT, CUDA, OpenCV, LiDAR-camera fusion, NVIDIA Jetson, STM32, ESP32, FreeRTOS, FPGA (VHDL, Verilog), Docker, Linux, FastAPI, PostgreSQL</span>
-            </p>
-            */}
+            <!-- Same lists as the resume's Skills section -->
+            <dl class="mt-6 max-w-[70ch] space-y-1 text-[14px] leading-[1.6]">
+              <div><dt class="inline text-dim">Robotics </dt><dd class="inline text-muted">ROS 2, Gazebo, LiDAR-camera calibration and sensor fusion, PID + feedforward, WPILib</dd></div>
+              <div><dt class="inline text-dim">Edge AI and vision </dt><dd class="inline text-muted">PyTorch (Ultralytics YOLO), CUDA, TensorRT, ONNX, OpenCV, NVIDIA Jetson</dd></div>
+              <div><dt class="inline text-dim">Embedded </dt><dd class="inline text-muted">STM32, ESP32, bare-metal C, FreeRTOS, FPGA (VHDL, Verilog), UART, CAN, MQTT</dd></div>
+              <div><dt class="inline text-dim">Software </dt><dd class="inline text-muted">Python, C/C++, Java, MATLAB/Simulink, Linux, Docker, Git, PostgreSQL, Agile/Scrum</dd></div>
+              <div><dt class="inline text-dim">Languages </dt><dd class="inline text-muted">Spanish (native), English (fluent)</dd></div>
+            </dl>
           </div>
           <div class="intro-photo relative w-full max-w-[18rem] self-start md:max-w-none">
             <Image
@@ -661,6 +680,22 @@ const discs = [
         </div>
       </div>
       </div>
+      <!-- Awards: same order and wording as the resume -->
+      <section id="awards" aria-labelledby="awards-heading" class="scroll-mt-16 px-4 pb-20 pt-10 md:px-6">
+        <div class="mx-auto max-w-[1120px]">
+        <h2 id="awards-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Awards and Talks</h2>
+        <ul class="mt-6 border-t border-line lg:mt-8">
+          {awards.map((a) => (
+            <li class="grid grid-cols-[5.5rem_1fr] gap-x-4 gap-y-1 border-b border-line py-4 text-[15px] leading-[1.5] md:grid-cols-[7rem_1fr_auto] md:gap-x-8 md:text-[16px] lg:text-[18px]">
+              <span class="tabular text-dim">{a.year}</span>
+              <span class="text-muted">{a.what}</span>
+              <span class="col-start-2 text-[14px] text-fg md:col-start-auto md:text-right md:text-[16px]">{a.result}</span>
+            </li>
+          ))}
+        </ul>
+        </div>
+      </section>
+
     </main>
 
     <!-- Case-study side panel -->
@@ -751,7 +786,7 @@ const discs = [
               <section>
                 <h3 class="font-bold text-fg">My role</h3>
                 <p class="text-muted">As founder, I designed and built Uribot, both the product and the software. That covers the multi-tenant architecture, conversation engine, AI tool system, channel integrations, data layer, and deployment infrastructure. I also designed the product experience and the workflows that hand a conversation to a person when needed.</p>
-                <p class="text-muted">Revenue to date: approximately <strong class="font-bold text-fg">US$1,500</strong>.</p>
+                <p class="text-muted">Today 2 businesses run on Uribot. They get about 500 messages a month, and the bot sends 85% of the replies. Revenue to date: approximately <strong class="font-bold text-fg">US$1,500</strong>.</p>
               </section>
 
               <section>
@@ -1165,13 +1200,13 @@ const discs = [
               <section>
                 <h3 class="font-bold text-fg">What I built</h3>
                 <p class="text-muted">The boat used a ZED stereo camera for depth. When the ZED stopped working, I replaced it with a Logitech C920 USB webcam and a Velodyne VLP-16 LiDAR. YOLO finds buoys and markers and draws a 2D box around each one. My ROS 2 node, <code>lidar_bbox_range_node.py</code>, moves every LiDAR point into the camera frame and projects it onto the image. It keeps only the points inside a slightly shrunken box, so the water and the shore behind the buoy do not count. The median distance of those points, after MAD outlier rejection, is the distance to the buoy. The node publishes in the same message format the old ZED node used, so the mission code needed no changes.</p>
-                <p class="text-muted">I also trained the YOLO buoy dataset that the detector runs on and compiled the TensorRT engine for our hardware. Before I trusted the loop near water, I tested it in Gazebo Harmonic and on recorded boat data. On the boat I also set up the unglamorous plumbing that field tests need. That meant udev rules that pin every serial device and a remote terminal over Holybro radios. It also meant XBee telemetry nodes that republish topics to shore.</p>
+                <p class="text-muted">I also trained the YOLO buoy dataset that the detector runs on and compiled the TensorRT engine for our hardware. Before I trusted the loop near water, I tested it in Gazebo Harmonic and on recorded boat data. On the boat I also set up the unglamorous plumbing that field tests need. That meant udev rules that pin every serial device and a remote terminal over Holybro radios. It also meant the SocketCAN setup and XBee telemetry nodes that republish topics to shore. I plan this perception work with the rest of the team in team-wide Scrum sprints.</p>
               </section>
 
               <section>
                 <h3 class="font-bold text-fg">Calibrating a sparse LiDAR to the camera</h3>
                 <p class="text-muted">The distances are only right if the software knows exactly where the LiDAR sits relative to the camera. I spent a night walking a dark hallway with a 70 × 61 cm MDF board. My first try was to click the board center in the point cloud by hand, and that gave 13 px of error. The VLP-16 has only 16 rings, so most clicks land between them.</p>
-                <p class="text-muted">So I wrote my own tool. It fits a plane and the board rectangle to the ends of every ring that hits the board, and it ignores my torso. With 17 point pairs, solvePnP gave a mean reprojection error of 1.5 px. The LiDAR position came out within about 2 cm of the tape measure. The webcam autofocus alone moved the focal length by 2%, so I locked the focus and recalibrated.</p>
+                <p class="text-muted">So I wrote my own tool. It fits a plane and the board rectangle to the ends of every ring that hits the board, and it ignores my torso. With 17 point pairs, solvePnP gave a mean reprojection error of 1.5 px. The LiDAR position came out within about 2 cm of the tape measure. The webcam autofocus alone moved the focal length by 2%, so I locked the focus and recalibrated. Then I wrote the team's calibration guide.</p>
               </section>
 
               <figure>
