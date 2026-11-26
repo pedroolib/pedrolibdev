@@ -380,12 +380,14 @@ button {
   --column-brightness: 1;
 }
 
-/* Projects is a full-width band, not a column: each card lights up on its own. */
+/* Experience and Projects are full-width bands, not a column: each card lights up on its own. */
+#experience .work-card:is(:hover, :focus-within),
 #projects .work-card:is(:hover, :focus-within) {
   --column-blur: 0px;
   --column-brightness: 1;
 }
 
+#experience .work-card:is(:hover, :focus-within) :is(.work-title, .text-dim, .text-muted),
 #projects .work-card:is(:hover, :focus-within) :is(.work-title, .text-dim, .text-muted) {
   color: var(--fg);
 }

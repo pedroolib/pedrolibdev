@@ -48,14 +48,14 @@ import vantFusion from '../assets/projects/vanttec/presa-lidar-yolo.jpg';
 
 const experience = [
   { year: '25—Now', name: 'VantTec', tags: 'USV Perception Lead', id: 'project-1' },
-  { year: '25', name: 'Botbusters', tags: 'FTC Robotics Mentor', id: null },
+  { year: '25—26', name: 'Botbusters', tags: 'FTC Software Mentor', id: null },
   { year: '23', name: 'UC San Diego', tags: 'Research Intern', id: 'project-5' },
-  { year: '22—25', name: 'Innobotics', tags: 'Software Lead & Captain', id: 'project-6' },
+  { year: '22—25', name: 'Innobotics', tags: 'Captain and Software Lead', id: 'project-6' },
   { year: '16—22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: null }
 ];
 
-// '25—Now' -> '2025 – now', '22—25' -> '2022 – 2025'
-const fullYears = (y: string) => y.split('—').map((part) => (part === 'Now' ? 'now' : `20${part}`)).join(' – ');
+// '25—Now' -> '2025 – Present', '22—25' -> '2022 – 2025' (the resume's wording)
+const fullYears = (y: string) => y.split('—').map((part) => (part === 'Now' ? 'Present' : `20${part}`)).join(' – ');
 // Each logo sits on its own background color (Botbusters ships on black).
 const logos: Record<string, { src: ImageMetadata; bg: string }> = {
   'Tec de Monterrey': { src: logoTec, bg: '#ffffff' },
@@ -70,23 +70,25 @@ const tiles = [
   ...experience.map((item) => ({ name: item.name, role: item.tags, years: fullYears(item.year), id: item.id })),
 ];
 
-// The resume's main entries, in the resume's order (Smart Tractor lives in the playground). `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
+// The resume's Experience and Projects entries, in the resume's order and with the resume's titles and dates,
+// so a reader who clicks a resume line lands on the same words (Smart Tractor lives in the playground).
+// `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
 const resumeIndex = [
-  { slug: 'vanttec', year: '25—Now', name: 'VantTec', role: 'USV Perception Lead', modal: 'project-1', img: vantFusion,
+  { slug: 'vanttec', section: 'experience', title: 'USV Perception Lead @ VantTec', meta: 'Tecnológico de Monterrey · 2025 – Present', modal: 'project-1', img: vantFusion,
     video: '/projects/vanttec/fusion-card.mp4', poster: '/projects/vanttec/fusion-card-poster.jpg', videoW: 640, videoH: 640,
     imgAlt: 'Camera view from the VantTec boat on a lake, with LiDAR points drawn over the image and a YOLO box around a red buoy labeled round 4.3 m',
     proof: 'Camera and Velodyne LiDAR fusion in ROS 2 for an autonomous boat. Live on the Jetson: 4.3 m measured, 4.26 m by tape.' },
-  { slug: 'ucsd', year: '23', name: 'UC San Diego', role: 'Research Intern, VLSI Lab', modal: 'project-5', img: shapeStage,
+  { slug: 'ucsd', section: 'experience', title: 'Research Intern @ UC San Diego', meta: 'VLSI Information Processing Lab · Jun 2023 – Aug 2023', modal: 'project-5', img: shapeStage,
     imgAlt: 'Closing presentation at UC San Diego, Jacobs School of Engineering, Electrical and Computer Engineering',
     proof: 'A real-time shape classifier with weights quantized to 4-bit integers for a Xilinx ZYNQ: 98.37% accuracy vs 98.77% in floating point.' },
-  { slug: 'innobotics', year: '22—25', name: 'Innobotics FRC 6694', role: 'Captain and Software Lead', modal: 'project-6', img: innoField,
+  { slug: 'innobotics', section: 'experience', title: 'Captain and Software Lead @ Innobotics FRC Team 6694', meta: 'Mexicali, MX · Feb 2022 – Jan 2025', modal: 'project-6', img: innoField,
     imgAlt: 'FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker',
     proof: 'Grew from mechanics to captain. Owned the Java/WPILib robot code: 7 subsystems, autonomous routines, PID + feedforward control.' },
-  { slug: 'uribot', year: '25—Now', name: 'Uribot', role: 'Founder', modal: 'project-2', img: uribotQuote,
+  { slug: 'uribot', section: 'projects', title: 'Uribot', sub: 'AI automation SaaS for small businesses', meta: 'Founder · 2025 – Present', modal: 'project-2', img: uribotQuote,
     video: '/projects/uribot/oil-change-card.mp4', poster: '/projects/uribot/oil-change-card-poster.jpg', videoW: 640, videoH: 640,
     imgAlt: 'Animated Uribot WhatsApp chat: a customer asks for an oil-change quote for a 2013 Escape, gets synthetic and semi-synthetic prices, and books an appointment for the next morning',
     proof: 'Turns WhatsApp, Instagram and Messenger chats into quotes and bookings. 2 active businesses, ~US$1,500 revenue.' },
-  { slug: 'sentinelbox', year: '26', name: 'SentinelBox', role: 'Electronics and firmware', modal: 'project-3', img: senTeam,
+  { slug: 'sentinelbox', section: 'projects', title: 'SentinelBox', sub: 'Edge-AI HVAC predictive maintenance', meta: 'Electronics and firmware · 2026', modal: 'project-3', img: senTeam,
     imgAlt: 'SentinelBox team celebrating its first-place hackathon result',
     proof: 'An ESP32 gateway runs a 259-parameter neural network in plain C to catch HVAC failures early. 1st place, Carrier Keep It Cool Hackathon.' },
 ];
@@ -150,7 +152,7 @@ const work = [
   {
     id: 'project-5',
     year: '23',
-    title: 'High-performance processor design for artificial intelligence — UCSD ENLACE',
+    title: 'UC San Diego — Real-time shape classifier with 4-bit weights for AI hardware',
     what: 'A real-time shape classifier built at UC San Diego. It uses a linear SVM with its weights quantized to 4-bit integers, with a hardware version in mind.',
     impact: 'Kept 98%+ accuracy after quantization and ran live from a webcam in Colab. I presented it at the ENLACE closing conference at UCSD and in an invited talk at the UCSD-ENLACE-México Symposium in Tijuana.',
     stack: 'Python, OpenCV, scikit-learn, NumPy, Matplotlib, Google Colab, Xilinx ZYNQ',
@@ -163,7 +165,7 @@ const work = [
     what: 'Three seasons with FRC Team 6694 in Mexicali, Monterrey, and Hermosillo. I started in mechanics, became captain, then led the robot code, autonomous routines, and PID and feedforward control.',
     impact: '3rd place and the Spirit Award at Hermosillo 2024. 5th place and the Imagery Award at Monterrey 2023. All of it came from long build seasons with a fully student-run team.',
     stack: 'Java, WPILib, PID + feedforward control, NetworkTables, Gradle',
-    team: 'FRC Team 6694 Innobotics · Software Lead & Captain · Feb 2022 – Jan 2025',
+    team: 'FRC Team 6694 Innobotics · Captain and Software Lead · Feb 2022 – Jan 2025',
   },
 ];
 
@@ -304,6 +306,7 @@ const discs = [
     <nav aria-label="Sections" class="site-nav sticky top-0 z-40 flex items-center justify-between border-b border-line px-4 py-2 backdrop-blur md:hidden">
       <span id="nav-name" class="text-micro text-fg" aria-hidden="true">Pedro Librado Uribe Reyes</span>
       <div class="flex gap-4 text-micro">
+        <a class="-my-1 py-1 text-muted" href="#experience">Experience</a>
         <a class="-my-1 py-1 text-muted" href="#projects">Projects</a>
         {/* <a class="-my-1 py-1 text-muted" href="#about">About</a> */}
         <a class="-my-1 py-1 text-muted" href="#playground">Playground</a>
@@ -431,17 +434,22 @@ const discs = [
     */}
 
     <main id="main" class="relative">
-      <!-- Projects: the resume's main entries in the resume's order. Each id is the anchor the resume PDF links to. -->
-      <section id="projects" aria-labelledby="projects-heading" class="scroll-mt-16 px-4 pb-20 pt-4 md:px-6">
+      <!-- Experience and Projects: the resume's sections, entries, titles and order. Each id is the anchor the resume PDF links to. -->
+      {[
+        { id: 'experience', title: 'Experience', pad: 'pt-4' },
+        { id: 'projects', title: 'Projects', pad: '' },
+      ].map((sec) => (
+      <section id={sec.id} aria-labelledby={`${sec.id}-heading`} class:list={['scroll-mt-16 px-4 pb-20 md:px-6', sec.pad]}>
         <div class="mx-auto max-w-[1000px]">
-        <h2 id="projects-heading" class="text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">Projects</h2>
+        <h2 id={`${sec.id}-heading`} class="text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">{sec.title}</h2>
         <ul>
-          {resumeIndex.map((item) => {
+          {resumeIndex.filter((item) => item.section === sec.id).map((item) => {
             const text = (
               <span class="flex min-w-0 flex-col">
-                <span class="work-title text-[20px] leading-[1.3] lg:text-[22px]">{item.name}</span>
+                <span class="work-title text-[20px] leading-[1.3] lg:text-[22px]">{item.title}</span>
+                {item.sub && <span class="mt-1 text-[15px] leading-[1.4] text-dim lg:text-[16px]">{item.sub}</span>}
                 <span class="mt-3 max-w-[52ch] text-[15px] leading-[1.6] text-muted lg:text-[16px]">{item.proof}</span>
-                <span class="mt-3 text-[14px] text-dim">{item.role}, <span class="tabular">{item.year}</span></span>
+                <span class="tabular mt-3 text-[14px] text-dim">{item.meta}</span>
                 <span class="row-link mt-4 self-start text-[14px] text-muted underline decoration-1 underline-offset-[3px]">Details</span>
               </span>
             );
@@ -485,6 +493,7 @@ const discs = [
         </ul>
         </div>
       </section>
+      ))}
 
       <!-- Playground (About is commented out above it) -->
       <div class="px-4 pb-10 md:px-6">
@@ -749,8 +758,10 @@ const discs = [
 
     <!-- Case-study side panel -->
     {work.map((item) => {
-      const [caseName, ...caseRest] = item.title.split(' — ');
-      const caseRole = resumeIndex.find((r) => r.modal === item.id)?.role;
+      // Panel heading = the resume line the reader clicked; the work title adds the one-line summary.
+      const entry = resumeIndex.find((r) => r.modal === item.id);
+      const caseRest = entry?.sub ? [entry.sub] : item.title.split(' — ').slice(1);
+      const caseName = entry?.title ?? item.title.split(' — ')[0];
       return (
       <dialog id={`modal-${item.id}`} aria-labelledby={`${item.id}-modal-title`} class="case-panel mc-window m-0 ml-auto flex h-[100dvh] max-h-[100dvh] w-full max-w-none flex-col overflow-hidden p-0 text-fg md:w-[min(100vw,62rem)]">
         <div class="flex flex-none items-center justify-between gap-3 px-5 pb-3 pt-4 md:px-7">
@@ -760,7 +771,7 @@ const discs = [
         <div class="mc-well mx-3 mb-3 min-h-0 flex-1 overflow-y-auto md:mx-5 md:mb-5">
         <article class="mx-auto max-w-[46rem] px-5 pb-24 pt-10 md:px-10 md:pt-14">
           <header class="case-head">
-            <p class="tabular text-[14px] text-dim">{fullYears(item.year)}{caseRole && <> · {caseRole}</>}</p>
+            <p class="tabular text-[14px] text-dim">{entry?.meta ?? fullYears(item.year)}</p>
             <h2 id={`${item.id}-modal-title`} class="mt-3 text-[26px] font-normal leading-[1.15] text-fg md:text-[32px]">{caseName}</h2>
             {caseRest.length > 0 && <p class="mt-3 text-[16px] leading-[1.5] text-muted md:text-[18px]">{caseRest.join(' — ')}</p>}
             <ul class="mt-6 flex flex-wrap gap-2" aria-label="Stack">
@@ -1578,7 +1589,7 @@ const discs = [
       // Resume PDF links land on pedrolib.dev/#slug: open that entry's case study.
       function openFromHash() {
         const row = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
-        const opener = row?.matches('#projects li') ? row.querySelector('.open-modal') : null;
+        const opener = row?.matches('#experience li, #projects li') ? row.querySelector('.open-modal') : null;
         const dlg = opener ? document.getElementById(`modal-${opener.getAttribute('data-modal')}`) : null;
         if (dlg instanceof HTMLDialogElement && !document.querySelector('dialog[open]')) openDialog(dlg);
       }
