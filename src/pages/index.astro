@@ -2,6 +2,13 @@
 import '../styles.css';
 import Image from '../components/Image.astro';
 import aboutSelfieHome from '../assets/about/selfie-home.jpg';
+import introPhoto from '../assets/intro/me.jpg';
+import logoTec from '../assets/intro/Logo_del_ITESM.svg';
+import logoVantTec from '../assets/intro/vanttec.png';
+import logoBotbusters from '../assets/intro/botbusters.jpeg';
+import logoUcsd from '../assets/intro/ucsd.png';
+import logoInnobotics from '../assets/intro/innobotics-trim.png';
+import logoMexicali from '../assets/intro/mxlirobotics-trim.jpeg';
 import aboutChampionPlaque from '../assets/about/champion-plaque.jpg';
 import aboutConcertCrowd from '../assets/about/concert-crowd.jpg';
 import aboutConcertSelfie from '../assets/about/concert-selfie.jpg';
@@ -18,9 +25,7 @@ import senDevice from '../assets/projects/sentinelbox/device-rooftop.webp';
 import senElectronics from '../assets/projects/sentinelbox/electronics.webp';
 import senDashboard from '../assets/projects/sentinelbox/dashboard.webp';
 import senTwin from '../assets/projects/sentinelbox/3d-twin.webp';
-import minorteDashboard from '../assets/projects/minorte/dashboard2.webp';
 import uribotQuote from '../assets/projects/uribot/conversation-quote.png';
-import uribotBanner from '../assets/projects/uribot/uribot-banner.png';
 import innoField from '../assets/projects/innobotics/field-speaker-6694.jpeg';
 import innoCelebration from '../assets/projects/innobotics/celebration-flag.jpeg';
 import innoPit from '../assets/projects/innobotics/pit-crew.jpeg';
@@ -41,11 +46,50 @@ import vantFusion from '../assets/projects/vanttec/presa-lidar-yolo.jpg';
 
 const experience = [
   { year: '25—Now', name: 'VantTec', tags: 'USV Perception Lead', id: 'project-1' },
-  { year: '26', name: 'SMALC', tags: 'Robotics Education Volunteer', id: null },
   { year: '25', name: 'Botbusters', tags: 'FTC Robotics Mentor', id: null },
-  { year: '23', name: 'UC San Diego', tags: 'Research Assistant', id: 'project-5' },
+  { year: '23', name: 'UC San Diego', tags: 'Research Intern', id: 'project-5' },
   { year: '22—25', name: 'Innobotics', tags: 'Software Lead & Captain', id: 'project-6' },
   { year: '16—22', name: 'Mexicali Robotics', tags: 'Software Lead & Captain', id: null }
+];
+
+// '25—Now' -> '2025 – now', '22—25' -> '2022 – 2025'
+const fullYears = (y: string) => y.split('—').map((part) => (part === 'Now' ? 'now' : `20${part}`)).join(' – ');
+// Each logo sits on its own background color (Botbusters ships on black).
+const logos: Record<string, { src: ImageMetadata; bg: string }> = {
+  'Tec de Monterrey': { src: logoTec, bg: '#ffffff' },
+  VantTec: { src: logoVantTec, bg: '#ffffff' },
+  Botbusters: { src: logoBotbusters, bg: '#000000' },
+  'UC San Diego': { src: logoUcsd, bg: '#ffffff' },
+  Innobotics: { src: logoInnobotics, bg: '#ffffff' },
+  'Mexicali Robotics': { src: logoMexicali, bg: '#ffffff' },
+};
+const tiles = [
+  { name: 'Tec de Monterrey', role: 'B.S. Robotics', years: 'Graduating 2028', id: null },
+  ...experience.map((item) => ({ name: item.name, role: item.tags, years: fullYears(item.year), id: item.id })),
+];
+
+// Same names and order as the resume PDF. `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
+const resumeIndex = [
+  { slug: 'vanttec', year: '25—Now', name: 'VantTec', role: 'USV Perception Lead', modal: 'project-1', img: vantFusion,
+    video: '/projects/vanttec/fusion-card.mp4', poster: '/projects/vanttec/fusion-card-poster.jpg', videoW: 640, videoH: 640,
+    imgAlt: 'Camera view from the VantTec boat on a lake, with LiDAR points drawn over the image and a YOLO box around a red buoy labeled round 4.3 m',
+    proof: 'Camera and Velodyne LiDAR fusion in ROS 2 for an autonomous boat. Live on the Jetson: 4.3 m measured, 4.26 m by tape.' },
+  { slug: 'ucsd', year: '23', name: 'UC San Diego', role: 'Research Intern, VLSI Lab', modal: 'project-5', img: shapeStage,
+    imgAlt: 'Closing presentation at UC San Diego, Jacobs School of Engineering, Electrical and Computer Engineering',
+    proof: 'A real-time shape classifier with weights quantized to 4-bit integers for a Xilinx ZYNQ: 98.37% accuracy vs 98.77% in floating point.' },
+  { slug: 'innobotics', year: '22—25', name: 'Innobotics FRC 6694', role: 'Captain and Software Lead', modal: 'project-6', img: innoField,
+    imgAlt: 'FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker',
+    proof: 'Grew from mechanics to captain. Owned the Java/WPILib robot code: 7 subsystems, autonomous routines, PID + feedforward control.' },
+  { slug: 'uribot', year: '25—Now', name: 'Uribot', role: 'Founder', modal: 'project-2', img: uribotQuote,
+    imgAlt: 'Uribot chat on a laptop and a phone, answering a customer who asks the price of an oil change',
+    proof: 'Turns WhatsApp, Instagram and Messenger chats into quotes and bookings. 2 active businesses, ~US$1,500 revenue.' },
+  { slug: 'sentinelbox', year: '26', name: 'SentinelBox', role: 'Electronics and firmware', modal: 'project-3', img: senTeam,
+    imgAlt: 'SentinelBox team celebrating its first-place hackathon result',
+    proof: 'An ESP32 gateway runs a 259-parameter neural network in plain C to catch HVAC failures early. 1st place, Carrier Keep It Cool Hackathon.' },
+  { slug: 'smart-tractor', year: '26', name: 'Smart Tractor', role: 'Embedded systems', repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
+    video: '/playground/smarttractor/VideoTractor.mp4', poster: '/playground/smarttractor/poster.jpg',
+    imgAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
+    proof: 'STM32 firmware on FreeRTOS runs a Simulink engine model every 40 ms, with MQTT telemetry to Grafana and fail-safe braking.' },
 ];
 
 const work = [
@@ -98,16 +142,6 @@ const work = [
 
 const playground = [
   {
-    title: 'Smart Tractor — Embedded Systems, RTOS, Computer Vision',
-    desc: 'An STM32 tractor that you drive with Logitech pedals. FreeRTOS tasks run a Simulink engine and transmission model every 40 ms, show the gear on an LCD and send telemetry to Grafana. If commands stop arriving, the tractor brakes by itself. Computer vision detects when the operator gets drowsy.',
-    poster: '/playground/smarttractor/poster.jpg',
-    video: '/playground/smarttractor/VideoTractor.mp4',
-    videoW: 640,
-    videoH: 480,
-    videoAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
-    repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
-  },
-  {
     title: 'Football Sim RL — Multi-Agent RL, PPO, Python',
     desc: 'A deterministic 2D football simulator. The quarterback, receivers, cornerbacks and pass rusher each learn their role with PPO and behavior cloning. Over 100 test drives, the learned quarterback scored a touchdown on 30% of drives, against 21% for the rule-based one.',
     poster: '/playground/footballsim/poster.jpg',
@@ -143,10 +177,11 @@ const playground = [
   {
     title: 'MiNorte — AI Agents, MCP, Python',
     desc: 'A HackMTY 2026 team project for the Banorte Challenge. A deterministic engine calculates cash flow, taxes and receivables for small businesses. AI agents explain the numbers through MCP tools and build a weekly dashboard.',
-    img: minorteDashboard,
-    imgW: 1440,
-    imgH: 900,
-    imgAlt: 'MiNorte weekly financial workspace with prioritized actions, discoveries, and financial visualizations',
+    poster: '/playground/minorte/poster.jpg',
+    video: '/playground/minorte/minorte-demo.mp4',
+    videoW: 960,
+    videoH: 720,
+    videoAlt: 'Demo video, sped up: the MiNorte weekly dashboard with sales, profit, balance and estimated tax, the actions to resolve, and an answer that charts monthly cash flow',
     repo: 'https://github.com/pedroolib/MiNorte-by-Banorte',
   },
   {
@@ -173,7 +208,8 @@ const discs = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="preconnect" href="https://open.spotify.com" />
-    <link rel="icon" type="image/gif" href="/favicon.gif" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script is:inline>
       try {
         document.documentElement.dataset.theme =
@@ -217,84 +253,87 @@ const discs = [
       <span id="nav-name" class="text-micro text-fg" aria-hidden="true">Pedro Librado Uribe Reyes</span>
       <div class="flex gap-4 text-micro">
         <a class="-my-1 py-1 text-muted" href="#projects">Projects</a>
-        <a class="-my-1 py-1 text-muted" href="#about">About</a>
+        {/* <a class="-my-1 py-1 text-muted" href="#about">About</a> */}
         <a class="-my-1 py-1 text-muted" href="#playground">Playground</a>
       </div>
     </nav>
 
     <!-- Header -->
-    <header class="grid grid-cols-1 gap-6 px-4 pb-6 pt-6 md:grid-cols-3 md:px-6">
-      <div class="relative self-start" id="contact-wrap">
-        <h1 class="text-[16px] font-normal text-fg">Pedro Librado Uribe Reyes</h1>
-        <div id="contact-row" class="mt-1 -mb-1 flex items-center gap-1 text-micro">
-          <a class="py-1 text-dim hover:text-fg" href="mailto:libradouribe25@gmail.com">libradouribe25@gmail.com</a>
-          <button
-            id="contact-toggle"
-            class="flex min-w-6 items-center justify-center py-1 text-dim hover:text-fg"
-            aria-expanded="false"
-            aria-controls="contact-panel"
-            aria-label="More contact links"
-          >
-            <span aria-hidden="true" class="contact-icon inline-block text-base leading-none">+</span>
-          </button>
+    <header class="site-intro px-4 pb-6 pt-10 md:px-6 md:pt-14">
+      <div class="mx-auto max-w-[1120px]">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_15rem] md:gap-12 lg:grid-cols-[1fr_18rem]">
+          <div>
+            <h1 class="font-mono text-[28px] font-normal leading-[1.2] text-fg md:text-[40px]">Pedro Librado Uribe Reyes</h1>
+            <p class="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[17px]">
+              I'm a Robotics and Digital Systems undergraduate at <span class="text-fg">Tecnológico de Monterrey</span>.
+              I lead USV perception at <span class="text-fg">VantTec</span>, fusing camera and LiDAR on an autonomous boat.
+              Before that, I was a research intern in a VLSI lab at <span class="text-fg">UC San Diego</span> and the captain and
+              software lead of <span class="text-fg">Innobotics FRC 6694</span>. I also founded <span class="text-fg">Uribot</span>,
+              an AI automation platform for small businesses.
+            </p>
+            <p class="mt-4 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[17px]">
+              I'm looking for an <span class="text-fg">internship or research stay in robotics or AI hardware</span>.
+              I graduate in June 2028 and live in Monterrey, Nuevo León, México.
+            </p>
+            <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[16px] md:text-[17px]">
+              <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="mailto:libradouribe25@gmail.com">Email</a>
+              <span aria-hidden="true" class="text-dim">·</span>
+              <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener">CV</a>
+              <span aria-hidden="true" class="text-dim">·</span>
+              <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="https://www.linkedin.com/in/pedro-librado/" target="_blank" rel="noopener">LinkedIn</a>
+              <span aria-hidden="true" class="text-dim">·</span>
+              <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
+            </p>
+            {/* Skills hidden for now: remove this comment wrapper to show them again.
+            <p class="mt-4 max-w-[70ch] text-[14px] leading-[1.6]">
+              <span class="text-dim">Skills </span><span class="text-muted">Python, C/C++, Java, TypeScript, ROS 2, PyTorch, YOLO, TensorRT, CUDA, OpenCV, LiDAR-camera fusion, NVIDIA Jetson, STM32, ESP32, FreeRTOS, FPGA (VHDL, Verilog), Docker, Linux, FastAPI, PostgreSQL</span>
+            </p>
+            */}
+          </div>
+          <Image
+            src={introPhoto}
+            alt="Pedro Librado Uribe Reyes"
+            loading="eager"
+            class="intro-img h-auto w-full max-w-[18rem] self-start border border-line md:max-w-none"
+          />
         </div>
-        <div id="contact-panel" class="absolute left-0 top-full z-40 hidden min-w-[10rem] flex-col gap-1 pt-2 text-micro" hidden>
-          <a class="drop-link text-muted hover:text-fg" href="https://www.instagram.com/pedroo.lib/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-          <a class="drop-link text-muted hover:text-fg" href="mailto:libradouribe25@gmail.com" aria-label="Email">Email</a>
-          <a class="drop-link text-muted hover:text-fg" href="https://x.com/pedroolib" target="_blank" rel="noopener" aria-label="X">X</a>
-          <a class="drop-link text-muted hover:text-fg" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume (PDF)">Resume</a>
-          <a class="drop-link text-muted hover:text-fg" href="https://github.com/pedroolib" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-          <a class="drop-link text-muted hover:text-fg" href="https://www.linkedin.com/in/pedro-librado/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-        </div>
-      </div>
 
-      <div class="lg:pr-12">
-        <p class="text-[16px] text-fg">B.S. Robotics &amp; Digital Systems Student <span class="whitespace-nowrap">@ Tec de Monterrey</span></p>
-        <p class="text-micro text-dim">Monterrey, Nuevo León, México</p>
-        <p class="mt-2 text-micro text-muted">Looking for an internship or research stay in robotics or AI hardware. Graduating June 2028.</p>
-        <p class="mt-2 flex flex-wrap gap-x-4 text-micro">
-          <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-          <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
-          <a class="-my-1 py-1 text-fg underline underline-offset-4 hover:text-muted" href="https://www.linkedin.com/in/pedro-librado/" target="_blank" rel="noopener">LinkedIn</a>
-        </p>
-      </div>
-
-      <div>
-        <h2 class="sr-only">Experience index</h2>
-        <dl class="grid grid-cols-[3.5rem_1fr] gap-x-3 gap-y-1 text-micro min-[1400px]:grid-cols-[3.5rem_auto_minmax(0,1fr)]">
-          {experience.map((item) => (
-            <div class="tabular contents">
-              <dt class="sr-only">{item.name} year</dt>
-              <dd class="text-dim">{item.year}</dd>
-              <dd>
-                {item.id ? (
-                  <button
-                    class="open-modal -my-1 py-1 text-left text-fg hover:underline"
-                    data-modal={item.id}
-                  >
-                    {item.name} <span aria-hidden="true">▸</span>
-                  </button>
+        <h2 class="sr-only">Experience</h2>
+        <ul class="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8">
+          {tiles.map((tile) => {
+            const body = (
+              <>
+                <span class="flex h-[5rem] w-full items-center justify-center rounded-[6px] p-2" style={`background-color: ${logos[tile.name].bg}`}>
+                  <Image src={logos[tile.name].src} alt="" loading="lazy" class="intro-img h-full w-full object-contain" />
+                </span>
+                <span class="mt-3 block text-[16px] leading-[1.3] text-fg">{tile.name}{tile.id && <span aria-hidden="true" class="text-dim"> ▸</span>}</span>
+                <span class="mt-1 block text-[14px] leading-[1.4] text-dim">{tile.role}</span>
+                <span class="tabular mt-1 block text-[14px] text-dim">{tile.years}</span>
+              </>
+            );
+            return (
+              <li class="min-w-0">
+                {tile.id ? (
+                  <button type="button" class="open-modal intro-tile block w-full text-left" data-modal={tile.id} aria-haspopup="dialog">{body}</button>
                 ) : (
-                  <span class="text-left text-fg">{item.name}</span>
+                  <div class="intro-tile">{body}</div>
                 )}
-              </dd>
-              <dd class="col-start-2 break-words text-dim min-[1400px]:col-start-3 min-[1400px]:text-right">{item.tags}</dd>
-            </div>
-          ))}
-        </dl>
-        <div class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 text-micro">
-          <span class="text-dim">Skills</span>
-          <span class="text-muted">Python, C/C++, Java, TypeScript, ROS 2, PyTorch, YOLO, TensorRT, CUDA, OpenCV, LiDAR-camera fusion, NVIDIA Jetson, STM32, ESP32, FreeRTOS, FPGA (VHDL, Verilog), Docker, Linux, FastAPI, PostgreSQL</span>
-        </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </header>
 
+    {/* Discs hidden for now: remove this comment wrapper to bring them back.
     <!-- Vinyl hero -->
-    <section aria-label="Intro" class="relative flex min-h-[38vh] flex-wrap items-center justify-center gap-[4vw] px-4 py-10 md:min-h-[46vh] md:px-6 lg:gap-14">
+    <section aria-label="Intro" class="relative flex min-h-[38vh] items-center px-4 py-10 md:min-h-[46vh] md:px-6">
+      <!-- Same width as the Projects list below, so the discs line up with it. -->
+      <div class="mx-auto flex w-full max-w-[1120px] flex-wrap items-center justify-center gap-[4vw] md:justify-between md:gap-0">
       {discs.map((disc) => (
         <button
           type="button"
-          class="disc-btn relative aspect-square w-[min(13rem,26vw)] md:w-[min(16rem,26vw)]"
+          class="disc-btn relative aspect-square w-[min(13rem,26vw)] md:w-[min(12.5rem,26vw)]"
           data-track={disc.trackId}
           data-title={disc.song}
           aria-pressed="false"
@@ -322,10 +361,92 @@ const discs = [
           </div>
         </button>
       ))}
+      </div>
     </section>
+    */}
 
-    <!-- Main 3 columns -->
-    <main id="main" class="grid grid-cols-1 gap-10 px-4 pb-10 md:grid-cols-3 md:gap-6 md:px-6">
+    <main id="main" class="relative">
+      <!-- Projects: the resume's entries in the resume's order. Each id is the anchor the resume PDF links to. -->
+      <section id="projects" aria-labelledby="projects-heading" class="scroll-mt-16 px-4 pb-20 pt-4 md:px-6">
+        <div class="mx-auto max-w-[1120px]">
+        <h2 id="projects-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Projects</h2>
+        <ul>
+          {resumeIndex.map((item) => {
+            const text = (
+              <span class="flex min-w-0 flex-col">
+                <span class="work-title text-[20px] leading-[1.3] md:text-[24px] lg:text-[28px]">{item.name}</span>
+                <span class="mt-3 max-w-[52ch] text-[15px] leading-[1.6] text-muted md:text-[16px] lg:text-[18px]">{item.proof}</span>
+                <span class="mt-3 text-[14px] text-dim lg:text-[16px]">{item.role}, <span class="tabular">{item.year}</span></span>
+                <span class="row-link mt-4 self-start text-[14px] lg:text-[16px] text-muted underline decoration-1 underline-offset-[3px]">{item.modal ? 'Details' : 'Repo ↗'}</span>
+              </span>
+            );
+            const rowClass = 'grid w-full grid-cols-1 items-center gap-4 text-left sm:grid-cols-[240px_1fr] sm:gap-8 lg:grid-cols-[320px_1fr] lg:gap-12';
+            return (
+              <li id={item.slug} class="mt-12 scroll-mt-20 first:mt-6 sm:mt-10 lg:mt-14 lg:first:mt-8">
+                <article class="work-card">
+                  {item.modal ? (
+                    <button type="button" class={`open-modal ${rowClass}`} data-modal={item.modal} aria-haspopup="dialog">
+                      {item.video ? (
+                        <span class="about-photo relative block aspect-[4/3] w-full border border-line sm:aspect-square">
+                          <span class="about-photo-img absolute inset-0 block">
+                            <video
+                              class="slide-img"
+                              src={item.video}
+                              width={item.videoW}
+                              height={item.videoH}
+                              poster={item.poster}
+                              muted
+                              loop
+                              playsinline
+                              preload="metadata"
+                              aria-label={item.imgAlt}
+                            ></video>
+                          </span>
+                        </span>
+                      ) : (
+                        <Image
+                          class="work-thumb aspect-[4/3] w-full border border-line bg-paper object-cover sm:aspect-square"
+                          src={item.img}
+                          alt={item.imgAlt}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                      {text}
+                    </button>
+                  ) : (
+                    <a class={rowClass} href={item.repo} target="_blank" rel="noopener noreferrer">
+                      <span class="about-photo relative block aspect-[4/3] w-full border border-line sm:aspect-square">
+                        <span class="about-photo-img absolute inset-0 block">
+                          <video
+                            class="slide-img"
+                            src={item.video}
+                            width="640"
+                            height="480"
+                            poster={item.poster}
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            aria-label={item.imgAlt}
+                          ></video>
+                        </span>
+                      </span>
+                      {text}
+                      <span class="sr-only">(opens repository on GitHub)</span>
+                    </a>
+                  )}
+                </article>
+              </li>
+            );
+          })}
+        </ul>
+        </div>
+      </section>
+
+      <!-- Playground (About is commented out above it) -->
+      <div class="px-4 pb-10 md:px-6">
+      {/* About hidden for now: remove this comment wrapper to show it again.
       <!-- About -->
       <div class="col-stack" data-col="about">
         <h2 id="about-heading" class="col-heading text-[16px] font-normal text-dim">About</h2>
@@ -434,90 +555,14 @@ const discs = [
         </div>
       </div>
 
-      <!-- Projects -->
-      <!-- Projects come first on phones, so the work shows before the personal column. -->
-      <div class="col-stack order-first md:order-none" data-col="work">
-        <h2 id="projects-heading" class="col-heading text-[16px] font-normal text-dim">Projects</h2>
-        <div class="col-body">
-      <section id="projects" aria-labelledby="projects-heading" class="projects-sec scroll-mt-16 min-w-0">
-        <div class="space-y-8">
-          {work.map((item, i) => (
-            <article class="work-card group" aria-labelledby={`${item.id}-title`}>
-              <button
-                class="open-modal block w-full text-left"
-                data-modal={item.id}
-                aria-haspopup="dialog"
-              >
-                {item.id === 'project-3' ? (
-                  <Image
-                    class="work-thumb aspect-video w-full border border-line object-cover"
-                    src={senTeam}
-                    width="900"
-                    height="506"
-                    alt="SentinelBox team celebrating its first-place hackathon result"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : item.id === 'project-2' ? (
-                  <Image
-                    class="work-thumb aspect-[4/3] w-full border border-line bg-white object-contain"
-                    src={uribotBanner}
-                    width="995"
-                    height="345"
-                    alt="Uribot logo: a teal robot-cat mascot beside the word uribot"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : item.id === 'project-5' ? (
-                  <Image
-                    class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                    src={shapeStage}
-                    width="1200"
-                    height="900"
-                    alt="Closing presentation at UC San Diego — Jacobs School of Engineering, Electrical and Computer Engineering"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : item.id === 'project-6' ? (
-                  <Image
-                    class="work-thumb aspect-[72/101] w-full border border-line object-cover object-top"
-                    src={innoField}
-                    width="1200"
-                    height="900"
-                    alt="FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : item.id === 'project-1' ? (
-                  <Image
-                    class="work-thumb aspect-[4/3] w-full border border-line object-cover"
-                    src={vantFusion}
-                    width="1230"
-                    height="694"
-                    alt="Camera view from the VantTec boat on a lake, with LiDAR points drawn over the image and a YOLO box around a red buoy labeled round 4.3 m"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : null}
-                <p class="mt-2 text-micro text-muted">
-                  <span id={`${item.id}-title`} class="work-title text-fg">{item.title}</span>
-                  <span class="float-right text-dim">{item.year}</span>
-                </p>
-              </button>
-              <p class="card-desc mt-1 text-muted">{item.what}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-        </div>
-      </div>
+      */}
 
       <!-- Playground -->
-      <div class="col-stack" data-col="playground">
-        <h2 id="playground-heading" class="col-heading text-[16px] font-normal text-dim">Playground</h2>
+      <div class="col-stack mx-auto max-w-[1120px]" data-col="playground">
+        <h2 id="playground-heading" class="col-heading text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Playground</h2>
         <div class="col-body">
-      <section id="playground" aria-labelledby="playground-heading" class="playground-sec scroll-mt-16 min-w-0">
-        <div class="space-y-8">
+      <section id="playground" aria-labelledby="playground-heading" class="playground-sec min-w-0 scroll-mt-[7.5rem] lg:scroll-mt-[8.5rem]">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
           {playground.map((item) => {
             const Card = item.repo ? 'a' : 'div';
             const cardLink = item.repo
@@ -573,7 +618,6 @@ const discs = [
                       {item.repo && (
                         <span aria-hidden="true" class="repo-float">↗ Repo</span>
                       )}
-                      {item.video && <span aria-hidden="true" class="play-float">▶ Tap to play</span>}
                     </div>
                   ) : item.img ? (
                     <Image
@@ -586,8 +630,9 @@ const discs = [
                       decoding="async"
                     />
                   ) : null}
-                  <p class="work-title mt-2 text-micro text-fg">{item.title}</p>
-                  <p class="card-desc mt-1 text-muted">{item.desc}</p>
+                  <p class="work-title mt-3 text-[20px] leading-[1.3] lg:text-[24px]">{item.title.split(' — ')[0]}</p>
+                  {item.title.includes(' — ') && <p class="mt-1 text-[14px] text-dim">{item.title.split(' — ').slice(1).join(' — ')}</p>}
+                  <p class="mt-2 text-[15px] leading-[1.6] text-muted lg:text-[16px]">{item.desc}</p>
                 </Card>
               </article>
             );
@@ -595,6 +640,7 @@ const discs = [
         </div>
       </section>
         </div>
+      </div>
       </div>
     </main>
 
@@ -1211,7 +1257,6 @@ const discs = [
       const toggle = document.getElementById('contact-toggle');
       const panel = document.getElementById('contact-panel');
       const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const IS_TOUCH = window.matchMedia('(hover: none)').matches;
 
       // Phone nav: show the name only once the header name is off screen.
       const siteNav = document.querySelector('.site-nav');
@@ -1288,16 +1333,6 @@ const discs = [
       // Each photo card cycles its own slides; captions live on the images.
       document.addEventListener('click', (e) => {
         if (!(e.target instanceof Element)) return;
-        // Touch screens: a tap on a demo video plays or pauses it, so phones
-        // download a video only when the visitor asks for it.
-        const tapZone = IS_TOUCH ? e.target.closest('.work-card .about-photo') : null;
-        const tapVideo = tapZone?.querySelector('video:not([hidden])');
-        if (tapVideo instanceof HTMLVideoElement && (tapVideo.paused || !e.target.closest('.about-next-btn'))) {
-          e.preventDefault();
-          if (tapVideo.paused) tapVideo.play().catch(() => {});
-          else tapVideo.pause();
-          return;
-        }
         const nextBtn = e.target.closest('.about-next-btn');
         if (nextBtn) {
           const zone = nextBtn.closest('.about-photo');
@@ -1310,10 +1345,7 @@ const discs = [
             if (k === i) img.removeAttribute('hidden');
             else img.setAttribute('hidden', '');
           });
-          const card = zone?.closest('.work-card');
-          if (card instanceof HTMLElement) {
-            zone?.querySelectorAll('video').forEach((v) => syncDemoVideoPlayback(v, card));
-          }
+          zone?.querySelectorAll('video').forEach((v) => syncDemoVideoPlayback(v, v.dataset.onScreen === '1'));
           if (cap) {
             const text = slides[i]?.getAttribute('alt') || '';
             cap.textContent = `${String(i + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')} — ${text}`;
@@ -1379,6 +1411,16 @@ const discs = [
           delete dlg.dataset.openedBy;
         });
       });
+
+      // Resume PDF links land on pedrolib.dev/#slug: open that entry's case study.
+      function openFromHash() {
+        const row = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+        const opener = row?.matches('#projects li') ? row.querySelector('.open-modal') : null;
+        const dlg = opener ? document.getElementById(`modal-${opener.getAttribute('data-modal')}`) : null;
+        if (dlg instanceof HTMLDialogElement && !document.querySelector('dialog[open]')) openDialog(dlg);
+      }
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
 
       // No sticky focus rings anywhere for mouse users (real clicks have
       // detail > 0; keyboard clicks have detail === 0 and keep their ring).
@@ -1572,32 +1614,19 @@ const discs = [
         });
       }
 
-      // Demo videos play only while their card is hovered/focused, and pause
-      // on leave. Reduced-motion users stay paused. Touch screens play a
-      // video only when it is tapped (see the click handler).
-      if (!REDUCED_MOTION) {
-        const cardVideos = Array.from(document.querySelectorAll('.work-card video'));
-        if (window.matchMedia('(hover: hover)').matches) {
-          cardVideos.forEach((v) => {
-            const card = v.closest('.work-card');
-            if (!(card instanceof HTMLElement)) return;
-            const syncPlayback = () => syncDemoVideoPlayback(v, card);
-            card.addEventListener('mouseenter', syncPlayback);
-            card.addEventListener('mouseleave', syncPlayback);
-            card.addEventListener('focusin', syncPlayback);
-            card.addEventListener('focusout', syncPlayback);
+      // Card videos play on their own while they are on screen and pause
+      // when they scroll away, so off-screen videos cost nothing.
+      // Reduced-motion users keep the still poster.
+      if (!REDUCED_MOTION && 'IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const v = entry.target;
+            if (!(v instanceof HTMLVideoElement)) return;
+            v.dataset.onScreen = entry.isIntersecting ? '1' : '0';
+            syncDemoVideoPlayback(v, entry.isIntersecting);
           });
-        }
-      }
-
-      // Touch screens: show "Tap to play" while a visible demo video is paused.
-      if (IS_TOUCH) {
-        document.querySelectorAll('.work-card video').forEach((v) => {
-          const zone = v.closest('.about-photo');
-          const sync = () => zone?.classList.toggle('is-playing', !v.paused && !v.hidden);
-          v.addEventListener('play', sync);
-          v.addEventListener('pause', sync);
-        });
+        }, { rootMargin: '100px 0px' });
+        document.querySelectorAll('.work-card video').forEach((v) => videoObserver.observe(v));
       }
 
       // Scroll reveal: images and paragraphs fade up when seen, fade back
@@ -1727,7 +1756,7 @@ const discs = [
       // Uniform synchronized columns: each column body drifts at its own
       // velocity, proportional to its length, so all columns run out of
       // content at the same point and the page stops right at the content.
-      // The longest column (Projects) moves naturally — i.e. fastest — while
+      // The longest column moves naturally — i.e. fastest — while
       // shorter columns lag behind by exactly their length difference, so
       // tops start aligned and bottoms end aligned. Kicks in only after the
       // section titles scroll out of view; before that offset stays 0.
@@ -1737,9 +1766,7 @@ const discs = [
       const parallaxBodies = Array.from(
         document.querySelectorAll('.col-stack > .col-body')
       ).filter((el) => el instanceof HTMLElement);
-      const parallaxHeading = document.querySelector(
-        '.col-stack[data-col="work"] > .col-heading'
-      );
+      const parallaxHeading = document.querySelector('.col-stack > .col-heading');
       let parallaxFrame = 0;
       function headingsExitScrollY() {
         if (!(parallaxHeading instanceof HTMLElement)) return 0;
@@ -1790,8 +1817,7 @@ const discs = [
 
       // Eased wheel scrolling (desktop, motion allowed). Lenis sets the scroll
       // position from JS each frame and we move the columns in the same frame,
-      // so all three columns stay in lockstep instead of the native-scrolled
-      // one running a frame ahead of the transformed ones.
+      // so both columns stay in lockstep.
       let lenis = null;
       function syncSmoothScroll() {
         const want = parallaxMedia.matches && !REDUCED_MOTION;

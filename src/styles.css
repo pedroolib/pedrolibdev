@@ -20,6 +20,15 @@
   font-display: swap;
 }
 
+/* Miracode: a smooth vector version of Monocraft, used from Projects down. */
+@font-face {
+  font-family: "Miracode";
+  src: url("/fonts/Miracode.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --bg-tile: url("/netherite_block.png");
@@ -228,6 +237,29 @@ html {
 }
 */
 
+/* Above 1600px wide the whole page scales up with the screen, so it keeps the
+   proportions it has at 1600px (CSS px become rem in postcss.config.cjs).
+   1vw = 16px at 1600px. Stops growing at 150% (2400px). */
+html {
+  font-size: clamp(100%, 1vw, 150%);
+}
+
+main,
+.site-intro {
+  font-family: "Miracode", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* The photo and logos are not pixel art: undo the inherited pixelated scaling. */
+.intro-img {
+  image-rendering: auto;
+}
+
+/* Header tiles that open a case study underline their name on hover. */
+button.intro-tile:is(:hover, :focus-visible) > span:nth-child(2) {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 body {
   @apply text-fg antialiased;
   font-family: "Monocraft", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -354,6 +386,17 @@ button {
   --column-brightness: 1;
 }
 
+/* Projects is a full-width band, not a column: each card lights up on its own. */
+#projects .work-card:is(:hover, :focus-within) {
+  --column-blur: 0px;
+  --column-brightness: 1;
+}
+
+#projects .work-card:is(:hover, :focus-within) :is(.work-title, .text-dim, .text-muted) {
+  color: var(--fg);
+}
+
+
 /* About photo slideshow */
 .slide-img {
   position: absolute;
@@ -435,8 +478,15 @@ button {
   }
 }
 
+/* Same gap under the heading as Projects has above its first row. */
 .col-stack > .col-heading {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .col-stack > .col-heading {
+    margin-bottom: 2rem;
+  }
 }
 
 .col-stack > .col-body {
@@ -695,28 +745,6 @@ h2 {
   }
 }
 
-/* Touch screens: "Tap to play" pill on demo videos that are not playing.
-   Hidden on hover screens, where videos play on hover. */
-.play-float {
-  display: none;
-}
-
-@media (hover: none) {
-  .work-card .about-photo:not(.is-playing):has(video:not([hidden])) .play-float {
-    display: block;
-    position: absolute;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    z-index: 50;
-    background: #fff;
-    color: #000;
-    border-radius: 9999px;
-    padding: 0.25rem 0.75rem;
-    font-size: 12px;
-    line-height: 1.5;
-    pointer-events: none;
-  }
-}
 
 /* Phones: the nav shows the name only after the header name scrolls away. */
 #nav-name {

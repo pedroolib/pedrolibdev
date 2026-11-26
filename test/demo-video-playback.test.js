@@ -19,22 +19,23 @@ function makeVideo({ hidden = false } = {}) {
   };
 }
 
-function makeCard({ hovered = false, focused = false } = {}) {
-  return {
-    matches: (selector) =>
-      (selector === ':hover' && hovered) || (selector === ':focus-within' && focused),
-  };
-}
-
-test('plays a video when its slide returns while the card is still hovered', async () => {
+test('plays a video when its slide returns while it is still on screen', async () => {
   const video = makeVideo();
-  const card = makeCard({ hovered: true });
 
-  await syncDemoVideoPlayback(video, card);
+  await syncDemoVideoPlayback(video, true);
   video.setHidden(true);
-  await syncDemoVideoPlayback(video, card);
+  await syncDemoVideoPlayback(video, true);
   video.setHidden(false);
-  await syncDemoVideoPlayback(video, card);
+  await syncDemoVideoPlayback(video, true);
 
   assert.deepEqual(video.calls, ['play', 'pause', 'play']);
+});
+
+test('pauses a video that scrolls off screen', async () => {
+  const video = makeVideo();
+
+  await syncDemoVideoPlayback(video, true);
+  await syncDemoVideoPlayback(video, false);
+
+  assert.deepEqual(video.calls, ['play', 'pause']);
 });

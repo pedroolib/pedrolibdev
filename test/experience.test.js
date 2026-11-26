@@ -4,13 +4,11 @@ import test from 'node:test';
 
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
 
-test('lists SMALC as a 2026 robotics education volunteer experience', () => {
-  assert.match(
-    page,
-    /\{ year: '26', name: 'SMALC', tags: 'Robotics Education Volunteer', id: null \}/
-  );
+test('lists the current VantTec role before the completed roles', () => {
+  assert.ok(page.indexOf("name: 'VantTec'") < page.indexOf("name: 'Botbusters'"));
 });
 
-test('lists the current VantTec role before the completed SMALC role', () => {
-  assert.ok(page.indexOf("name: 'VantTec'") < page.indexOf("name: 'SMALC'"));
+test('resume index keeps the resume PDF order and the anchors the PDF links to', () => {
+  const slugs = [...page.matchAll(/\{ slug: '([a-z-]+)'/g)].map((m) => m[1]);
+  assert.deepEqual(slugs, ['vanttec', 'ucsd', 'innobotics', 'uribot', 'sentinelbox', 'smart-tractor']);
 });
