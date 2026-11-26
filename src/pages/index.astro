@@ -73,7 +73,7 @@ const tiles = [
 // The resume's main entries, in the resume's order (Smart Tractor lives in the playground). `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
 const resumeIndex = [
   { slug: 'vanttec', year: '25—Now', name: 'VantTec', role: 'USV Perception Lead', modal: 'project-1', img: vantFusion,
-    video: '/projects/vanttec/fusion-card.mp4', poster: '/projects/vanttec/fusion-card-poster.jpg', videoW: 640, videoH: 640,
+    video: '/projects/vanttec/fusion-card-full.mp4', poster: '/projects/vanttec/fusion-card-full-poster.jpg', videoW: 640, videoH: 640,
     imgAlt: 'Camera view from the VantTec boat on a lake, with LiDAR points drawn over the image and a YOLO box around a red buoy labeled round 4.3 m',
     proof: 'Camera and Velodyne LiDAR fusion in ROS 2 for an autonomous boat. Live on the Jetson: 4.3 m measured, 4.26 m by tape.' },
   { slug: 'ucsd', year: '23', name: 'UC San Diego', role: 'Research Intern, VLSI Lab', modal: 'project-5', img: shapeStage,
@@ -91,17 +91,18 @@ const resumeIndex = [
     proof: 'An ESP32 gateway runs a 259-parameter neural network in plain C to catch HVAC failures early. 1st place, Carrier Keep It Cool Hackathon.' },
 ];
 
-// Copied from the resume's Awards, Presentations, Leadership and Interests sections, newest first.
+// Copied from the resume's Awards, Presentations, Leadership and Interests sections.
+// Ordered by importance and relevance to robotics/AI hardware, not by date. Flag football stays last.
 const awards = [
   { year: '2026', what: 'Carrier Keep It Cool Hackathon, Monterrey (SentinelBox)', result: '1st place', tier: 'challenge', icon: 'blue-ice' },
   { year: '2026', what: 'RoboBoat 2026, autonomous surface vehicle competition (VantTec)', result: 'Top Latin American team', tier: 'challenge', icon: 'oak-boat' },
-  { year: '2024–26', what: "Flag football league champion: men's 2025 and 2026, mixed 2025, and 2024 with finals MVP", result: '4 league titles', tier: 'challenge', icon: 'totem-of-undying' },
-  { year: '2023–24', what: 'FRC Regionals: Hermosillo 2024 (3rd place) and Monterrey 2023 (5th place)', result: 'Spirit and Imagery Awards', tier: 'goal', icon: 'firework-rocket' },
   { year: '2023', what: 'AI hardware research talks: ENLACE conference, UC San Diego, and UCSD-ENLACE-México Symposium', result: 'Invited talk', tier: 'goal', icon: 'book-and-quill' },
-  { year: '2023', what: 'Baja California State Youth Award, Science and Technology', result: 'Honorable mention', tier: 'goal', icon: 'emerald' },
-  { year: '2021', what: 'NASEF Farmcraft, representing Mexico', result: '1st place worldwide', tier: 'challenge', icon: 'golden-hoe' },
-  { year: '2021', what: 'World Robot Olympiad Mexico', result: '3rd place national', tier: 'goal', icon: 'redstone-dust' },
   { year: '2018–21', what: 'Infomatrix World Finals, Bucharest (3rd place worldwide). Robomatrix (2nd place continental). Named a "SOLACYT Legend"', result: '3rd worldwide', tier: 'challenge', icon: 'compass' },
+  { year: '2021', what: 'NASEF Farmcraft, representing Mexico', result: '1st place worldwide', tier: 'challenge', icon: 'golden-hoe' },
+  { year: '2023–24', what: 'FRC Regionals: Hermosillo 2024 (3rd place) and Monterrey 2023 (5th place)', result: 'Spirit and Imagery Awards', tier: 'goal', icon: 'firework-rocket' },
+  { year: '2023', what: 'Baja California State Youth Award, Science and Technology', result: 'Honorable mention', tier: 'goal', icon: 'emerald' },
+  { year: '2021', what: 'World Robot Olympiad Mexico', result: '3rd place national', tier: 'goal', icon: 'redstone-dust' },
+  { year: '2024–26', what: "Flag football league champion: men's 2025 and 2026, mixed 2025, and 2024 with finals MVP", result: '4 league titles', tier: 'challenge', icon: 'totem-of-undying' },
 ];
 
 const volunteering = [
@@ -311,23 +312,23 @@ const discs = [
 
     <!-- Header -->
     <header class="site-intro px-4 pb-6 pt-10 md:px-6 md:pt-14">
-      <div class="mx-auto max-w-[1120px]">
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_15rem] md:gap-12 lg:grid-cols-[1fr_18rem]">
+      <div class="mx-auto max-w-[1000px]">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_13rem] md:gap-12 lg:grid-cols-[1fr_15rem]">
           <div>
-            <h1 class="font-mono text-[28px] font-normal leading-[1.2] text-fg md:text-[40px]">Pedro Librado Uribe Reyes</h1>
-            <p class="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[17px]">
+            <h1 class="font-mono text-[28px] font-normal leading-[1.2] text-fg md:text-[32px]">Pedro Librado Uribe Reyes</h1>
+            <p class="mt-5 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[15px]">
               I'm a Robotics and Digital Systems undergraduate at <span class="text-fg">Tecnológico de Monterrey</span>.
               I lead USV perception at <span class="text-fg">VantTec</span>, fusing camera and LiDAR on an autonomous boat.
               Before that, I was a research intern in a VLSI lab at <span class="text-fg">UC San Diego</span> and the captain and
               software lead of <span class="text-fg">Innobotics FRC 6694</span>. I also founded <span class="text-fg">Uribot</span>,
               an AI automation platform for small businesses.
             </p>
-            <p class="mt-4 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[17px]">
+            <p class="mt-4 max-w-[60ch] text-[16px] leading-[1.75] text-muted md:text-[15px]">
               I'm looking for an <span class="text-fg">internship or research stay in robotics or AI hardware</span>.
               I graduate in June 2028 and live in Monterrey, Nuevo León, México.
               Before Tec, I earned the <span class="text-fg">IB Diploma</span> at CETYS Preparatoria in Mexicali.
             </p>
-            <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[16px] md:text-[17px]">
+            <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[16px] md:text-[15px]">
               <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="mailto:libradouribe25@gmail.com">Email</a>
               <span aria-hidden="true" class="text-dim">·</span>
               <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="/Pedro_Uribe_Resume.pdf" target="_blank" rel="noopener">CV</a>
@@ -363,16 +364,16 @@ const discs = [
         </div>
 
         <h2 class="sr-only">Experience</h2>
-        <ul class="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8">
+        <ul class="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
           {tiles.map((tile) => {
             const body = (
               <>
-                <span class="flex h-[5rem] w-full items-center justify-center rounded-[6px] p-2" style={`background-color: ${logos[tile.name].bg}`}>
+                <span class="flex h-[5rem] w-full items-center justify-center rounded-[6px] p-2 lg:h-[4.25rem]" style={`background-color: ${logos[tile.name].bg}`}>
                   <Image src={logos[tile.name].src} alt="" loading="lazy" class="intro-img h-full w-full object-contain" />
                 </span>
-                <span class="mt-3 block text-[16px] leading-[1.3] text-fg">{tile.name}{tile.id && <span aria-hidden="true" class="text-dim"> ▸</span>}</span>
-                <span class="mt-1 block text-[14px] leading-[1.4] text-dim">{tile.role}</span>
-                <span class="tabular mt-1 block text-[14px] text-dim">{tile.years}</span>
+                <span class="mt-3 block text-[16px] leading-[1.3] text-fg lg:text-[14px]">{tile.name}{tile.id && <span aria-hidden="true" class="text-dim"> ▸</span>}</span>
+                <span class="mt-1 block text-[14px] leading-[1.4] text-dim lg:text-[13px]">{tile.role}</span>
+                <span class="tabular mt-1 block text-[14px] text-dim lg:text-[13px]">{tile.years}</span>
               </>
             );
             return (
@@ -393,7 +394,7 @@ const discs = [
     <!-- Vinyl hero -->
     <section aria-label="Intro" class="relative flex min-h-[38vh] items-center px-4 py-10 md:min-h-[46vh] md:px-6">
       <!-- Same width as the Projects list below, so the discs line up with it. -->
-      <div class="mx-auto flex w-full max-w-[1120px] flex-wrap items-center justify-center gap-[4vw] md:justify-between md:gap-0">
+      <div class="mx-auto flex w-full max-w-[1000px] flex-wrap items-center justify-center gap-[4vw] md:justify-between md:gap-0">
       {discs.map((disc) => (
         <button
           type="button"
@@ -432,19 +433,19 @@ const discs = [
     <main id="main" class="relative">
       <!-- Projects: the resume's main entries in the resume's order. Each id is the anchor the resume PDF links to. -->
       <section id="projects" aria-labelledby="projects-heading" class="scroll-mt-16 px-4 pb-20 pt-4 md:px-6">
-        <div class="mx-auto max-w-[1120px]">
-        <h2 id="projects-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Projects</h2>
+        <div class="mx-auto max-w-[1000px]">
+        <h2 id="projects-heading" class="text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">Projects</h2>
         <ul>
           {resumeIndex.map((item) => {
             const text = (
               <span class="flex min-w-0 flex-col">
-                <span class="work-title text-[20px] leading-[1.3] md:text-[24px] lg:text-[28px]">{item.name}</span>
-                <span class="mt-3 max-w-[52ch] text-[15px] leading-[1.6] text-muted md:text-[16px] lg:text-[18px]">{item.proof}</span>
-                <span class="mt-3 text-[14px] text-dim lg:text-[16px]">{item.role}, <span class="tabular">{item.year}</span></span>
-                <span class="row-link mt-4 self-start text-[14px] lg:text-[16px] text-muted underline decoration-1 underline-offset-[3px]">Details</span>
+                <span class="work-title text-[20px] leading-[1.3] lg:text-[22px]">{item.name}</span>
+                <span class="mt-3 max-w-[52ch] text-[15px] leading-[1.6] text-muted lg:text-[16px]">{item.proof}</span>
+                <span class="mt-3 text-[14px] text-dim">{item.role}, <span class="tabular">{item.year}</span></span>
+                <span class="row-link mt-4 self-start text-[14px] text-muted underline decoration-1 underline-offset-[3px]">Details</span>
               </span>
             );
-            const rowClass = 'grid w-full grid-cols-1 items-center gap-4 text-left sm:grid-cols-[240px_1fr] sm:gap-8 lg:grid-cols-[320px_1fr] lg:gap-12';
+            const rowClass = 'grid w-full grid-cols-1 items-center gap-4 text-left sm:grid-cols-[220px_1fr] sm:gap-8 lg:grid-cols-[280px_1fr] lg:gap-10';
             return (
               <li id={item.slug} class="mt-12 scroll-mt-20 first:mt-6 sm:mt-10 lg:mt-14 lg:first:mt-8">
                 <article class="work-card">
@@ -599,8 +600,8 @@ const discs = [
       */}
 
       <!-- Playground -->
-      <div class="col-stack mx-auto max-w-[1120px]" data-col="playground">
-        <h2 id="playground-heading" class="col-heading text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Playground</h2>
+      <div class="col-stack mx-auto max-w-[1000px]" data-col="playground">
+        <h2 id="playground-heading" class="col-heading text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">Playground</h2>
         <div class="col-body">
       <section id="playground" aria-labelledby="playground-heading" class="playground-sec min-w-0 scroll-mt-[7.5rem] lg:scroll-mt-[8.5rem]">
         <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
@@ -671,9 +672,9 @@ const discs = [
                       decoding="async"
                     />
                   ) : null}
-                  <p class="work-title mt-3 text-[20px] leading-[1.3] lg:text-[24px]">{item.title.split(' — ')[0]}</p>
+                  <p class="work-title mt-3 text-[18px] leading-[1.3] lg:text-[20px]">{item.title.split(' — ')[0]}</p>
                   {item.title.includes(' — ') && <p class="mt-1 text-[14px] text-dim">{item.title.split(' — ').slice(1).join(' — ')}</p>}
-                  <p class="mt-2 text-[15px] leading-[1.6] text-muted lg:text-[16px]">{item.desc}</p>
+                  <p class="mt-2 text-[15px] leading-[1.6] text-muted">{item.desc}</p>
                 </Card>
               </article>
             );
@@ -689,8 +690,8 @@ const discs = [
         { id: 'volunteering', title: 'Volunteering', items: volunteering, pad: '' },
       ].map((sec) => (
       <section id={sec.id} aria-labelledby={`${sec.id}-heading`} class:list={['scroll-mt-16 px-4 pb-20 md:px-6', sec.pad]}>
-        <div class="mx-auto max-w-[1120px]">
-        <h2 id={`${sec.id}-heading`} class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">{sec.title}</h2>
+        <div class="mx-auto max-w-[1000px]">
+        <h2 id={`${sec.id}-heading`} class="text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">{sec.title}</h2>
         <ul class="mt-6 grid gap-3 md:grid-cols-2 md:gap-4 lg:mt-8">
           {sec.items.map((a) => (
             <li class:list={['mc-toast', `mc-toast--${a.tier}`]}>
@@ -702,7 +703,7 @@ const discs = [
                   <p class="mc-toast-result">{a.result}</p>
                   <span class="tabular flex-none text-[13px] text-dim md:text-[14px]">{a.year}</span>
                 </div>
-                <p class="mt-1 text-[15px] leading-[1.5] text-fg md:text-[16px]">{a.what}</p>
+                <p class="mt-1 text-[15px] leading-[1.5] text-fg">{a.what}</p>
               </div>
             </li>
           ))}
@@ -713,8 +714,8 @@ const discs = [
 
       <!-- Skills: same groups as the resume -->
       <section id="skills" aria-labelledby="skills-heading" class="scroll-mt-16 px-4 pb-20 md:px-6">
-        <div class="mx-auto max-w-[1120px]">
-        <h2 id="skills-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Skills</h2>
+        <div class="mx-auto max-w-[1000px]">
+        <h2 id="skills-heading" class="text-[24px] font-normal leading-[1.2] text-fg lg:text-[26px]">Skills</h2>
         <ul class="mt-6 grid gap-3 md:grid-cols-2 md:gap-4 lg:mt-8">
           {skills.map((s) => (
             <li class="mc-toast mc-toast--skill">
@@ -740,7 +741,7 @@ const discs = [
 
     <!-- Bottom padding keeps the fixed theme button off the text. -->
     <footer class="px-4 pb-24 pt-6 md:px-6">
-      <p class="mx-auto max-w-[1120px] text-[14px] text-dim">
+      <p class="mx-auto max-w-[1000px] text-[14px] text-dim">
         <span class="whitespace-nowrap">Pedro Librado Uribe Reyes © {buildDate.getFullYear()}</span>
         <span class="whitespace-nowrap">| Last updated {buildDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
       </p>
@@ -760,8 +761,8 @@ const discs = [
         <article class="mx-auto max-w-[46rem] px-5 pb-24 pt-10 md:px-10 md:pt-14">
           <header class="case-head">
             <p class="tabular text-[14px] text-dim">{fullYears(item.year)}{caseRole && <> · {caseRole}</>}</p>
-            <h2 id={`${item.id}-modal-title`} class="mt-3 text-[30px] font-normal leading-[1.15] text-fg md:text-[40px]">{caseName}</h2>
-            {caseRest.length > 0 && <p class="mt-3 text-[18px] leading-[1.5] text-muted md:text-[20px]">{caseRest.join(' — ')}</p>}
+            <h2 id={`${item.id}-modal-title`} class="mt-3 text-[26px] font-normal leading-[1.15] text-fg md:text-[32px]">{caseName}</h2>
+            {caseRest.length > 0 && <p class="mt-3 text-[16px] leading-[1.5] text-muted md:text-[18px]">{caseRest.join(' — ')}</p>}
             <ul class="mt-6 flex flex-wrap gap-2" aria-label="Stack">
               {item.stack.split(', ').map((tool) => (
                 <li class="border border-line px-2 py-1 text-[13px] leading-none text-dim">{tool}</li>

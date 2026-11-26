@@ -55,10 +55,6 @@
   --line: #a09a8d;
 }
 
-[data-theme="light"] body {
-  --bg-tile-size: 96px 96px;
-}
-
 /* Light theme: same utilities, inverted tones */
 [data-theme="light"] .text-fg {
   color: var(--fg);
@@ -284,7 +280,7 @@ body::before {
   inset: 0;
   background-image: linear-gradient(var(--overlay), var(--overlay)), var(--bg-tile);
   background-repeat: repeat;
-  background-size: auto, var(--bg-tile-size, 64px 64px);
+  background-size: auto, 64px 64px;
   image-rendering: pixelated;
   pointer-events: none;
   z-index: 0;
@@ -476,6 +472,25 @@ button {
     --column-blur: 0px;
     --column-brightness: 1;
   }
+}
+
+/* Playground shows many cards at once, so it stays lit instead of waiting for hover. */
+.col-stack[data-col="playground"] {
+  --column-blur: 0px;
+  --column-brightness: 1;
+}
+
+/* Text behaves like Projects: each card lights on its own, not the whole column. */
+.col-stack[data-col="playground"] .work-card :is(.work-title, .text-dim) {
+  color: var(--dim);
+}
+
+.col-stack[data-col="playground"] .work-card .text-muted {
+  color: var(--muted);
+}
+
+.col-stack[data-col="playground"] .work-card:is(:hover, :focus-within) :is(.work-title, .text-dim, .text-muted) {
+  color: var(--fg);
 }
 
 /* Same gap under the heading as Projects has above its first row. */
@@ -783,7 +798,7 @@ h2 {
 
 .case-body {
   counter-reset: case-sec case-fig;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--muted);
 }
@@ -816,7 +831,7 @@ h2 {
 
 .case-body > section:first-child > p:first-child + p {
   color: var(--fg);
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.7;
 }
 
@@ -824,7 +839,7 @@ h2 {
   counter-increment: case-sec;
   margin-bottom: 0.75rem;
   color: var(--fg);
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.3;
 }
