@@ -903,7 +903,8 @@ h2 {
 /* Case-study panel as a Minecraft inventory window: black outline on the
    open side, light top-left edge, dark bottom-right edge, sunken
    slots for figures and tags. Its own palette in each theme. */
-.mc-window {
+.mc-window,
+.mc-toast {
   --mc-fill: #242424;
   --mc-hi: #3c3c3c;
   --mc-shadow: #0c0c0c;
@@ -914,6 +915,9 @@ h2 {
   --muted: #b6b6b6;
   --dim: #8e8e8e;
   --line: #0c0c0c;
+}
+
+.mc-window {
   background-color: var(--mc-fill);
   /* Flush with the top, right and bottom of the screen: only the left
      side gets the black outline. */
@@ -925,7 +929,7 @@ h2 {
   scrollbar-color: var(--mc-hi) var(--mc-shadow);
 }
 
-[data-theme="light"] .mc-window {
+[data-theme="light"] :is(.mc-window, .mc-toast) {
   --mc-fill: #c6c6c6;
   --mc-well: #c6c6c6;
   --mc-hi: #ffffff;
@@ -938,15 +942,15 @@ h2 {
   --line: #8b8b8b;
 }
 
-.mc-window .text-fg {
+:is(.mc-window, .mc-toast) .text-fg {
   color: var(--fg);
 }
 
-.mc-window .text-muted {
+:is(.mc-window, .mc-toast) .text-muted {
   color: var(--muted);
 }
 
-.mc-window .text-dim {
+:is(.mc-window, .mc-toast) .text-dim {
   color: var(--dim);
 }
 
@@ -996,19 +1000,95 @@ h2 {
 
 /* Stack tags and figures look like item slots. */
 .mc-window .case-head li,
+.mc-tag,
 .mc-window .case-body figure :is(img, video) {
   border: 3px solid;
   border-color: var(--mc-shadow) var(--mc-hi) var(--mc-hi) var(--mc-shadow);
   background-color: var(--mc-slot);
 }
 
-.mc-window .case-head li {
+.mc-window .case-head li,
+.mc-tag {
   padding: 0.35rem 0.5rem;
   color: var(--fg);
 }
 
-[data-theme="light"] .mc-window .case-head li {
+.mc-tag {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+[data-theme="light"] .mc-window .case-head li,
+[data-theme="light"] .mc-tag {
   background-color: #a9a9a9;
+}
+
+/* Award tiles styled like the in-game advancement pop-up: bevelled box,
+   item icon in a sunken slot, colored title. */
+.mc-toast {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  background-color: var(--mc-fill);
+  border: 3px solid #000;
+  box-shadow:
+    inset 3px 3px 0 var(--mc-hi),
+    inset -3px -3px 0 var(--mc-shadow);
+}
+
+.mc-toast-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--mc-slot);
+  border: 3px solid;
+  border-color: var(--mc-shadow) var(--mc-hi) var(--mc-hi) var(--mc-shadow);
+}
+
+.mc-toast-icon img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.mc-toast-result {
+  font-family: "Monocraft", ui-monospace, monospace;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--toast-title);
+  text-shadow: 2px 2px 0 var(--toast-shadow);
+}
+
+.mc-toast--challenge { --toast-title: #ff70ff; --toast-shadow: #3f153f; }
+.mc-toast--goal { --toast-title: #ffff55; --toast-shadow: #3f3f15; }
+.mc-toast--help { --toast-title: #55ff55; --toast-shadow: #153f15; }
+.mc-toast--skill { --toast-title: #55ffff; --toast-shadow: #153f3f; }
+
+/* On the light gray tile the bright colors are unreadable: darker, no shadow. */
+[data-theme="light"] .mc-toast--challenge { --toast-title: #7a1a7a; --toast-shadow: transparent; }
+[data-theme="light"] .mc-toast--goal { --toast-title: #5c4600; --toast-shadow: transparent; }
+[data-theme="light"] .mc-toast--help { --toast-title: #1d5c1d; --toast-shadow: transparent; }
+[data-theme="light"] .mc-toast--skill { --toast-title: #0d5555; --toast-shadow: transparent; }
+
+@media (min-width: 768px) {
+  .mc-toast-result {
+    font-size: 19px;
+  }
+
+  /* 48px is exactly 3x the 16px item art, so the pixels stay even. */
+  .mc-toast-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .mc-toast-icon img {
+    width: 48px;
+    height: 48px;
+  }
+
 }
 
 /* Card descriptions: one step larger than the 12px labels, for easier reading. */

@@ -9,6 +9,6 @@ test('lists the current VantTec role before the completed roles', () => {
 });
 
 test('resume index keeps the resume PDF order and the anchors the PDF links to', () => {
-  const slugs = [...page.matchAll(/\{ slug: '([a-z-]+)'/g)].map((m) => m[1]);
+  const slugs = [...page.matchAll(/\bslug: '([a-z-]+)'/g)].map((m) => m[1]);
   assert.deepEqual(slugs, ['vanttec', 'ucsd', 'innobotics', 'uribot', 'sentinelbox', 'smart-tractor']);
 });
