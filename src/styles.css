@@ -549,8 +549,9 @@ dialog.closing {
   }
 }
 
+/* Light enough that the block texture stays visible behind the panel. */
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 h1,
@@ -604,9 +605,28 @@ h2 {
   z-index: 50;
 }
 
+/* Intro photo: egg pill follows the cursor, click swaps to the skin. */
+.intro-egg-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.egg-float {
+  background: none;
+  padding: 0;
+}
+
+/* Preflight's max-width: 100% shrank the egg as the pill neared the right edge. */
+.egg-float img {
+  display: block;
+  max-width: none;
+}
+
 @media (hover: hover) {
   .about-photo.is-hover .about-next-float,
-  .about-photo.is-hover .repo-float {
+  .about-photo.is-hover .repo-float,
+  .intro-photo.is-hover .egg-float {
     opacity: 1;
   }
 }
@@ -755,104 +775,240 @@ h2 {
   opacity: 0;
 }
 
-/* Case-study panels in an IEEE paper layout: numbered headings, two text columns, and "Fig. N." captions under small figures. */
-.ieee {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: center;
-  gap: 1.75rem 2rem;
-  counter-reset: ieee-sec ieee-fig;
-  font-family: "Monocraft", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 16px;
-  line-height: 1.6;
+/* Case-study panels: a reading sheet in the same type as the site.
+   One column, numbered section titles, full-width figures. */
+.case-panel {
+  font-family: "Miracode", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-.ieee > * {
-  width: 100%;
+.case-body {
+  counter-reset: case-sec case-fig;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
 }
 
-.ieee section p {
+.case-body > * + * {
+  margin-top: 2.5rem;
+}
+
+.case-body section p + p {
+  margin-top: 1em;
+}
+
+.case-body section p {
+  color: var(--muted);
+}
+
+.case-body :is(strong, b) {
   color: var(--fg);
-}
-
-.ieee section p:not(.text-dim) + p:not(.text-dim) {
-  text-indent: 1em;
-}
-
-.ieee section p.text-dim {
-  color: var(--dim);
-}
-
-.ieee > section:first-child > p:first-child {
-  column-span: all;
-  margin-bottom: 0.75em;
-  color: var(--dim);
-  text-align: center;
-}
-
-.ieee h3 {
-  column-span: all;
-  margin-bottom: 0.5em;
-  counter-increment: ieee-sec;
-  font-size: 15px;
   font-weight: 400;
+}
+
+/* Opening section: a small label, then the lead paragraph. */
+.case-body > section:first-child > p:first-child {
+  margin-bottom: 0.75rem;
+  color: var(--dim);
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-align: center;
 }
 
-.ieee h3::before {
-  content: counter(ieee-sec, upper-roman) ". ";
+.case-body > section:first-child > p:first-child + p {
+  color: var(--fg);
+  font-size: 19px;
+  line-height: 1.7;
 }
 
-.ieee code {
+.case-body h3 {
+  counter-increment: case-sec;
+  margin-bottom: 0.75rem;
+  color: var(--fg);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.case-body h3::before {
+  content: counter(case-sec, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--dim);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.case-body code {
+  padding: 0.05em 0.35em;
+  border: 1px solid var(--line, #222);
+  color: var(--fg);
   font-family: inherit;
+  font-size: 0.9em;
 }
 
-.ieee figure :is(img, video) {
+.case-body a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.case-body a:hover {
+  color: var(--muted);
+}
+
+/* Figures fill the column, but a tall photo shrinks evenly to fit 75% of
+   the screen height and stays centered, so it is never stretched. */
+.case-body figure :is(img, video) {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: min(50vh, 480px);
+  height: auto;
+  max-height: 75vh;
   margin-inline: auto;
   border-radius: 0;
 }
 
-.ieee figcaption {
-  margin-top: 0.5em;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
+.case-body figcaption {
+  margin-top: 0.75rem;
+  color: var(--dim);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.ieee figcaption::before {
-  counter-increment: ieee-fig;
-  content: "Fig. " counter(ieee-fig) ". ";
+.case-body figcaption::before {
+  counter-increment: case-fig;
+  content: "Fig. " counter(case-fig, decimal-leading-zero) "  ";
+  color: var(--muted);
+}
+
+/* Role or team line under the last section. */
+.case-body .case-meta {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line, #222);
+  color: var(--dim);
+  font-size: 14px;
+}
+
+.case-body .case-meta span {
+  color: var(--muted);
+}
+
+/* Closing links row. */
+.case-body > p:last-child {
+  font-size: 16px;
+}
+
+/* Case-study panel as a Minecraft inventory window: black outline on the
+   open side, light top-left edge, dark bottom-right edge, sunken
+   slots for figures and tags. Its own palette in each theme. */
+.mc-window {
+  --mc-fill: #242424;
+  --mc-hi: #3c3c3c;
+  --mc-shadow: #0c0c0c;
+  --mc-well: #171717;
+  --mc-slot: #101010;
+  --mc-title: #b8b8b8;
+  --fg: #e6e6e6;
+  --muted: #b6b6b6;
+  --dim: #8e8e8e;
+  --line: #0c0c0c;
+  background-color: var(--mc-fill);
+  /* Flush with the top, right and bottom of the screen: only the left
+     side gets the black outline. */
+  border: 0;
+  border-left: 3px solid #000;
+  box-shadow:
+    inset 3px 3px 0 var(--mc-hi),
+    inset -3px -3px 0 var(--mc-shadow);
+  scrollbar-color: var(--mc-hi) var(--mc-shadow);
+}
+
+[data-theme="light"] .mc-window {
+  --mc-fill: #c6c6c6;
+  --mc-well: #c6c6c6;
+  --mc-hi: #ffffff;
+  --mc-shadow: #555555;
+  --mc-slot: #8b8b8b;
+  --mc-title: #404040;
+  --fg: #1a1a1a;
+  --muted: #2e2e2e;
+  --dim: #464646;
+  --line: #8b8b8b;
+}
+
+.mc-window .text-fg {
   color: var(--fg);
 }
 
-/* Below 1280px the panel is too narrow for two Monocraft columns. */
-@media (min-width: 1280px) {
-  .ieee section {
-    column-count: 2;
-    column-gap: 2rem;
-  }
+.mc-window .text-muted {
+  color: var(--muted);
+}
 
-  /* One figure fits one text column. Two figures in a row sit side by side. */
-  .ieee > figure {
-    width: calc(50% - 1rem);
-  }
+.mc-window .text-dim {
+  color: var(--dim);
+}
 
-  /* Diagrams that open full size span both columns, as IEEE figure* does. */
-  .ieee > figure:has(> a),
-  .ieee > figure.ieee-wide {
-    width: 100%;
-  }
+.mc-window .border-line {
+  border-color: var(--mc-shadow);
+}
 
-  .ieee > figure:has(> a) figcaption,
-  .ieee > figure.ieee-wide figcaption {
-    text-align: center;
-  }
+.mc-title {
+  color: var(--mc-title);
+  font-family: "Monocraft", ui-monospace, monospace;
+  font-size: 16px;
+}
+
+/* The scrolling reading area sits in a sunken well. */
+.mc-well {
+  background-color: var(--mc-well);
+  border: 3px solid;
+  border-color: var(--mc-shadow) var(--mc-hi) var(--mc-hi) var(--mc-shadow);
+}
+
+/* Minecraft button: gray, bevelled, white text with a hard shadow. */
+.mc-button {
+  padding: 0.3rem 0.9rem;
+  border: 2px solid #000;
+  background: #6f6f6f;
+  box-shadow:
+    inset 2px 2px 0 #a9a9a9,
+    inset -2px -2px 0 #4c4c4c;
+  color: #ffffff;
+  font-family: "Monocraft", ui-monospace, monospace;
+  font-size: 14px;
+  text-shadow: 2px 2px 0 #3f3f3f;
+}
+
+.mc-button:is(:hover, :focus-visible) {
+  background: #7a84bd;
+  box-shadow:
+    inset 2px 2px 0 #b6bdf0,
+    inset -2px -2px 0 #535b8c;
+  outline: none;
+}
+
+.mc-window .case-head h2,
+.mc-window .case-body h3 {
+  font-family: "Monocraft", ui-monospace, monospace;
+}
+
+/* Stack tags and figures look like item slots. */
+.mc-window .case-head li,
+.mc-window .case-body figure :is(img, video) {
+  border: 3px solid;
+  border-color: var(--mc-shadow) var(--mc-hi) var(--mc-hi) var(--mc-shadow);
+  background-color: var(--mc-slot);
+}
+
+.mc-window .case-head li {
+  padding: 0.35rem 0.5rem;
+  color: var(--fg);
+}
+
+[data-theme="light"] .mc-window .case-head li {
+  background-color: #a9a9a9;
 }
 
 /* Card descriptions: one step larger than the 12px labels, for easier reading. */
