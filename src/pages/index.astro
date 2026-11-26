@@ -70,7 +70,7 @@ const tiles = [
   ...experience.map((item) => ({ name: item.name, role: item.tags, years: fullYears(item.year), id: item.id })),
 ];
 
-// Same names and order as the resume PDF. `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
+// The resume's main entries, in the resume's order (Smart Tractor lives in the playground). `slug` is the anchor the PDF links to (pedrolib.dev/#slug).
 const resumeIndex = [
   { slug: 'vanttec', year: '25—Now', name: 'VantTec', role: 'USV Perception Lead', modal: 'project-1', img: vantFusion,
     video: '/projects/vanttec/fusion-card.mp4', poster: '/projects/vanttec/fusion-card-poster.jpg', videoW: 640, videoH: 640,
@@ -83,30 +83,39 @@ const resumeIndex = [
     imgAlt: 'FRC Team 6694 robot on the CRESCENDO field, lined up at the speaker',
     proof: 'Grew from mechanics to captain. Owned the Java/WPILib robot code: 7 subsystems, autonomous routines, PID + feedforward control.' },
   { slug: 'uribot', year: '25—Now', name: 'Uribot', role: 'Founder', modal: 'project-2', img: uribotQuote,
-    imgAlt: 'Uribot chat on a laptop and a phone, answering a customer who asks the price of an oil change',
+    video: '/projects/uribot/oil-change-card.mp4', poster: '/projects/uribot/oil-change-card-poster.jpg', videoW: 640, videoH: 640,
+    imgAlt: 'Animated Uribot WhatsApp chat: a customer asks for an oil-change quote for a 2013 Escape, gets synthetic and semi-synthetic prices, and books an appointment for the next morning',
     proof: 'Turns WhatsApp, Instagram and Messenger chats into quotes and bookings. 2 active businesses, ~US$1,500 revenue.' },
   { slug: 'sentinelbox', year: '26', name: 'SentinelBox', role: 'Electronics and firmware', modal: 'project-3', img: senTeam,
     imgAlt: 'SentinelBox team celebrating its first-place hackathon result',
     proof: 'An ESP32 gateway runs a 259-parameter neural network in plain C to catch HVAC failures early. 1st place, Carrier Keep It Cool Hackathon.' },
-  { slug: 'smart-tractor', year: '26', name: 'Smart Tractor', role: 'Embedded systems', repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
-    video: '/playground/smarttractor/VideoTractor.mp4', poster: '/playground/smarttractor/poster.jpg',
-    imgAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
-    proof: 'STM32 firmware on FreeRTOS runs a Simulink engine model every 40 ms, with MQTT telemetry to Grafana, fail-safe braking and drowsiness detection.' },
 ];
 
 // Copied from the resume's Awards, Presentations, Leadership and Interests sections, newest first.
 const awards = [
   { year: '2026', what: 'Carrier Keep It Cool Hackathon, Monterrey (SentinelBox)', result: '1st place' },
   { year: '2026', what: 'RoboBoat 2026, autonomous surface vehicle competition (VantTec)', result: 'Top Latin American team' },
-  { year: '2025–26', what: 'FTC software mentor, Botbusters (4 teams). Robotics teacher, SMALC (class of 25 children)', result: 'Volunteering' },
   { year: '2024–26', what: "Flag football league champion: men's 2025 and 2026, mixed 2025, and 2024 with finals MVP", result: '4 league titles' },
   { year: '2023–24', what: 'FRC Regionals: Hermosillo 2024 (3rd place) and Monterrey 2023 (5th place)', result: 'Spirit and Imagery Awards' },
-  { year: '2023–24', what: "Volunteer, Mexicali: robot STEM booth at the Intuitive race, and activities at 3 children's homes", result: 'Volunteering' },
   { year: '2023', what: 'AI hardware research talks: ENLACE conference, UC San Diego, and UCSD-ENLACE-México Symposium', result: 'Invited talk' },
   { year: '2023', what: 'Baja California State Youth Award, Science and Technology', result: 'Honorable mention' },
   { year: '2021', what: 'NASEF Farmcraft, representing Mexico', result: '1st place worldwide' },
   { year: '2021', what: 'World Robot Olympiad Mexico', result: '3rd place national' },
   { year: '2018–21', what: 'Infomatrix World Finals, Bucharest (3rd place worldwide). Robomatrix (2nd place continental). Named a "SOLACYT Legend"', result: '3rd worldwide' },
+];
+
+const volunteering = [
+  { year: '2025–26', what: 'FTC software mentor, Botbusters (4 teams). Robotics teacher, SMALC (class of 25 children)', result: 'Mentor and teacher' },
+  { year: '2023–24', what: "Mexicali: robot STEM booth at the Intuitive race, and activities at 3 children's homes", result: 'Volunteer' },
+];
+
+// Same groups as the resume's Skills section.
+const skills = [
+  { group: 'Robotics', items: 'ROS 2, Gazebo, LiDAR-camera calibration and sensor fusion, PID + feedforward, WPILib' },
+  { group: 'Edge AI and vision', items: 'PyTorch (Ultralytics YOLO), CUDA, TensorRT, ONNX, OpenCV, NVIDIA Jetson' },
+  { group: 'Embedded', items: 'STM32, ESP32, bare-metal C, FreeRTOS, FPGA (VHDL, Verilog), UART, CAN, MQTT' },
+  { group: 'Software and tools', items: 'Python, C/C++, Java, MATLAB/Simulink, Linux, Docker, Git, PostgreSQL, Agile/Scrum' },
+  { group: 'Languages', items: 'Spanish (native), English (fluent)' },
 ];
 
 const work = [
@@ -159,6 +168,16 @@ const work = [
 
 const playground = [
   {
+    title: 'Pip — Electron, Claude, Jev, Privacy',
+    desc: 'A team prototype desktop assistant for autistic and other neurodivergent adults starting a new job. Select a vague work message, press a shortcut, and Pip turns it into small steps, each with its why. I owned the AI layer: the Claude and Jev calls and the scrubber that removes names before any AI call.',
+    poster: '/playground/pippal/poster.jpg',
+    video: '/playground/pippal/pip-demo.mp4',
+    videoW: 960,
+    videoH: 720,
+    videoAlt: 'Demo video, sped up: Pip reads a Slack message, breaks it into steps, asks how the person feels halfway and offers calming options, then opens Pip\'s House',
+    repo: 'https://github.com/pedroolib/pip-pal',
+  },
+  {
     title: 'Football Sim RL — Multi-Agent RL, PPO, Python',
     desc: 'A deterministic 2D football simulator. The quarterback, receivers, cornerbacks and pass rusher each learn their role with PPO and behavior cloning. Over 100 test drives, the learned quarterback scored a touchdown on 30% of drives, against 21% for the rule-based one.',
     poster: '/playground/footballsim/poster.jpg',
@@ -167,6 +186,18 @@ const playground = [
     videoH: 720,
     videoAlt: 'Demo video: six parallel plays in the football simulator with a quarterback, two receivers, two cornerbacks and a pass rusher',
     repo: 'https://github.com/pedroolib/football-sim-rl',
+  },
+  {
+    // The resume PDF links to pedrolib.dev/#smart-tractor.
+    slug: 'smart-tractor',
+    title: 'Smart Tractor — STM32, FreeRTOS, Embedded Systems',
+    desc: 'STM32 firmware on FreeRTOS runs a Simulink engine model every 40 ms, with MQTT telemetry to Grafana, fail-safe braking and drowsiness detection.',
+    poster: '/playground/smarttractor/poster.jpg',
+    video: '/playground/smarttractor/VideoTractor.mp4',
+    videoW: 640,
+    videoH: 480,
+    videoAlt: 'Demo video: STM32-based tractor driving while a Grafana dashboard shows live telemetry',
+    repo: 'https://github.com/pedroolib/JohnDeere-RLTractorModelation',
   },
   {
     title: 'FPGA Controller — VHDL, FPGA, UART',
@@ -210,6 +241,9 @@ const playground = [
     imgAlt: 'JohnDeereSim pixel-art farming game screenshot',
   },
 ];
+
+// The footer's "Last updated" is the build date.
+const buildDate = new Date();
 
 const discs = [
   { src: discRed, width: 129, height: 130, label: 'Play si preguntas por mi', pathId: 'circlePathRed', motto: 'You Are Going To Figure It Out. You Always Do •', trackId: '7z3rdMzhY122waIpkSsE7P', song: 'si preguntas por mi' },
@@ -302,14 +336,6 @@ const discs = [
               <span aria-hidden="true" class="text-dim">·</span>
               <a class="py-1 text-muted underline decoration-1 underline-offset-4 hover:text-fg" href="https://github.com/pedroolib" target="_blank" rel="noopener">GitHub</a>
             </p>
-            <!-- Same lists as the resume's Skills section -->
-            <dl class="mt-6 max-w-[70ch] space-y-1 text-[14px] leading-[1.6]">
-              <div><dt class="inline text-dim">Robotics </dt><dd class="inline text-muted">ROS 2, Gazebo, LiDAR-camera calibration and sensor fusion, PID + feedforward, WPILib</dd></div>
-              <div><dt class="inline text-dim">Edge AI and vision </dt><dd class="inline text-muted">PyTorch (Ultralytics YOLO), CUDA, TensorRT, ONNX, OpenCV, NVIDIA Jetson</dd></div>
-              <div><dt class="inline text-dim">Embedded </dt><dd class="inline text-muted">STM32, ESP32, bare-metal C, FreeRTOS, FPGA (VHDL, Verilog), UART, CAN, MQTT</dd></div>
-              <div><dt class="inline text-dim">Software </dt><dd class="inline text-muted">Python, C/C++, Java, MATLAB/Simulink, Linux, Docker, Git, PostgreSQL, Agile/Scrum</dd></div>
-              <div><dt class="inline text-dim">Languages </dt><dd class="inline text-muted">Spanish (native), English (fluent)</dd></div>
-            </dl>
           </div>
           <div class="intro-photo relative w-full max-w-[18rem] self-start md:max-w-none">
             <Image
@@ -404,7 +430,7 @@ const discs = [
     */}
 
     <main id="main" class="relative">
-      <!-- Projects: the resume's entries in the resume's order. Each id is the anchor the resume PDF links to. -->
+      <!-- Projects: the resume's main entries in the resume's order. Each id is the anchor the resume PDF links to. -->
       <section id="projects" aria-labelledby="projects-heading" class="scroll-mt-16 px-4 pb-20 pt-4 md:px-6">
         <div class="mx-auto max-w-[1120px]">
         <h2 id="projects-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Projects</h2>
@@ -415,14 +441,13 @@ const discs = [
                 <span class="work-title text-[20px] leading-[1.3] md:text-[24px] lg:text-[28px]">{item.name}</span>
                 <span class="mt-3 max-w-[52ch] text-[15px] leading-[1.6] text-muted md:text-[16px] lg:text-[18px]">{item.proof}</span>
                 <span class="mt-3 text-[14px] text-dim lg:text-[16px]">{item.role}, <span class="tabular">{item.year}</span></span>
-                <span class="row-link mt-4 self-start text-[14px] lg:text-[16px] text-muted underline decoration-1 underline-offset-[3px]">{item.modal ? 'Details' : 'Repo ↗'}</span>
+                <span class="row-link mt-4 self-start text-[14px] lg:text-[16px] text-muted underline decoration-1 underline-offset-[3px]">Details</span>
               </span>
             );
             const rowClass = 'grid w-full grid-cols-1 items-center gap-4 text-left sm:grid-cols-[240px_1fr] sm:gap-8 lg:grid-cols-[320px_1fr] lg:gap-12';
             return (
               <li id={item.slug} class="mt-12 scroll-mt-20 first:mt-6 sm:mt-10 lg:mt-14 lg:first:mt-8">
                 <article class="work-card">
-                  {item.modal ? (
                     <button type="button" class={`open-modal ${rowClass}`} data-modal={item.modal} aria-haspopup="dialog">
                       {item.video ? (
                         <span class="about-photo relative block aspect-[4/3] w-full border border-line sm:aspect-square">
@@ -452,28 +477,6 @@ const discs = [
                       )}
                       {text}
                     </button>
-                  ) : (
-                    <a class={rowClass} href={item.repo} target="_blank" rel="noopener noreferrer">
-                      <span class="about-photo relative block aspect-[4/3] w-full border border-line sm:aspect-square">
-                        <span class="about-photo-img absolute inset-0 block">
-                          <video
-                            class="slide-img"
-                            src={item.video}
-                            width="640"
-                            height="480"
-                            poster={item.poster}
-                            muted
-                            loop
-                            playsinline
-                            preload="metadata"
-                            aria-label={item.imgAlt}
-                          ></video>
-                        </span>
-                      </span>
-                      {text}
-                      <span class="sr-only">(opens repository on GitHub)</span>
-                    </a>
-                  )}
                 </article>
               </li>
             );
@@ -612,7 +615,7 @@ const discs = [
                 }
               : {};
             return (
-              <article class="work-card">
+              <article id={item.slug} class="work-card scroll-mt-20">
                 <Card class="block" {...cardLink}>
                   {item.video || item.repo ? (
                     <div class="about-photo relative aspect-[4/3] w-full border border-line">
@@ -680,12 +683,16 @@ const discs = [
         </div>
       </div>
       </div>
-      <!-- Awards: same order and wording as the resume -->
-      <section id="awards" aria-labelledby="awards-heading" class="scroll-mt-16 px-4 pb-20 pt-10 md:px-6">
+      <!-- Awards and Volunteering: same order and wording as the resume -->
+      {[
+        { id: 'awards', title: 'Awards and Talks', items: awards, pad: 'pt-10' },
+        { id: 'volunteering', title: 'Volunteering', items: volunteering, pad: '' },
+      ].map((sec) => (
+      <section id={sec.id} aria-labelledby={`${sec.id}-heading`} class:list={['scroll-mt-16 px-4 pb-20 md:px-6', sec.pad]}>
         <div class="mx-auto max-w-[1120px]">
-        <h2 id="awards-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Awards and Talks</h2>
+        <h2 id={`${sec.id}-heading`} class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">{sec.title}</h2>
         <ul class="mt-6 border-t border-line lg:mt-8">
-          {awards.map((a) => (
+          {sec.items.map((a) => (
             <li class="grid grid-cols-[5.5rem_1fr] gap-x-4 gap-y-1 border-b border-line py-4 text-[15px] leading-[1.5] md:grid-cols-[7rem_1fr_auto] md:gap-x-8 md:text-[16px] lg:text-[18px]">
               <span class="tabular text-dim">{a.year}</span>
               <span class="text-muted">{a.what}</span>
@@ -695,8 +702,32 @@ const discs = [
         </ul>
         </div>
       </section>
+      ))}
+
+      <!-- Skills: same groups as the resume -->
+      <section id="skills" aria-labelledby="skills-heading" class="scroll-mt-16 px-4 pb-20 md:px-6">
+        <div class="mx-auto max-w-[1120px]">
+        <h2 id="skills-heading" class="text-[24px] font-normal leading-[1.2] text-fg md:text-[28px] lg:text-[32px]">Skills</h2>
+        <dl class="mt-6 border-t border-line lg:mt-8">
+          {skills.map((s) => (
+            <div class="grid grid-cols-1 gap-x-8 gap-y-1 border-b border-line py-4 text-[15px] leading-[1.5] md:grid-cols-[12rem_1fr] md:text-[16px] lg:text-[18px]">
+              <dt class="text-dim">{s.group}</dt>
+              <dd class="text-muted">{s.items}</dd>
+            </div>
+          ))}
+        </dl>
+        </div>
+      </section>
 
     </main>
+
+    <!-- Bottom padding keeps the fixed theme button off the text. -->
+    <footer class="px-4 pb-24 pt-6 md:px-6">
+      <p class="mx-auto max-w-[1120px] text-[14px] text-dim">
+        <span class="whitespace-nowrap">Pedro Librado Uribe Reyes © {buildDate.getFullYear()}</span>
+        <span class="whitespace-nowrap">| Last updated {buildDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+      </p>
+    </footer>
 
     <!-- Case-study side panel -->
     {work.map((item) => {
@@ -727,6 +758,24 @@ const discs = [
                 <p id="uribot-intro" class="mb-2 text-dim">From the first customer message to the next business action</p>
                 <p class="text-muted">Uribot is an AI automation platform for small businesses. It started at a real automotive workshop. It grew into a multi-tenant system that answers customer questions, qualifies leads, prepares quotes, and books appointments on messaging channels.</p>
               </section>
+
+              <figure>
+                <video
+                  class="mx-auto block h-auto max-h-[75vh] w-auto max-w-full border border-line"
+                  src="/projects/uribot/oil-change-demo.mp4"
+                  poster="/projects/uribot/oil-change-demo-poster.jpg"
+                  width="720"
+                  height="720"
+                  controls
+                  data-panel-autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-label="Animated Uribot WhatsApp chat, slowed down: a customer asks for an oil-change quote for a 2013 Ford Escape, 4-cylinder. Uribot answers with synthetic oil at 1,600 MXN and semi-synthetic at 1,200 MXN. The customer asks for an appointment tomorrow morning, and Uribot asks which branch and what time."
+                ></video>
+                <figcaption class="text-dim">One oil-change conversation, from the question to the quote to the booking.</figcaption>
+              </figure>
 
               <figure>
                 <Image
